@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loan</title>
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="../../Images/logo.ico" type="image/x-ico" />
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <!-- Bootstrap Icon -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="../../CSS/main.css" />
+  <script async src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <!-- Custom JavaScript -->
+  <script defer src="../../JS/dashboard.js"></script>
+</head>
+<body class="main">
+    <%- include("partials/adminSidebar"); -%>
+    <section>
+        <div class="flex flex-col items-center justify-center">
+            <div class="mt-20 text-center">
+              <h1 class="text-2xl text-black font-bold md:text-4xl">Loan</h1>
+              <h4 class="text-sm mt-2 md:text-base">
+                Total Of <span class="text-darkBlue font-bold text-base md:text-xl">
+                    [Number Of Applications]
+                </span>Loan Applications.
+              </h4>
+              <h3 class="my-10 text-black font-bold text-base md:text-2xl">
+                All Requests
+              </h3>
+            </div>
+          </div> 
+          <div class="flex flex-col items-center justify-center">
+            <button class="another collapsible">
+              <div class="flex flex-row items-center justify-evenly">
+                <h4 class="text-sm md:text-base capitalize">
+                  [Username]
+                </h4>
+                <p class="text-xs md:text-sm">
+                    <input
+                    class="text-green-600 text-xs mr-2 font-light capitalize hover:underline hover:cursor-pointer md:text-sm"
+                    type="submit" value="confirm" name="approve">
+                  <input
+                    class="text-red-600 text-xs mt-1 font-light capitalize hover:underline hover:cursor-pointer md:text-sm md:mt-0"
+                    type="submit" value="reject" name="approve">
+                </p>
+                <p class="text-xs md:text-sm">
+                    [Request Date and Time]
+                  </p>
+              </div>
+            </button>
+            <div class="content">
+              <h4 class="text-darkBlue text-sm mt-6 md:text-base">
+                <span class="text-black">Username:</span>
+                [Username]
+              </h4>
+              <hr>
+              <h4 class="text-darkBlue text-sm mt-2 md:text-base capitalize">
+                <span class="text-black">Loan Rate</span>
+                [Loan Repayment Rate]
+              </h4>
+              <hr>
+              <h4 class="text-darkBlue text-sm mt-2 md:text-base">
+                <span class="text-black">Amount:</span> $[Amount Requested]
+              </h4>
+              <hr>
+              <h4 class="text-darkBlue text-sm mt-2 md:text-base">
+                <span class="text-black">Payback Amount</span> $[Amount To Payback]
+              </h4>
+              <hr>
+              <h4 class="text-darkBlue text-sm mt-2 md:text-base">
+                <span class="text-black">Starting Date and Time:</span>
+                [Date and Time]
+              </h4>
+              <hr>
+              <h4 class="text-darkBlue text-sm mt-2 md:text-base">
+                <span class="text-black">Expiring Date and Time:</span>
+                [Date and Time]
+              </h4>
+              <hr>
+              <h4 class="text-darkBlue text-sm mt-2 md:text-base">
+                <span class="text-black">Status:</span>
+                [Status Of The Loan]
+              </h4>
+            </div>
+          </div>   
+    </section>
+    <%- include ("partials/script"); -%>
+    <script src="../../JS/collapsible.js"></script>
+</body>
+</html>

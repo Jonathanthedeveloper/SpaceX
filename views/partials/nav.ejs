@@ -1,0 +1,98 @@
+<div class="fixed bottom-0 left-0 z-50" id="google_translate_element"></div>
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+      {
+        pageLanguage: "en",
+        layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL,
+      },
+      "google_translate_element"
+    );
+  }
+</script>
+<!-- Nav Bar -->
+<nav class="relative px-4 py-6 bg-white dark:bg-black">
+  <!-- Flex Box -->
+  <div class="flex items-center justify-between md:justify-evenly">
+    <!-- Logo -->
+    <div>
+      
+        <img
+          class="h-12"
+          src="../Images/Logo.png"
+          alt="This is the Prime Finance Logo"
+      />
+    </div>
+    <!-- Menu Items -->
+    <div class="hidden md:flex md:space-x-10">
+      <a href="/" class="font-semibold text-sm text-black dark:text-white hover:border-b-2 border-black dark:border-white transition-all duration-200"
+        >HOME</a
+      >
+      <a href="aboutUS" class="font-semibold text-sm text-black dark:text-white hover:border-b-2 border-black dark:border-white transition-all duration-200"
+        >ABOUT US</a
+      >
+      <a href="/news" class="font-semibold text-sm text-black dark:text-white hover:border-b-2 border-black dark:border-white transition-all duration-200"
+        >NEWS</a
+      >
+      <a href="/faq" class="font-semibold text-sm text-black dark:text-white hover:border-b-2 border-black dark:border-white transition-all duration-200"
+        >FAQS</a
+      >
+      <a href="/contact" class="font-semibold text-sm text-black dark:text-white hover:border-b-2 border-black dark:border-white transition-all duration-200"
+        >CONTACT US</a
+      >
+    </div>
+    <!-- Button Div-->
+    <div class="hidden md:flex flex-row items-center space-x-6">
+      <a
+        href="/user/login"
+        class="flex flex-row items-center text-sm font-bold text-darkBlue dark:text-lightBlue hover:animate-bounce"
+        >LOGIN</a>
+    <a
+      href="/user/create"
+      class="flex flex-row items-center p-3 px-5 pt-3 font-bold text-darkBlue dark:text-lightBlue border-2 border-darkBlue dark:border-lightBlue hover:translate-x-2"
+      >SIGN UP<ion-icon class="text-3xl ml-1" name="enter-outline"></ion-icon>
+    </a>
+  </div>
+    <!-- Hamburger Icon -->
+    <button id="menu-btn" class="block hamburger md:hidden focus:outline-none">
+      <span class="hamburger-top"></span>
+      <span class="hamburger-middle"></span>
+      <span class="hamburger-down"></span>
+    </button>
+  </div>
+  <!-- Mobile Menu -->
+  <div class="md:hidden">
+    <div
+      id="menu"
+      class="hidden bg-white dark:bg-black absolute flex-col items-center z-50 self-end py-8 mt-14 space-y-6 font-bold sm:w-auto sm:self-center left-6 right-6 drop-shadow-md"
+    >
+      <a class="font-semibold text-black text-sm dark:text-white hover:border-b-2 border-black dark dark:border-white transition-all duration-200" href="/"
+        >HOME</a
+      >
+      <a class="font-semibold text-black text-sm dark:text-white hover:border-b-2 border-black dark dark:border-white transition-all duration-200" href="/aboutUs"
+        >ABOUT US</a
+      >
+      <a class="font-semibold text-black text-sm dark:text-white hover:border-b-2 border-black dark dark:border-white transition-all duration-200" href="/news"
+        >NEWS</a
+      >
+      <a class="font-semibold text-black text-sm dark:text-white hover:border-b-2 border-black dark dark:border-white transition-all duration-200" href="/faq"
+        >FAQS</a
+      >
+      <a class="font-semibold text-black text-sm dark:text-white hover:border-b-2 border-black dark dark:border-white transition-all duration-200" href="/contact"
+        >CONTACT US</a
+      >
+      <a
+        class="font-semibold text-black text-sm dark:text-white flex flex-row items-center hover:animate-bounce"
+        href="/user/login"
+        >LOGIN</a>
+      <a
+        href="/user/create"
+        class="flex flex-row items-center p-3 px-5 pt-3 font-bold text-darkBlue dark:text-lightBlue border-2 border-darkBlue dark:border-lightBlue hover:translate-x-2"
+        >SIGN UP<ion-icon
+        class="text-3xl ml-1"
+        name="log-in-outline"
+      ></ion-icon
+    ></a>
+    </div>
+  </div>
+</nav>

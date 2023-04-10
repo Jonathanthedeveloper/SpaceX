@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="../Images/logo.ico" type="image/x-ico" />
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <!-- Bootstrap Icon -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" />
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="../CSS/main.css" />
+  <!-- Custom JavaScript -->
+  <script defer src="../JS/dashboard.js"></script>
+  <!-- Jivo Chat -->
+  <!-- <script src="//code.jivosite.com/widget/IQVm7Hn4FQ" async></script> -->
+</head>
+<body class="main">
+    <%- include ("partials/sidebar"); -%>
+    <section>
+        <div class="flex flex-col justify-center items-center">
+            <div class="text-center mt-16 p-4">
+              <h1 class="flex flex-row items-center text-2xl font-bold md:text-3xl">
+                Get the Funds You Need with Our Loan Options. <span><img class="ml-1 h-14" src="../Images/loan.png" alt="This is a loan icon."></span>
+              </h1>
+              <h4 class="text-sm mt-2 text-darkBlue md:text-base capitalize">Customized repayment plans to fit your lifestyle.</h4>
+              <h4 class="text-sm mt-10 md:text-base">Select Your Repayment Rate.</h4>
+            </div>
+            <form id="form" action="/user/loan" method="post" class="flex flex-col items-center justify-center">
+                <div class="custom-select mt-2 w-72 md:w-96 border-2 border-darkBlue">
+                  <select name="plan">
+                    <option value="">Select Your Repayment Rate</option>
+                    <option value="3months" selected>12% For 3Months</option>
+                    <option value="6months">15% For 6Months</option>
+                    <option value="9months">18% For 9Months</option>
+                  </select>
+                </div>
+                <div class="mt-10">
+                  <h4 class="text-sm text-center md:text-base">
+                    Desired Loan Amount.
+                  </h4>
+                  <input
+                    class="px-8 py-3 mt-2 placeholder:text-center placeholder:text-sm w-72 md:w-96 border-2 border-darkBlue"
+                    type="number" name="amount" id="amount" placeholder="Enter The Amount Here." min="5000" />
+                </div>
+                <p class="mx-auto w-80 text-xs font-extralight capitalize text-darkBlue mt-2 text-center">Dear Stakeholders, the minimum amount you can apply for is $5,000.</p>
+                <button type="submit"
+                  class="px-10 py-3 mt-10 w-72 md:w-96 duration-700 border-2 text-white border-darkBlue hover:bg-white hover:text-darkBlue bg-darkBlue">
+                  Collect The Loan
+                </button>
+              </form>
+        </div>
+    </section>
+    <!-- The section shows when there is an active loan. -->
+    <section class="mt-20">
+        <h4 class="mt-10 text-base text-center font-bold md:text-xl">Active Loan...</h4>
+        <p class="mx-auto text-xs font-extralight capitalize text-darkBlue mt-2 text-center">Dear stakeholders, please find your active Loans displayed below.</p>
+        <div class="p-2 mx-auto my-10 flex flex-row items-center justify-evenly h-14 w-4/5 bg-darkBlue text-white">
+            <p class="text-sm md:text-base">$[Loan Amount]</p>
+            <p class="text-sm md:text-base">[Repayment Date]</p>
+            <p class="text-sm md:text-base">[Repayment Amount]</p>
+          </div>
+        </section>
+    <%- include ("partials/script"); -%>
+    <script src="../JS/deposit.js"></script>
+</body>

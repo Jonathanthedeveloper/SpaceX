@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <!-- Bootstrap Icon -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" />
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="../CSS/main.css" />
+  <!-- Custom JavaScript -->
+  <script defer src="../JS/dashboard.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <!-- Favicon -->
+    <link
+    rel="shortcut icon"
+    href="../Images/logo.ico"
+    type="image/x-ico"
+  />
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icon -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
+    />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="../CSS/main.css" />
+    <!-- Custom JavaScript -->
+    <script defer src="../JS/dashboard.js"></script>
+   <!-- Jivo Chat -->
+   <!-- <script src="//code.jivosite.com/widget/IQVm7Hn4FQ" async></script> -->
+</head>
+
+<body class="bg-darkGray box-border main">
+  <%- include ("partials/sidebar"); -%>
+    <section>
+      <div class="mb-10 flex flex-col justify-center items-center md:justify-around md:flex-row">
+        <div class="mt-32">
+          <h4 class="text-sm text-darkBlue md:base">History</h4>
+          <h1 class="text-2xl mt-2 text-brightBlue font-bold md:text-4xl">
+            Transactions
+          </h1>
+          <h4 class="text-sm mt-2 text-darkBlue md:base">
+            List Of All Your Transactions
+          </h4>
+        </div>
+        <div class="mt-10 md:mt-36">
+          <a href="/user/deposit"
+            class="cursor-pointer mr-2 text-xs md:text-base bg-darkBlue px-4 py-2 border-2 border-darkBlue text-white hover:text-darkBlue hover:bg-white">
+            <button>
+              <span class="mr-1"><ion-icon name="download"></ion-icon></span>Deposit
+            </button>
+          </a>
+          <a href="/user/withdraw"
+            class="cursor-pointer text-xs md:text-base bg-orange-400 px-4 py-2 border-2 border-orange-400 text-black hover:text-orange-400 hover:bg-white">
+            <button class="">
+              <span class="mr-1"><ion-icon name="share"></ion-icon></span>Withdraw
+            </button>
+          </a>
+        </div>
+      </div>
+
+      <% transactions.forEach(transaction => {%>
+      <div class="flex flex-col items-center justify-center">
+        <button class="another collapsible">
+          <div class="flex flex-row items-center text-center">
+              <h4 class="text-sm md:text-base capitalize w-1/3"><%= transaction.type %></h4>
+              <p class="text-xs md:text-sm capitalize w-1/3"><%= transaction.status %></p>
+              <p class="text-xs md:text-sm w-1/3"><%= transaction.createdAt.toLocaleDateString() %></p>
+          </div>
+          </button>
+        <div class="content">
+          <h4 class="text-sm text-darkBlue md:text-base capitalize mt-5">
+            <span class="text-black">Transaction: </span> <%= transaction.type %>
+          </h4>
+          <hr>
+          <h4 class="text-sm mt-2 text-darkBlue md:text-base"><span class="text-black">Amount: </span>$<%= transaction.amount %></h4>
+          <hr>
+          <h4 class="text-darkBlue text-sm mt-2 md:text-base"><span class="text-black">Wallet:</span> <%= transaction.account.wallet %></h4>
+          <hr>
+          <h4 class="text-sm mt-2 md:text-base text-darkBlue">
+            <span class="text-black">Date and Time: </span><%= transaction.createdAt.toLocaleDateString() %>
+          </h4>
+          <hr>
+          <h4 class="text-sm text-orange-400 mt-2 md:text-base capitalize mb-5"><%= transaction.status %></h4>
+        </div>
+      </div>
+      <% }) %>
+    </section>
+    <%- include ("partials/script"); -%>
+      <script src="../JS/collapsible.js"></script>
+</body>
+
+</html>

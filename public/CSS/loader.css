@@ -1,0 +1,170 @@
+.loader {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000000000;
+  background-color: black;
+}
+
+.loader > div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.p {
+  color: white;
+  opacity: 0;
+  animation: pass 2s ease-in-out infinite;
+  animation-delay: 0.2s;
+  letter-spacing: 0.5em;
+  text-shadow: 2px 2px 3px #fff;
+}
+
+.r {
+  color: white;
+  opacity: 0;
+  animation: pass 2s ease-in-out infinite;
+  animation-delay: 0.4s;
+  letter-spacing: 0.5em;
+  text-shadow: 2px 2px 3px #fff;
+}
+
+.i1 {
+  color: white;
+  opacity: 0;
+  animation: pass 2s ease-in-out infinite;
+  animation-delay: 0.6s;
+  letter-spacing: 0.5em;
+  text-shadow: 2px 2px 3px #fff;
+}
+
+.m {
+  color: white;
+  opacity: 0;
+  animation: pass 2s ease-in-out infinite;
+  animation-delay: 0.8s;
+  letter-spacing: 0.5em;
+  text-shadow: 2px 2px 3px #fff;
+}
+
+.e1 {
+  color: white;
+  opacity: 0;
+  animation: pass 2s ease-in-out infinite;
+  animation-delay: 1s;
+  letter-spacing: 0.5em;
+  text-shadow: 2px 2px 3px #fff;
+}
+
+.f {
+  color: white;
+  opacity: 0;
+  animation: pass 2s ease-in-out infinite;
+  animation-delay: 1.2s;
+  letter-spacing: 0.5em;
+  text-shadow: 2px 2px 3px #fff;
+}
+
+.i2 {
+  color: white;
+  opacity: 0;
+  animation: pass 2s ease-in-out infinite;
+  animation-delay: 1.4s;
+  letter-spacing: 0.5em;
+  text-shadow: 2px 2px 3px #fff;
+}
+
+.n1 {
+  color: white;
+  opacity: 0;
+  animation: pass 2s ease-in-out infinite;
+  animation-delay: 1.6s;
+  letter-spacing: 0.5em;
+  text-shadow: 2px 2px 3px #fff;
+}
+
+.a {
+  color: white;
+  opacity: 0;
+  animation: pass 2s ease-in-out infinite;
+  animation-delay: 1.8s;
+  letter-spacing: 0.5em;
+  text-shadow: 2px 2px 3px #fff;
+}
+
+.n2 {
+  color: white;
+  opacity: 0;
+  animation: pass 2s ease-in-out infinite;
+  animation-delay: 2s;
+  letter-spacing: 0.5em;
+  text-shadow: 2px 2px 3px #fff;
+}
+
+.c {
+  color: white;
+  opacity: 0;
+  animation: pass 2s ease-in-out infinite;
+  animation-delay: 2.2s;
+  letter-spacing: 0.5em;
+  text-shadow: 2px 2px 3px #fff;
+}
+
+.e2 {
+  color: white;
+  opacity: 0;
+  animation: pass 2s ease-in-out infinite;
+  animation-delay: 2.4s;
+  letter-spacing: 0.5em;
+  text-shadow: 2px 2px 3px #fff;
+}
+
+.d1 {
+  color: white;
+  opacity: 0;
+  animation: pass1 2s ease-in-out infinite;
+  animation-delay: 2.6s;
+  letter-spacing: 0.5em;
+  text-shadow: 2px 2px 3px #fff;
+}
+
+.d2 {
+  color: white;
+  opacity: 0;
+  animation: pass1 2s ease-in-out infinite;
+  animation-delay: 2.8s;
+  letter-spacing: 0.5em;
+  text-shadow: 2px 2px 3px #fff;
+}
+
+@keyframes pass {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes pass1 {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

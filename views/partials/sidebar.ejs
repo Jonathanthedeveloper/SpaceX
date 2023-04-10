@@ -1,0 +1,80 @@
+<div class="fixed bottom-0 left-0 z-50" id="google_translate_element"></div>
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+      {
+        pageLanguage: "en",
+        layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL,
+      },
+      "google_translate_element"
+    );
+  }
+</script>
+<section class="relative z-40">
+    <span class="absolute text-white text-4xl top-5 left-1 cursor-pointer" onclick="Openbar()">
+        <i class="bi bi-filter-left px-2 bg-black"></i>
+      </span>
+      <div class="sidebar fixed top-0 bottom-0 lg:left-0 left-[-300px] duration-1000
+        p-2 w-[300px] overflow-y-auto text-center bg-black shadow h-screen">
+        <div class="text-gray-100 text-xl">
+          <div class="p-2.5 mt-1 flex items-center">
+            <i class="bi bi-person-badge-fill px-2 py-1"></i>
+            <h1 class="text-[15px]  ml-3 text-xl text-gray-200 font-bold text-left">SpaceX Shares</h1>
+            <i class="bi bi-x ml-20 cursor-pointer lg:hidden" onclick="Openbar()"></i>
+          </div>
+          <hr class="my-2 text-gray-600">
+    
+          <div class="mt-10">
+            <a href="/user/dashboard"><div class="p-2.5 mt-2 flex items-center px-4 duration-300 cursor-pointer  hover:bg-darkBlue">
+              <i class="bi bi-house-door-fill"></i>
+             <span class="text-[15px] ml-4 text-gray-200">Dashboard</span>
+            </div></a>
+            <div class="p-2.5 mt-2 flex items-center px-4 duration-300 cursor-pointer  hover:bg-darkBlue">
+                <i class="bi bi-cash-coin"></i>
+                <div class="flex justify-between w-full items-center" onclick="dropDown()">
+                  <span class="text-[15px] ml-4 text-gray-200">Transactions</span>
+                    <i id="arrow" class="bi bi-caret-down-fill"></i>
+                </div>
+              </div>
+              <div class="leading-7 text-left text-sm font-thin mt-2 w-4/5 mx-auto" id="submenu">
+               <a href="/user/deposit"> <h1 class="cursor-pointer p-2 hover:bg-gray-700 mt-1">Deposit</h1></a>
+               <a href="/user/invest"> <h1 class="cursor-pointer p-2 hover:bg-gray-700 mt-1">Invest</h1></a>
+               <a href="/user/withdraw"> <h1 class="cursor-pointer p-2 hover:bg-gray-700 mt-1">Withdrawal</h1></a>
+              </div>
+              <a href="/user/loan"><div class="p-2.5 mt-2 flex items-center px-4 duration-300 cursor-pointer  hover:bg-darkBlue">
+                <i class="bi bi-bank2"></i>
+                  <span class="text-[15px] ml-4 text-gray-200">Loan</span>
+                </div></a>
+            <a href="/user/transactions"><div class="p-2.5 mt-2 flex items-center px-4 duration-300 cursor-pointer  hover:bg-darkBlue">
+            <i class="bi bi-receipt"></i>
+              <span class="text-[15px] ml-4 text-gray-200">History</span>
+            </div></a>
+            <hr class="my-4 mb-10 text-gray-600">
+            <a href="/user/profile"><div class="p-2.5 mt-2 flex items-center px-4 duration-300 cursor-pointer  hover:bg-darkBlue">
+              <i class="bi bi-person-badge-fill"></i>
+             <span class="text-[15px] ml-4 text-gray-200">My Profile</span>
+            </div></a>
+            <a href="/user/kyc"><div class="p-2.5 mt-2 flex items-center px-4 duration-300 cursor-pointer  hover:bg-darkBlue">
+              <i class="bi bi-person-check"></i>
+           <span class="text-[15px] ml-4 text-gray-200">KYC</span>
+          </div></a>
+            <a href="/support"><div class="p-2.5 mt-2 flex items-center px-4 duration-300 cursor-pointer  hover:bg-darkBlue">
+                <i class="bi bi-envelope-check-fill"></i>
+             <span class="text-[15px] ml-4 text-gray-200">Get Support</span>
+            </div></a>
+            <a href="/user/referral"><div class="p-2.5 mt-2 flex items-center px-4 duration-300 cursor-pointer  hover:bg-darkBlue">
+                <i class="bi bi-people-fill"></i>
+             <span class="text-[15px] ml-4 text-gray-200">My Referral</span>
+            </div></a>
+            <hr class="my-4 mb-10 text-gray-600">
+            <form action="/user/logout" method="post">
+            <div class="p-2.5 mt-3 flex items-center px-4 duration-300 cursor-pointer  hover:bg-darkBlue">
+              <button type="submit">
+              <i class="bi bi-box-arrow-in-right"></i>
+              <span class="text-[15px] ml-4 text-gray-200">Logout</span></button>
+            </div></form>
+    
+          </div>
+        </div>
+      </div>
+</section>

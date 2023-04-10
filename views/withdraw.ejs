@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="../Images/logo.ico" type="image/x-ico" />
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <!-- Bootstrap Icon -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="../CSS/main.css" />
+  <!-- Custom JavaScript -->
+  <script defer src="../JS/dashboard.js"></script>
+  <script defer src="../JS/load.js"></script>
+  <script defer src="../JS/withdrawal.js"></script>
+  <!-- Jivo Chat -->
+  <!-- <script src="//code.jivosite.com/widget/IQVm7Hn4FQ" async></script> -->
+</head>
+
+<body class="bg-white main">
+  <%- include ("partials/sidebar"); -%>
+    <section>
+      <% if(status==='success' ){ %>
+        <div id="info" class="flex flex-row items-center justify-between mx-auto px-3 mt-20 py-5 m-3 bg-green-300 text-green-700 w-11/12 md:w-3/4 text-xs text-center capitalize md:text-sm md:mt-0">
+          Your withdrawal request has been submitted successfully.
+          <ion-icon id="closeIcon" class="text-xl hover:cursor-pointer" name="close-circle-outline"></ion-icon>
+        </div>
+        <% } else if (status==='fail' ){%>
+          <div id="info" class="flex flex-row items-center justify-between mx-auto px-3 mt-20 py-5 m-3 bg-red-300 text-red-700 w-11/12 md:w-3/4 text-xs text-center capitalize md:text-sm md:mt-0">
+            withdrawal failed, please try again later, thank you.
+            <ion-icon id="closeIcon" class="text-xl hover:cursor-pointer" name="close-circle-outline"></ion-icon>
+          </div>
+          <% }%>
+      <div class="flex flex-col justify-center items-center">
+        <div class="text-center text-brightBlue mt-32">
+          <h1 class="flex flex-row items-center text-2xl font-bold md:text-4xl">Make A Withdrawal <span><img class="ml-1 h-14" src="../Images/withdrawal.png" alt="This is a withdrawal icon"></span></h1>
+          <h4 class="text-sm mt-4 md:text-base">
+            Account Balance <span class="text-base ml-1 text-darkBlue md:text-xl">
+              $<%= user.balance %>
+
+            </span>
+          </h4>
+        </div>
+        <div>
+          <h4 class="text-sm mt-10 text-darkBlue md:text-base">
+            Choose Type Of Withdrawal
+          </h4>
+        </div>
+        <p class="withdrawal-status" hidden>
+          <%=status%>
+        </p>
+        <form onsubmit="displayLoader()" action="/user/withdraw" method="post"
+          class="mx-auto flex flex-col items-center justify-center">
+          <div class="custom-select mt-2 w-72 md:w-96 border-2 border-darkBlue">
+            <select name="wallet">
+              <option value="">Choose Your Wallet</option>
+              <option value="Bitcoin" selected>Bitcoin</option>
+              <option value="Ethereum">Ethereum</option>
+              <option value="Bitcoin Cash">Bitcoin Cash</option>
+              <option value="Tron">Tron(TRX)</option>
+              <option value="BNB">BNB</option>
+              <option value="USDT (ERC20)">USDT ERC20</option>
+              <option value="USDT (TRC20)">USDT TRC20</option>
+            </select>
+          </div>
+          <div class="mt-4">
+            <h4 class="mt-4 text-sm text-center text-darkBlue md:text-base">
+              Amount To Withdraw
+            </h4>
+            <input
+              class="px-8 py-3 mt-2 placeholder:text-center placeholder:text-sm w-72 md:w-96 border-2 border-darkBlue"
+              type="number" name="amount" id="amount" placeholder="Minimum Of $5" min="5" required />
+            <h4 class="text-sm mt-8 text-center text-darkBlue md:text-base">
+              Wallet Address
+            </h4>
+            <input
+              class="px-8 py-3 mt-2 placeholder:text-center placeholder:text-sm w-72 md:w-96 border-2 border-darkBlue"
+              type="text" name="address" id="address" placeholder="Input Your Wallet Address" required />
+          </div>
+          <button type="submit"
+            class="px-10 py-3 w-72 md:w-96 mt-10 duration-700 text-white bg-darkBlue border-2 border-darkBlue hover:bg-white hover:text-darkBlue text-center disabled:opacity-50 disabled:cursor-not-allowed load">
+            Withdraw
+          </button>
+        </form>
+      </div>
+    </section>
+    <%- include ("partials/script"); -%>
+      <script src="../JS/deposit.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Space X Shares</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../Images/logo.ico" type="image/x-ico" />
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font-Awesome -->
+    <script
+      src="https://kit.fontawesome.com/f5af09e245.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Swiper.js -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
+    />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="../CSS/loader.css" />
+    <link rel="stylesheet" href="../CSS/main.css" />
+    <!-- Scripts -->
+    <script async src="../JS/loader.js"></script>
+    <!-- Jivo Chat -->
+    <!-- <script src="//code.jivosite.com/widget/IQVm7Hn4FQ" async></script> -->
+  </head>
+  <body class="bg-lightGray" onload="slider()">
+    <%- include("partials/nav"); -%>
+    <section id="hero">
+      <div
+        class="w-14 h-14 rounded-full bg-white dark:bg-black fixed top-20 left-2 z-30 flex justify-center items-center"
+      >
+        <ion-icon
+          class="text-3xl text-black dark:text-white sun-icon hover:cursor-pointer"
+          name="sunny"
+        ></ion-icon>
+        <ion-icon
+          class="text-3xl text-black dark:text-white moon-icon hover:cursor-pointer"
+          name="moon"
+        ></ion-icon>
+      </div>
+      <div class="banner">
+        <div class="slider">
+          <img
+            src="../Images/real-estate.jpg"
+            id="slideImg"
+            alt="This is space-x image"
+          />
+        </div>
+        <div class="overlay">
+          <div class="hero-text mt-16 mx-auto md:mt-48">
+            <h1
+              class="text-3xl md:text-5xl tracking-tight font-semibold text-white uppercase"
+            >
+            Explore space investment with SpaceXShares.
+            </h1>
+            <h3 class="capitalize">
+              As a subsidiary of <a target="_blank" class="hover:text-lightBlue text-xl underline font-bold" href="https://www.spacex.com/">SpaceX </a>, SpaceXShares focuses on the investment
+              and shares aspect of the company's operations. The company offers
+              investors the opportunity to invest in SpaceX and participate in
+              the company's success by purchasing shares of SpaceX stock. This
+              provides a unique opportunity for individuals and organizations to
+              get involved with one of the most innovative and forward-thinking
+              companies in the world.
+            </h3>
+            <div class="mt-6 md:mt-10">
+              <button type="button" class="uppercase text-sm">Start Now</button>
+              <button type="button" class="uppercase btn-2 text-sm">About Us</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="testimonial">
+      <div
+        class="mt-10 bg-white flex flex-col justify-center items-center relative h-full overflow-hidden p-6 hide"
+      >
+        <div class="mt-10 text-center">
+          <h1
+            class="text-black text-3xl md:text-4xl font-bold my-4"
+          >
+            Some Of Our
+            <span class="text-darkBlue">
+              Investors' Reviews.</span
+            >
+          </h1>
+          <p class="text-darkBlue font-bold">
+            Some of our investors have provided valuable feedback on their
+            experiences with our company. Please take the time to review their
+            testimonials.
+          </p>
+        </div>
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            <div
+              class="swiper-slide bg-white rounded-lg ease-in-out duration-1000 hover:shadow-2xl"
+            >
+              <div class="flex flex-col items-center p-6">
+                <img
+                  class="w-24 -mt-14"
+                  src="../Images/testimonial 1.png"
+                  alt="This is the image of the first Testimony"
+                />
+                <h5 class="font-bold text-lg text-gold">Kingston Rowland</h5>
+                <p class="text-darkNavy text-sm font-light">
+                  Financial Analyst
+                </p>
+                <p class="text-sm font-semibold p-6 mt-0">
+                  Prime Finance Limited is a reliable and trustworthy investment
+                  platform. The team is knowledgeable, and the platform is
+                  user-friendly and secure.
+                </p>
+              </div>
+            </div>
+            <div
+              class="swiper-slide bg-white rounded-lg ease-in-out duration-1000 hover:shadow-2xl"
+            >
+              <div class="flex flex-col items-center p-6">
+                <img
+                  class="w-24 -mt-14"
+                  src="../Images/testimonial 2.png"
+                  alt="This is the image of the first Testimony"
+                />
+                <h5 class="font-bold text-lg text-gold">Pauleen Tammie</h5>
+                <p class="text-darkNavy text-sm font-light">
+                  Human Resources Manager
+                </p>
+                <p class="text-sm font-semibold p-6 mt-0">
+                  Investing with Prime Finance Limited was easy and
+                  straightforward. Their customer support team was always
+                  available to answer my questions.
+                </p>
+              </div>
+            </div>
+            <div
+              class="swiper-slide bg-white rounded-lg ease-in-out duration-1000 hover:shadow-2xl"
+            >
+              <div class="flex flex-col items-center p-6">
+                <img
+                  class="w-24 -mt-14"
+                  src="../Images/testimonial 3.png"
+                  alt="This is the image of the first Testimony"
+                />
+                <h5 class="font-bold text-lg text-gold">Puneet Prasad</h5>
+                <p class="text-darkNavy text-sm font-light">
+                  Business Development Manager
+                </p>
+                <p class="text-sm font-semibold p-6 mt-0">
+                  Prime Finance Limited is the best investment platform I have
+                  come across. Their fees are competitive, and their commitment
+                  to customer service is impressive.
+                </p>
+              </div>
+            </div>
+            <div
+              class="swiper-slide bg-white rounded-lg ease-in-out duration-1000 hover:shadow-2xl"
+            >
+              <div class="flex flex-col items-center p-6">
+                <img
+                  class="w-24 -mt-14"
+                  src="../Images/testimonial 4.png"
+                  alt="This is the image of the first Testimony"
+                />
+                <h5 class="font-bold text-lg text-gold">Jack William</h5>
+                <p class="text-darkNavy text-sm font-light">
+                  Operations Manager
+                </p>
+                <p class="text-sm font-semibold p-6 mt-0">
+                  I highly recommend Prime Finance Limited to anyone looking to
+                  invest in cryptocurrency. Their team is passionate and
+                  knowledgeable, and they truly care about the success of their
+                  clients.
+                </p>
+              </div>
+            </div>
+            <div
+              class="swiper-slide bg-white rounded-lg ease-in-out duration-1000 hover:shadow-2xl"
+            >
+              <div class="flex flex-col items-center p-6">
+                <img
+                  class="w-24 -mt-14"
+                  src="../Images/testimonial 5.png"
+                  alt="This is the image of the first Testimony"
+                />
+                <h5 class="font-bold text-lg text-gold">Laura Alphonsine</h5>
+                <p class="text-darkNavy text-sm font-light">
+                  Marketing Manager
+                </p>
+                <p class="text-sm font-semibold p-6 mt-0">
+                  Prime Finance Limited has helped me achieve my investment
+                  goals. Their platform is diverse and innovative, and their
+                  customer service is top-notch.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </section>
+    <%- include("partials/cta"); -%> <%- include("partials/footer"); -%>
+    <!-- Swiper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <!-- Iconic Icon Scripts -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    <!-- Custom JS -->
+    <script src="../JS/index.js"></script>
+  </body>
+</html>

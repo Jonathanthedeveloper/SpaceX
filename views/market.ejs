@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Market</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../Images/logo.ico" type="image/x-ico" />
+<meta name ="description" content ="Prime Finance Limited is a cryptocurrency investment website that offers a range of investment plans for individuals looking to grow their crypto assets."/>
+<meta name ="copyright" content ="Prime Finance Developers"/>
+<meta name ="keywords" content ="cryptocurrency investment plans, prime finance limited, prime finance New Zealand, secure crypto investments, prime finance investment options, reliable crypto investment platform, secure crypto investments, investment companies in New Zealand, cryptocurrency investment strategies"/>
+<meta property ="og:type" content ="website"/>
+<meta property ="og:url" content ="primefinanceltd.com"/>
+<meta property ="og:title" content ="Prime Finance Limited"/>
+<meta property ="og:description" content ="Prime Finance Limited is a cryptocurrency investment website that offers a range of investment plans for individuals looking to grow their crypto assets."/>
+<meta property ="og:image" content ="https://www.primefinanceltd.com/Images/Logo.png"/>
+<meta property ="twitter:card" content ="summary_large_image"/>
+<meta property ="twitter:url" content ="primefinanceltd.com"/>
+<meta property ="twitter:title" content ="Prime Finance Limited"/>
+<meta property ="twitter:description" content ="Prime Finance Limited is a cryptocurrency investment website that offers a range of investment plans for individuals looking to grow their crypto assets."/>
+<meta property ="twitter:image" content ="https://www.primefinanceltd.com/Images/Logo.png"/>
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font-Awesome -->
+    <script
+      src="https://kit.fontawesome.com/f5af09e245.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="../CSS/main.css" />
+     <!-- Jivo Chat -->
+     <script src="//code.jivosite.com/widget/IQVm7Hn4FQ" async></script>
+  </head>
+  <body>
+    <!-- Nav Bar -->
+    <%- include("partials/nav"); -%>
+    <section id="top">
+      <div
+        class="flex flex-col justify-evenly md:flex-row relative bg-brightBlue p-10"
+      >
+        <canvas class="background absolute top-0 right-5"></canvas>
+        <div class="z-40">
+          <h1 class="text-3xl text-lightGray font-bold mt-10 md:text-4xl">
+            Real-Time Global Market Prices
+          </h1>
+          <h4
+            class="text-lightGray mt-4 font-bold text-opacity-80 text-base md:text-xl"
+          >
+            Track Prices of Currencies, Commodities, and Cryptocurrencies from
+            Around the World with Our Live Market Data
+          </h4>
+          <p class="text-lightPink text-sm mt-4 md:mt-20">
+            <span class="font-bold text-lightGray">NB</span> The pricing is for
+            indicative purposes only. Please go to individual instrument
+            specifications to see the trading conditions.
+          </p>
+        </div>
+        <div class="flex flex-col space-y-1 z-40 mt-10 md:mt-0">
+          <div
+            class="w-64 h-32 rounded-lg mb-10 bg-lightGray shadow-lg border-2 border-brightBlue flex flex-col items-center p-3"
+          >
+            <img
+              class="h-10"
+              src="../Images/transaction.png"
+              alt="This is an icon"
+            />
+            <h4 class="mt-1 font-bold text-2xl text-brightBlue md:text-3xl">
+              $91+ Million
+            </h4>
+            <p class="text-sm md:text-base">Transactions.</p>
+          </div>
+          <div
+            class="w-64 h-32 rounded-lg mb-10 bg-lightGray shadow-lg border-2 border-brightBlue flex flex-col items-center p-3"
+          >
+            <img
+              class="h-10"
+              src="../Images/accounts.png"
+              alt="This is an icon"
+            />
+            <h4 class="mt-1 font-bold text-2xl text-brightBlue md:text-3xl">
+              40+ Thousand
+            </h4>
+            <p class="text-sm md:text-base">Active Accounts.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="body">
+      <div class="bg-darkGray flex flex-col items-center justify-center">
+        <div class="w-4/5 my-10 md:my-20">
+          <div
+            class="flex flex-col items-center justify-center mt-10 space-y-4"
+          >
+            <div class="text-center">
+              <h1 class="text-2xl font-bold text-darkBlue md:text-4xl">
+                Invest On <span class="text-brightBlue">Stock Market</span>
+              </h1>
+              <h4 class="text-base mt-4 md:text-xl">
+                Invest on our extensive range of CFDs on FX, Commodities,
+                Cryptocurrencies, Shares, ETFs and more. Low costs, fast
+                execution and 24/7 support.
+              </h4>
+            </div>
+          </div>
+          <div class="h-[32rem] w-full mt-10 shadow-2xl">
+            <!-- TradingView Widget BEGIN -->
+            <div class="tradingview-widget-container">
+              <div class="tradingview-widget-container__widget"></div>
+              <script
+                type="text/javascript"
+                src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js"
+                async
+              >
+                  {
+                  "symbols": [
+                    [
+                      "Apple",
+                      "AAPL|1D"
+                    ],
+                    [
+                      "Google",
+                      "GOOGL|1D"
+                    ],
+                    [
+                      "Microsoft",
+                      "MSFT|1D"
+                    ]
+                  ],
+                  "chartOnly": false,
+                  "width": "100%",
+                  "height": "100%",
+                  "locale": "en",
+                  "colorTheme": "dark",
+                  "autosize": true,
+                  "showVolume": false,
+                  "showMA": false,
+                  "hideDateRanges": false,
+                  "hideMarketStatus": false,
+                  "hideSymbolLogo": false,
+                  "scalePosition": "right",
+                  "scaleMode": "Normal",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif",
+                  "fontSize": "10",
+                  "noTimeScale": false,
+                  "valuesTracking": "1",
+                  "changeMode": "price-and-percent",
+                  "chartType": "area",
+                  "dateFormat": "MMM dd, yyyy",
+                  "lineColor": "#2962ff",
+                  "topColor": "rgba(41, 98, 255, 0.3)",
+                  "bottomColor": "rgba(41, 98, 255, 0)",
+                  "lineWidth": 3
+                }
+              </script>
+            </div>
+            <!-- TradingView Widget END -->
+          </div>
+          <div
+            class="flex flex-col items-center justify-center mt-40 space-y-4"
+          >
+            <div class="text-center">
+              <h1 class="text-2xl font-bold text-darkBlue md:text-4xl">
+                Invest On <span class="text-brightBlue">Forex Market</span>
+              </h1>
+              <h4 class="text-base mt-4 md:text-xl">
+                Invest on our extensive range of CFDs on FX, Commodities,
+                Cryptocurrencies, Shares, ETFs and more. Low costs, fast
+                execution and 24/7 support.
+              </h4>
+            </div>
+          </div>
+          <div class="h-[32rem] w-full mt-10 shadow-2xl">
+            <!-- TradingView Widget BEGIN -->
+            <div class="tradingview-widget-container">
+              <div class="tradingview-widget-container__widget"></div>
+              <script
+                type="text/javascript"
+                src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js"
+                async
+              >
+                  {
+                  "width": "100%",
+                  "height": "100%",
+                  "defaultColumn": "overview",
+                  "defaultScreen": "general",
+                  "market": "forex",
+                  "showToolbar": true,
+                  "colorTheme": "dark",
+                  "locale": "en"
+                }
+              </script>
+            </div>
+            <!-- TradingView Widget END -->
+          </div>
+          <div
+            class="flex flex-col items-center justify-center mt-40 space-y-4"
+          >
+            <div class="text-center">
+              <h1 class="text-2xl font-bold text-darkBlue md:text-4xl">
+                Invest On
+                <span class="text-brightBlue">Cryptocurrency Market</span>
+              </h1>
+              <h4 class="text-base mt-4 md:text-xl">
+                Invest on our extensive range of CFDs on FX, Commodities,
+                Cryptocurrencies, Shares, ETFs and more. Low costs, fast
+                execution and 24/7 support.
+              </h4>
+            </div>
+          </div>
+          <div class="h-[32rem] mt-10 shadow-2xl">
+            <!-- TradingView Widget BEGIN -->
+            <div class="tradingview-widget-container">
+              <div class="tradingview-widget-container__widget"></div>
+              <script
+                type="text/javascript"
+                src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js"
+                async
+              >
+                  {
+                  "width": "100%",
+                  "height": "100%",
+                  "defaultColumn": "overview",
+                  "screener_type": "crypto_mkt",
+                  "displayCurrency": "USD",
+                  "colorTheme": "dark",
+                  "locale": "en"
+                }
+              </script>
+            </div>
+            <!-- TradingView Widget END -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <%- include("partials/options"); -%> <%- include("partials/cta"); -%>
+    <%-include("partials/footer"); -%>
+    <!-- Iconic Icon Scripts -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    <script src="../JS/particles.min.js"></script>
+    <script src="../JS/aboutUS.js"></script>
+  </body>
+</html>
