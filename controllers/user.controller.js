@@ -171,17 +171,6 @@ class UserController {
             name: req.body.name || req.user.name,
             email: req.body.email || req.user.email,
             username: req.body.username || req.user.username,
-            account: {
-                bitcoinAddress: req.body.BTCwallet || req.user.account.bitcoinAddress,
-                ethereumAddress: req.body.ethereum || req.user.account.ethereumAddress,
-                bitcoinCashAddress: req.body.bitcoinCash || req.user.account.bitcoinCashAddress,
-                tronAddress: req.body.tron || req.user.account.tronAddress,
-                bnbBEP2Address: req.body.bnbBEP2 || req.user.account.bnbBEP2Address,
-                bnbBEP20Address: req.body.bnbBEP20 || req.user.account.bnbBEP20Address,
-                usdtERC20Address: req.body.usdtERC20 || req.user.account.usdtERC20Address,
-                usdtTRC20Address: req.body.usdtTRC20 || req.user.account.usdtTRC20Address,
-            },
-
         }
 
         if (req.body.password) {
@@ -263,31 +252,16 @@ class UserController {
 
             switch (req.body.medium) {
                 case "Bitcoin":
-                    wallet = "bc1qy92tmad8n4rqmwhp6euesth8d2ww4hcgszgwm4";
+                    wallet = "1P4PiX2EsjeiX8PaBYLsfR3eAQ4MizRmyk";
                     break;
                 case "Ethereum":
-                    wallet = "0xdDEd040e63c19Ed098f0072D07dB39AE329EBFde";
+                    wallet = "0x9EA7750Be23D5C34Df3646c391A0388291339f9f";
                     break;
-                case "Bitcoin Cash":
-                    wallet = "qzfjy34wq9g7wt3z8p3h7xukxtzeug53huxurcd08s";
+                case "usdt":
+                    wallet = "0xD3fe264a1D8017DfBeA9499DB9Fb22a3106485AD";
                     break;
-                case "Tron":
-                    wallet = "TE53wM63cu8TrWKkvyZXrfYQEqoDwYs1xp";
-                    break;
-                case "USDT ERC20":
-                    wallet = "0xdDEd040e63c19Ed098f0072D07dB39AE329EBFde";
-                    break;
-                case "USDT TRC20":
-                    wallet = "TE53wM63cu8TrWKkvyZXrfYQEqoDwYs1xp";
-                    break;
-                case "BNB":
-                    wallet = "0xdDEd040e63c19Ed098f0072D07dB39AE329EBFde";
-                    break;
-                case "place":
-                    wallet = "place";
-                    break;
-                case "place":
-                    wallet = "place";
+                case "dogecoin":
+                    wallet = "DREBZME23eHTvKb7N5PdqxN9U3NvLMhSWW";
                     break;
                 case "place":
                     wallet = "place";

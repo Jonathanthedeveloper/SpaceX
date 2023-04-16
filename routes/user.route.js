@@ -22,6 +22,9 @@ const referralRoute = require("./referral.route");
 const logoutRoute = require('./logout.route');
 const adminRoute = require('./admin.route');
 const resetPasswordRoute = require('./reset-password.route');
+const depositFrontendRoute = require('./depositFrontEnd.route');
+const bankDepositRoute = require('./bankDeposit.route');
+const bankCheckoutRoute = require('./bankCheckout.route');
 
 
 
@@ -45,7 +48,9 @@ router.use("/deposit", authenticate, depositRoute);
 router.use("/withdraw", authenticate, withdrawRoute);
 router.use("/profile", authenticate, profileRoute);
 router.use("/referral", authenticate, referralRoute);
-
+router.use("/choose-deposit", authenticate, depositFrontendRoute);
+router.use("/bank", authenticate, bankDepositRoute);
+router.use("/bankCheckout", authenticate, bankCheckoutRoute)
 
 // ADMIN
 router.use('/admin', authenticate, authorize('admin'), adminRoute)
