@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { renderPasswordReset, handlePasswordReset } = require('../controllers/user.controller');
+const { renderPasswordReset, handlePasswordReset } = require('../controllers/auth.controller');
 
 router.get('/:token', renderPasswordReset)
 router.post('/:token', handlePasswordReset)

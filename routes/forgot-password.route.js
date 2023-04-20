@@ -1,5 +1,5 @@
 const express = require('express');
-const { handleForgotPassword } = require('../controllers/user.controller');
+const { handleForgotPassword } = require('../controllers/auth.controller');
 const router = express.Router();
 
 router.get('/', function (req, res) {
