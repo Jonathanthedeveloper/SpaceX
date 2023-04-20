@@ -2,61 +2,14 @@
 
 const { Schema, model, default: mongoose } = require('mongoose');
 const { generateUserId } = require('../utils/utils');
+const splitTransactions = require("../utils/splitTransactions.util")
 
 
 
-const secretSchema = new Schema({
-    question: {
-        type: String,
-        default: ""
-    },
-    answer: {
-        type: String,
-        trim: true,
-        default: ""
-    }
-});
 
 
-const depositSchema = new Schema({
-    amount: {
-        type: Number,
-        required: true,
-    },
-
-}, { timestamps: true })
 
 
-const withdrawalSchema = new Schema({
-    amount: {
-        type: Number,
-        required: true,
-    },
-}, { timestamps: true })
-
-
-const earningSchema = new Schema({
-    amount: {
-        type: Number,
-        required: true,
-    },
-}, { timestamps: true })
-
-const investmentSchema = new Schema({
-    amount: {
-        type: Number,
-        required: true
-    }
-}, { timestamps: true })
-
-
-const walletSchema = new Schema({ //done
-    balance: {
-        type: Number,
-        required: true,
-        default: 0.00
-    }
-})
 
 const accountSchema = new Schema({ //done
     bitcoinAddress: {
@@ -125,7 +78,7 @@ const userSchema = new Schema({
         type: String,
         trim: true,
         unique: true,
-        required: true
+        default: generateUserId()
     },
     name: {
         type: String,
@@ -141,6 +94,7 @@ const userSchema = new Schema({
         unique: true,
         trim: true
     },
+    phoneNumber: String,
     password: {
         type: String,
         required: true,
@@ -150,10 +104,6 @@ const userSchema = new Schema({
         required: true,
         enum: ["user", "admin"],
         default: "user"
-    },
-    secret: {
-        type: secretSchema,
-        required: true,
     },
     account: {
         type: accountSchema,
@@ -167,64 +117,35 @@ const userSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    withdrawals: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Transaction'
-    }],
-    deposits: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Transaction'
-    }],
-    investments: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Transaction'
-    }],
-    earnings: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Transaction'
-    }],
     passwordResetExpires: Date,
     passwordResetToken: String,
 
 }, {
     timestamps: true, toObject: {
-        virtual: true
+        virtuals: true
     }, toJSON: {
-        virtual: true
+        virtuals: true
     },
 });
 
+
+userSchema.virtual("transactions", {
+    ref: "Transaction",
+    localField: "_id",
+    foreignField: "user"
+});
 
 
 
 userSchema.virtual("balance").get(function () {
 
-    const withdrawals = this.withdrawals.filter(withdrawal => withdrawal.status === 'successful').reduce((total, current) => {
-        return total + current.amount
-    }, 0)
-    const deposits = this.deposits.filter(deposit => deposit.status === 'successful').reduce((total, current) => {
-        return total + current.amount
-    }, 0)
-    const investments = this.investments.filter(investment => investment.status === 'successful').reduce((total, current) => {
-        return total + current.amount
-    }, 0)
-    const earnings = this.earnings.filter(earning => earning.status === 'successful').reduce((total, current) => {
-        return total + current.amount
-    }, 0)
+
+    const { deposits, withdrawals, investments, earnings } = splitTransactions(this.transactions)
 
     return (deposits + earnings) - (withdrawals + investments)
 })
 
 
-const Withdrawal = model("Withdrawal", withdrawalSchema)
-const Deposit = model("Deposit", depositSchema)
-const Earning = model("Earning", earningSchema)
-const Investment = model("Investment", investmentSchema)
-const Wallet = model("Wallet", walletSchema)
-// const Transaction = model("Transaction", transactionSchema)
-const Secret = model('Secret', secretSchema);
-const Account = model('Account', accountSchema);
-const User = model('User', userSchema);
-module.exports = { User, Withdrawal, Deposit, Investment };
 
-// const { User, Withdrawal, Deposit, Investment } = require('../models/user.model')
+const User = model('User', userSchema);
+module.exports = { User };

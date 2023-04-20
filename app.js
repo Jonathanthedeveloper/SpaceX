@@ -19,6 +19,12 @@ const app = express();
 
 // configurations
 app.set("view engine", "ejs");
+
+if (process.env.NODE_ENV === "development") {
+    // app.use(morgan("dev"));
+
+    app.set("view cache", false);
+}
 // app.use(helmet({
 //     contentSecurityPolicy: false,
 //     frameguard: false
@@ -28,14 +34,23 @@ app.use(methodOverride('_method'))
 app.use(cookieParser('secret'));
 app.use(session({
     secret: 'secret',
-    cookie: { maxAge: 60000 },
     resave: false,
     saveUninitialized: false
 }))
 app.use(flash())
 app.use(express.static("public"));
+
+// Express Flash
+app.use("/", function (req, res, next) {
+    const message = req.flash();
+    res.locals.message = message;
+    console.log("why", message)
+    next()
+})
 app.use('/', rootRoute);
 app.use('*', notFoundRoute)
+
+
 
 // so that mongoose no go disturb my ear with deprecation warning
 mongoose.set('strictQuery', true)

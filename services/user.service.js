@@ -16,11 +16,11 @@ class UserService {
 
     // read 
     async findOne(filter) {
-        return await User.findOne(filter).populate('referrals referredBy withdrawals deposits investments earnings')
+        return await User.findOne(filter).populate('referrals referredBy transactions')
     }
 
     async findAll(filter) {
-        return await User.find(filter).populate('referrals referredBy withdrawals deposits investments earnings')
+        return await User.find(filter).populate('referrals referredBy transactions')
     }
 
 
