@@ -1,150 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="../Images/logo.ico" type="image/x-ico" />
-    <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="../CSS/main.css" />
-    <link rel="stylesheet" href="../CSS/toast.css" />
 
-    <!-- Bootstrap Icon -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
-    />
-    <!-- Chart Script -->
-    <script defer src="../JS/dashboard.js"></script>
-    <!-- Jivo Chat -->
-    <!-- <script src="//code.jivosite.com/widget/IQVm7Hn4FQ" async></script> -->
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="../Images/logo.ico" type="image/x-ico" />
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="../CSS/main.css" />
+  <link rel="stylesheet" href="../CSS/toast.css" />
 
-  <body class="relative main">
+  <!-- Bootstrap Icon -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" />
+  <!-- Chart Script -->
+  <script defer src="../JS/dashboard.js"></script>
+  <!-- Jivo Chat -->
+  <!-- <script src="//code.jivosite.com/widget/IQVm7Hn4FQ" async></script> -->
+</head>
+
+<body class="relative main">
+  <%- include("partials/_alert")%>
+
     <%- include("partials/sidebar"); -%>
-    <!-- <div id="info" class="flex flex-row items-center justify-between mx-auto px-3 mt-20 py-5 m-3 bg-yellow-300 text-black w-11/12 md:w-3/4 text-center text-xs capitalize md:text-sm md:mt-0">
+      <!-- <div id="info" class="flex flex-row items-center justify-between mx-auto px-3 mt-20 py-5 m-3 bg-yellow-300 text-black w-11/12 md:w-3/4 text-center text-xs capitalize md:text-sm md:mt-0">
         Please complete your KYC verification process to ensure account safety. 
         <ion-icon id="closeIcon" class="text-xl hover:cursor-pointer" name="close-circle-outline"></ion-icon>
       </div> -->
-    <section>
-      <div class="flex flex-row items-center justify-between px-4">
-        <div class="ml-12 mt-4">
-          <p class="font-bold text-xs md:text-sm">Welcome</p>
-          <h1 class="text-darkBlue text-sm font-bold md:text-xl">
-            <%= user.name %>
-          </h1>
-        </div>
-        <div class="flex flex-row items-center">
-          <p class="font-bold text-xs md:text-sm text-red-500 mr-0.5">
-            Not Verified
-          </p>
-          <img class="h-8 md:h-12" src="../Images/user.png" alt="User-Icon" />
-        </div>
-      </div>
-    </section>
-    <section>
-      <div
-        class="mt-10 flex flex-col md:flex-row items-center md:justify-evenly"
-      >
-        <div
-          class="flex flex-row items-center justify-evenly p-4 h-48 w-full md:w-2/3 bg-[url('../images/blackBlue.png')] shadow-xl hover:shadow-none duration-500"
-        >
-          <div class="text-white">
-            <h1 class="font-bold text-2xl md:text-3xl">
-              Don't Have Enough Funds?
+      <section>
+        <div class="flex flex-row items-center justify-between px-4">
+          <div class="ml-12 mt-4">
+            <p class="font-bold text-xs md:text-sm">Welcome</p>
+            <h1 class="text-darkBlue text-sm font-bold md:text-xl">
+              <%= user.name %>
             </h1>
-            <h3 class="mt-2 mb-4">Try Our Loan Option Today.</h3>
-            <a
-              href="/user/loan"
-              class="cursor-pointer duration-500 text-xs md:text-base w-1/2 py-2 border-2 border-darkBlue hover:text-white hover:bg-darkBlue bg-white text-darkBlue"
-            >
-              <button class="w-28">Try Now</button>
-            </a>
           </div>
-          <div>
-            <img class="h-40" src="../Images/loans.png" alt="Loan image" />
+          <div class="flex flex-row items-center">
+            <p class="font-bold text-xs md:text-sm text-red-500 mr-0.5">
+              Not Verified
+            </p>
+            <img class="h-8 md:h-12" src="../Images/user.png" alt="User-Icon" />
           </div>
         </div>
-        <div
-          class="w-1/2 md:w-1/4 h-48 mt-4 md:mt-0 flex flex-col justify-center items-center border-2 border-darkBlue shadow-xl hover:shadow-none duration-500"
-        >
-          <img class="h-20" src="../Images/account.png" alt="Account Image" />
-          <p class="text-xs md:text-base">Available Balance</p>
-          <h1 class="mt-2 text-darkBlue font-bold text-2xl md:text-4xl">
-            $<%=user.balance %>
-          </h1>
-        </div>
-      </div>
-      <div
-        class="mt-10 flex flex-col md:flex-row items-center md:justify-evenly"
-      >
-        <div class="w-full md:w-[45%] shadow-xl">
-          <canvas class="w-full" id="myChart"></canvas>
-        </div>
-        <div class="w-full md:w-[45%] border-2 border-darkBlue shadow-xl p-2 mt-4 md:mt-0">
-          <h4 class="text-center font-bold text-base md:text-xl">Account Summary</h4>
-          <p class="mt-1 text-sm md:text-base">Full Name: <span class="text-darkBlue font-semibold"><%= user.name %></span></p>
-          <hr>
-          <p class="mt-1 text-sm md:text-base">Username: <span class="text-darkBlue font-semibold"><%= user.username %></span></p>
-          <hr>
-          <p class="mt-1 text-sm md:text-base">Available Balance: <span class="text-darkBlue font-semibold">$<%=user.balance %></span></p>
-          <hr>
-          <p class="mt-1 text-sm md:text-base">Total Earning: <span class="text-darkBlue font-semibold">$<%= earnings.reduce( (total, current)=> total + current.amount, 0)%></span></p>
-          <hr>
-          <p class="mt-1 text-sm md:text-base">Total Investments: <span class="text-darkBlue font-semibold"><%= investments.length %></span></p>
-          <hr>
-          <p class="mt-1 text-sm md:text-base">Last Deposit: <span class="text-darkBlue font-semibold">$<%= deposits.length> 0 ? deposits.at(-1).amount : 0 ;%></span></p>
-          <hr>
-          <p class="mt-1 text-sm md:text-base">Last Withdrawal: <span class="text-darkBlue font-semibold">$<%= withdrawals.length> 0 ? withdrawals.at(-1).amount : 0; %></span></p>
-          <hr>
-          <p class="mt-1 text-sm md:text-base">Registration Date: <span class="text-darkBlue font-semibold"><%= user.createdAt.toLocaleDateString() %></span></p>
-        </div>
-      </div>
-      <div class="my-10 flex flex-col-reverse md:flex-row items-center md:justify-evenly">
-        <div class="p-2 mt-10 md:mt-0 w-full md:w-[45%] h-36 flex flex-row items-center justify-evenly border-2 border-darkBlue shadow-xl hover:shadow-none duration-500">
-          <div>
-          <img class="h-20" src="../Images/referral.png" alt="Referral Image">
-        </div>
-          <div class="ml-4">
-            <h4 class="font-bold text-sm md:text-base">Invite Your Friends</h4>
-            <a onclick="copy()"><p id="referral-link" class="text-darkBlue text-xs md:text-sm">https://www.spacexshares.net/user/create?ref=<%= user.userId %></p></a>
-            <p class="mt-4 font-extralight text-xs">Tap On The Link To Copy It.</p>
+      </section>
+      <section>
+        <div class="mt-10 flex flex-col md:flex-row items-center md:justify-evenly">
+          <div
+            class="flex flex-row items-center justify-evenly p-4 h-48 w-full md:w-2/3 bg-[url('../images/blackBlue.png')] shadow-xl hover:shadow-none duration-500">
+            <div class="text-white">
+              <h1 class="font-bold text-2xl md:text-3xl">
+                Don't Have Enough Funds?
+              </h1>
+              <h3 class="mt-2 mb-4">Try Our Loan Option Today.</h3>
+              <a href="/user/loan"
+                class="cursor-pointer duration-500 text-xs md:text-base w-1/2 py-2 border-2 border-darkBlue hover:text-white hover:bg-darkBlue bg-white text-darkBlue">
+                <button class="w-28">Try Now</button>
+              </a>
+            </div>
+            <div>
+              <img class="h-40" src="../Images/loans.png" alt="Loan image" />
+            </div>
+          </div>
+          <div
+            class="w-1/2 md:w-1/4 h-48 mt-4 md:mt-0 flex flex-col justify-center items-center border-2 border-darkBlue shadow-xl hover:shadow-none duration-500">
+            <img class="h-20" src="../Images/account.png" alt="Account Image" />
+            <p class="text-xs md:text-base">Available Balance</p>
+            <h1 class="mt-2 text-darkBlue font-bold text-2xl md:text-4xl">
+              $<%=user.balance %>
+            </h1>
           </div>
         </div>
-        <div class="w-full md:w-[45%] flex flex-row items-center justify-evenly">
-          <div class="h-36 flex flex-col items-center border-2 border-darkBlue shadow-xl hover:shadow-none duration-500 p-4">
-           <h4>Total Deposit</h4>
-           <h1 class="text-xl md:text-2xl text-darkBlue font-bold">$ <%= deposits.reduce( (total, current)=> total + current.amount, 0)%></h1>
-           <a href="/user/deposit"
-            class="cursor-pointer mt-2 duration-700 text-xs md:text-base py-2 text-black hover:border-2 border-green-500 bg-green-500 hover:bg-white hover:text-green-500">
-            <button class="w-28">
-              Deposit
-            </button>
-          </a>
+        <div class="mt-10 flex flex-col md:flex-row items-center md:justify-evenly">
+          <div class="w-full md:w-[45%] shadow-xl">
+            <canvas class="w-full" id="myChart"></canvas>
           </div>
-          <div class="h-36 flex flex-col items-center border-2 border-darkBlue shadow-xl hover:shadow-none duration-500 p-4">
-            <h4>Total Withdrawal</h4>
-           <h1 class="text-xl md:text-2xl text-darkBlue font-bold"> $ <%= deposits.reduce( (total, current)=> total + current.amount, 0)%></h1>
-           <a href="/user/withdraw"
-            class="cursor-pointer mt-2 duration-700 text-xs md:text-base py-2 hover:border-2 border-darkBlue text-white bg-darkBlue hover:bg-white hover:text-darkBlue">
-            <button class="w-28">
-              Withdraw
-            </button>
-          </a>
+          <div class="w-full md:w-[45%] border-2 border-darkBlue shadow-xl p-2 mt-4 md:mt-0">
+            <h4 class="text-center font-bold text-base md:text-xl">Account Summary</h4>
+            <p class="mt-1 text-sm md:text-base">Full Name: <span class="text-darkBlue font-semibold">
+                <%= user.name %>
+              </span></p>
+            <hr>
+            <p class="mt-1 text-sm md:text-base">Username: <span class="text-darkBlue font-semibold">
+                <%= user.username %>
+              </span></p>
+            <hr>
+            <p class="mt-1 text-sm md:text-base">Available Balance: <span class="text-darkBlue font-semibold">$
+                <%=user.balance %></span></p>
+            <hr>
+            <p class="mt-1 text-sm md:text-base">Total Earning: <span class="text-darkBlue font-semibold">$<%=
+                  earnings.reduce( (total, current)=> total + current.amount, 0)%></span></p>
+            <hr>
+            <p class="mt-1 text-sm md:text-base">Total Investments: <span class="text-darkBlue font-semibold">
+                <%= investments.length %>
+              </span></p>
+            <hr>
+            <p class="mt-1 text-sm md:text-base">Last Deposit: <span class="text-darkBlue font-semibold">$<%=
+                  deposits.length> 0 ? deposits.at(-1).amount : 0 ;%></span></p>
+            <hr>
+            <p class="mt-1 text-sm md:text-base">Last Withdrawal: <span class="text-darkBlue font-semibold">$<%=
+                  withdrawals.length> 0 ? withdrawals.at(-1).amount : 0; %></span></p>
+            <hr>
+            <p class="mt-1 text-sm md:text-base">Registration Date: <span class="text-darkBlue font-semibold">
+                <%= user.createdAt.toLocaleDateString() %>
+              </span></p>
           </div>
         </div>
-      </div>
-    </section>
-    <!-- <section>
+        <div class="my-10 flex flex-col-reverse md:flex-row items-center md:justify-evenly">
+          <div
+            class="p-2 mt-10 md:mt-0 w-full md:w-[45%] h-36 flex flex-row items-center justify-evenly border-2 border-darkBlue shadow-xl hover:shadow-none duration-500">
+            <div>
+              <img class="h-20" src="../Images/referral.png" alt="Referral Image">
+            </div>
+            <div class="ml-4">
+              <h4 class="font-bold text-sm md:text-base">Invite Your Friends</h4>
+              <a onclick="copy()">
+                <p id="referral-link" class="text-darkBlue text-xs md:text-sm">
+                  https://www.spacexshares.net/user/create?ref=<%= user.userId %>
+                </p>
+              </a>
+              <p class="mt-4 font-extralight text-xs">Tap On The Link To Copy It.</p>
+            </div>
+          </div>
+          <div class="w-full md:w-[45%] flex flex-row items-center justify-evenly">
+            <div
+              class="h-36 flex flex-col items-center border-2 border-darkBlue shadow-xl hover:shadow-none duration-500 p-4">
+              <h4>Total Deposit</h4>
+              <h1 class="text-xl md:text-2xl text-darkBlue font-bold">$ <%= deposits.reduce( (total, current)=> total +
+                  current.amount, 0)%></h1>
+              <a href="/user/deposit"
+                class="cursor-pointer mt-2 duration-700 text-xs md:text-base py-2 text-black hover:border-2 border-green-500 bg-green-500 hover:bg-white hover:text-green-500">
+                <button class="w-28">
+                  Deposit
+                </button>
+              </a>
+            </div>
+            <div
+              class="h-36 flex flex-col items-center border-2 border-darkBlue shadow-xl hover:shadow-none duration-500 p-4">
+              <h4>Total Withdrawal</h4>
+              <h1 class="text-xl md:text-2xl text-darkBlue font-bold"> $ <%= deposits.reduce( (total, current)=> total +
+                  current.amount, 0)%></h1>
+              <a href="/user/withdraw"
+                class="cursor-pointer mt-2 duration-700 text-xs md:text-base py-2 hover:border-2 border-darkBlue text-white bg-darkBlue hover:bg-white hover:text-darkBlue">
+                <button class="w-28">
+                  Withdraw
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- <section>
       <div class="flex flex-col items-center md:flex-row">
         <div
           class="flex flex-row justify-between items-center p-4 w-full h-14 mt-10 border-2 border-black md:w-1/2">
@@ -278,34 +289,35 @@
         </a>
       </div>
     </section> -->
-    <%- include("partials/script"); -%>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-    <script src="../JS/referral.js"></script>
-    <script>
-      //For the Chart
-      var xValues = ["Deposit", "Withdrawal", "Investment", "Loan", "Referral"];
-      var yValues = [55, 49, 44, 24, 15];
-      var barColors = ["red", "green", "blue", "orange", "brown"];
+      <%- include("partials/script"); -%>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+        <script src="../JS/referral.js"></script>
+        <script>
+          //For the Chart
+          var xValues = ["Deposit", "Withdrawal", "Investment", "Loan", "Referral"];
+          var yValues = [55, 49, 44, 24, 15];
+          var barColors = ["red", "green", "blue", "orange", "brown"];
 
-      new Chart("myChart", {
-        type: "bar",
-        data: {
-          labels: xValues,
-          datasets: [
-            {
-              backgroundColor: barColors,
-              data: yValues,
+          new Chart("myChart", {
+            type: "bar",
+            data: {
+              labels: xValues,
+              datasets: [
+                {
+                  backgroundColor: barColors,
+                  data: yValues,
+                },
+              ],
             },
-          ],
-        },
-        options: {
-          legend: { display: false },
-          title: {
-            display: true,
-            text: "Your Activity Chart",
-          },
-        },
-      });
-    </script>
-  </body>
+            options: {
+              legend: { display: false },
+              title: {
+                display: true,
+                text: "Your Activity Chart",
+              },
+            },
+          });
+        </script>
+</body>
+
 </html>

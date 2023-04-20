@@ -26,184 +26,182 @@
 
 <body class="bg-white main">
 
-  <%- include ("partials/sidebar"); -%>
-  <% if(status==='success' ){ %>
-    <div id="info" class="flex flex-row items-center justify-between mx-auto px-3 mt-20 py-5 m-3 bg-green-300 text-green-700 w-11/12 md:w-3/4 text-center text-xs capitalize md:text-sm md:mt-0">
-      Your investment request has been submitted successfully.
-      <ion-icon id="closeIcon" class="text-xl hover:cursor-pointer" name="close-circle-outline"></ion-icon>
-    </div>
-    <% } else if (status==='fail' ){%>
-      <div id="info" class="flex flex-row items-center justify-between mx-auto px-3 mt-20 py-5 m-3 bg-red-300 text-red-700 w-11/12 md:w-3/4 text-center text-xs capitalize md:text-sm md:mt-0">
-        Investment failed, please try again later, thank you.
-        <ion-icon id="closeIcon" class="text-xl hover:cursor-pointer" name="close-circle-outline"></ion-icon>
-      </div>
-      <% }%>
-    <section>
-      <div class="flex flex-col justify-center items-center">
-        <div class="text-center mt-16">
-          <h1 class="flex flex-row items-center text-2xl font-bold md:text-4xl">
-            Make An Investment <span><img class="ml-1 h-14" src="../Images/invest.png" alt="This is an investment icon"></span>
-          </h1>
-          <h4 class="text-sm mt-10 text-darkBlue md:text-base">Select Your Plan.</h4>
-        </div>
-        <p class="invest-status" hidden>
-          <%=status%>
-        </p>
-        <form id="form" action="/user/invest" method="post" class="flex flex-col items-center justify-center">
-          <div class="custom-select mt-2 w-72 md:w-96 border-2 border-darkBlue">
-            <select name="plan">
-              <option value="">Select Your Plan</option>
-              <option value="starter" selected>Starter Plan</option>
-              <option value="regular">Regular Plan</option>
-              <option value="pro">Pro Plan</option>
-              <option value="elite">Elite Plan</option>
-            </select>
+  <%- include ("partials/_alert"); -%>
+    <%- include ("partials/sidebar"); -%>
+
+      <section>
+        <div class="flex flex-col justify-center items-center">
+          <div class="text-center mt-16">
+            <h1 class="flex flex-row items-center text-2xl font-bold md:text-4xl">
+              Make An Investment <span><img class="ml-1 h-14" src="../Images/invest.png"
+                  alt="This is an investment icon"></span>
+            </h1>
+            <h4 class="text-sm mt-10 text-darkBlue md:text-base">Select Your Plan.</h4>
           </div>
-          <div class="mt-10">
-            <h4 class="text-sm text-center text-darkBlue md:text-base">
-              Amount To Invest.
-            </h4>
-            <input
-              class="px-8 py-3 mt-2 placeholder:text-center placeholder:text-sm w-72 md:w-96 border-2 border-darkBlue"
-              type="number" name="amount" id="amount" placeholder="Enter The Amount Here" />
-          </div>
-          <button type="submit"
-            class="px-10 py-3 mt-10 w-72 md:w-96 duration-700 border-2 text-black border-orange-400 hover:bg-white hover:text-orange-400 bg-orange-400">
-            Invest
-          </button>
-        </form>
-        <div class="mt-20">
-          <h1 class="text-2xl text-center text-darkBlue font-bold md:text-4xl">
-            Our Plans?
-          </h1>
-         <p class="text-xs font-semibold capitalize mt-2 text-center p-1 md:text-sm"
-          >
-          Dear shareholder, please review our plans and select the option that best aligns with your investment goals. Thank you for considering our offerings.
-          </p>
-        </div>
-        <div class="flex flex-col flex-wrap items-center justify-center mt-4 space-y-4 md:space-x-4 md:flex-row mb-10">
-          <div id="card1"
-            class="w-52 h-64 p-4 duration700 shadow-2xl hover:shadow-none border-2 border-darkBlue md:mt-4">
-            <h4 class="text-base font-bold md:text-xl">
-              Stakeholder's <span class="text-darkBlue">Starter Plan</span>
-            </h4>
-            <p class="mt-4">
-              Minimum:
-              <span class="text-darkBlue text-sm ml-2 font-bold"> $500</span>
-            </p>
-            <p>
-              Maximum:
-              <span class="text-darkBlue text-sm ml-2 font-bold"> $4,999</span>
-            </p>
-            <p>
-              Profit:
-              <span class="text-darkBlue text-sm ml-2 font-bold"> 5%</span>
-            </p>
-            <p>
-              Duration:
-              <span class="text-darkBlue text-sm ml-2 font-bold">24 Hours</span>
-            </p>
-            <p>
-              Principal Return:<span class="text-darkBlue text-sm ml-2 font-bold">
-                YES</span>
+
+          <form id="form" action="/user/invest" method="post" class="flex flex-col items-center justify-center">
+            <div class="custom-select mt-2 w-72 md:w-96 border-2 border-darkBlue">
+              <select name="plan">
+                <option value="">Select Your Plan</option>
+                <option value="starter" selected>Starter Plan</option>
+                <option value="regular">Regular Plan</option>
+                <option value="pro">Pro Plan</option>
+                <option value="elite">Elite Plan</option>
+              </select>
+            </div>
+            <div class="mt-10">
+              <h4 class="text-sm text-center text-darkBlue md:text-base">
+                Amount To Invest.
+              </h4>
+              <input
+                class="px-8 py-3 mt-2 placeholder:text-center placeholder:text-sm w-72 md:w-96 border-2 border-darkBlue"
+                type="number" name="amount" id="amount" placeholder="Enter The Amount Here" />
+            </div>
+            <button type="submit"
+              class="px-10 py-3 mt-10 w-72 md:w-96 duration-700 border-2 text-black border-orange-400 hover:bg-white hover:text-orange-400 bg-orange-400">
+              Invest
+            </button>
+          </form>
+          <div class="mt-20">
+            <h1 class="text-2xl text-center text-darkBlue font-bold md:text-4xl">
+              Our Plans?
+            </h1>
+            <p class="text-xs font-semibold capitalize mt-2 text-center p-1 md:text-sm">
+              Dear shareholder, please review our plans and select the option that best aligns with your
+              investment
+              goals. Thank you for considering our offerings.
             </p>
           </div>
-          <div id="card2"
-            class="w-52 h-64 p-4 duration700 shadow-2xl hover:shadow-none border-2 border-darkBlue md:mt-4">
-            <h4 class="text-base font-bold md:text-xl">
-              Stakeholder's <span class="text-darkBlue">Regular Plan</span>
-            </h4>
-            <p class="mt-4">
-              Minimum:
-              <span class="text-darkBlue text-sm ml-2 font-bold"> $5,000</span>
-            </p>
-            <p>
-              Maximum:
-              <span class="text-darkBlue text-sm ml-2 font-bold"> $9,999</span>
-            </p>
-            <p>
-              Profit:
-              <span class="text-darkBlue text-sm ml-2 font-bold"> 10%</span>
-            </p>
-            <p>
-              Duration:
-              <span class="text-darkBlue text-sm ml-2 font-bold"> 48 Hours</span>
-            </p>
-            <p>
-              Principal Return:<span class="text-darkBlue text-sm ml-2 font-bold">
-                YES</span>
-            </p>
-          </div>
-          <div id="card3"
-            class="w-52 h-64 p-4 duration-700 shadow-2xl hover:shadow-none border-2 border-darkBlue md:mt-4">
-            <h4 class="text-base font-bold md:text-xl">
-             Stakeholder's <span class="text-darkBlue">Pro Plan</span>
-            </h4>
-            <p class="mt-4">
-              Minimum:
-              <span class="text-darkBlue text-sm ml-2 font-bold"> $10,000</span>
-            </p>
-            <p>
-              Maximum:
-              <span class="text-darkBlue text-sm ml-2 font-bold"> $49,999</span>
-            </p>
-            <p>
-              Profit:
-              <span class="text-darkBlue text-sm ml-2 font-bold"> 25%</span>
-            </p>
-            <p>
-              Duration:
-              <span class="text-darkBlue text-sm ml-2 font-bold"> 6 Days</span>
-            </p>
-            <p>
-              Principal Return:<span class="text-darkBlue text-sm ml-2 font-bold">
-                YES</span>
-            </p>
-          </div>
-          <div id="card4"
-            class="w-52 h-64 p-4 duration-700 shadow-2xl hover:shadow-none border-2 border-darkBlue md:mt-4">
-            <h4 class="text-base font-bold md:text-xl">
-              Stakeholder's <span class="text-darkBlue">Elite Plan</span>
-            </h4>
-            <p class="mt-4">
-              Minimum:
-              <span class="text-darkBlue text-sm ml-2 font-bold"> $50,000</span>
-            </p>
-            <p>
-              Maximum:
-              <span class="text-darkBlue text-sm ml-2 font-bold"> $250,000</span>
-            </p>
-            <p>
-              Profit:
-              <span class="text-darkBlue text-sm ml-2 font-bold"> 37%</span>
-            </p>
-            <p>
-              Duration:
-              <span class="text-darkBlue text-sm ml-2 font-bold"> 30 Days</span>
-            </p>
-            <p>
-              Principal Return:<span class="text-darkBlue text-sm ml-2 font-bold">
-                YES</span>
-            </p>
+          <div
+            class="flex flex-col flex-wrap items-center justify-center mt-4 space-y-4 md:space-x-4 md:flex-row mb-10">
+            <div id="card1"
+              class="w-52 h-64 p-4 duration700 shadow-2xl hover:shadow-none border-2 border-darkBlue md:mt-4">
+              <h4 class="text-base font-bold md:text-xl">
+                Stakeholder's <span class="text-darkBlue">Starter Plan</span>
+              </h4>
+              <p class="mt-4">
+                Minimum:
+                <span class="text-darkBlue text-sm ml-2 font-bold"> $500</span>
+              </p>
+              <p>
+                Maximum:
+                <span class="text-darkBlue text-sm ml-2 font-bold"> $4,999</span>
+              </p>
+              <p>
+                Profit:
+                <span class="text-darkBlue text-sm ml-2 font-bold"> 5%</span>
+              </p>
+              <p>
+                Duration:
+                <span class="text-darkBlue text-sm ml-2 font-bold">24 Hours</span>
+              </p>
+              <p>
+                Principal Return:<span class="text-darkBlue text-sm ml-2 font-bold">
+                  YES</span>
+              </p>
+            </div>
+            <div id="card2"
+              class="w-52 h-64 p-4 duration700 shadow-2xl hover:shadow-none border-2 border-darkBlue md:mt-4">
+              <h4 class="text-base font-bold md:text-xl">
+                Stakeholder's <span class="text-darkBlue">Regular Plan</span>
+              </h4>
+              <p class="mt-4">
+                Minimum:
+                <span class="text-darkBlue text-sm ml-2 font-bold"> $5,000</span>
+              </p>
+              <p>
+                Maximum:
+                <span class="text-darkBlue text-sm ml-2 font-bold"> $9,999</span>
+              </p>
+              <p>
+                Profit:
+                <span class="text-darkBlue text-sm ml-2 font-bold"> 10%</span>
+              </p>
+              <p>
+                Duration:
+                <span class="text-darkBlue text-sm ml-2 font-bold"> 48 Hours</span>
+              </p>
+              <p>
+                Principal Return:<span class="text-darkBlue text-sm ml-2 font-bold">
+                  YES</span>
+              </p>
+            </div>
+            <div id="card3"
+              class="w-52 h-64 p-4 duration-700 shadow-2xl hover:shadow-none border-2 border-darkBlue md:mt-4">
+              <h4 class="text-base font-bold md:text-xl">
+                Stakeholder's <span class="text-darkBlue">Pro Plan</span>
+              </h4>
+              <p class="mt-4">
+                Minimum:
+                <span class="text-darkBlue text-sm ml-2 font-bold"> $10,000</span>
+              </p>
+              <p>
+                Maximum:
+                <span class="text-darkBlue text-sm ml-2 font-bold"> $49,999</span>
+              </p>
+              <p>
+                Profit:
+                <span class="text-darkBlue text-sm ml-2 font-bold"> 25%</span>
+              </p>
+              <p>
+                Duration:
+                <span class="text-darkBlue text-sm ml-2 font-bold"> 6 Days</span>
+              </p>
+              <p>
+                Principal Return:<span class="text-darkBlue text-sm ml-2 font-bold">
+                  YES</span>
+              </p>
+            </div>
+            <div id="card4"
+              class="w-52 h-64 p-4 duration-700 shadow-2xl hover:shadow-none border-2 border-darkBlue md:mt-4">
+              <h4 class="text-base font-bold md:text-xl">
+                Stakeholder's <span class="text-darkBlue">Elite Plan</span>
+              </h4>
+              <p class="mt-4">
+                Minimum:
+                <span class="text-darkBlue text-sm ml-2 font-bold"> $50,000</span>
+              </p>
+              <p>
+                Maximum:
+                <span class="text-darkBlue text-sm ml-2 font-bold"> $250,000</span>
+              </p>
+              <p>
+                Profit:
+                <span class="text-darkBlue text-sm ml-2 font-bold"> 37%</span>
+              </p>
+              <p>
+                Duration:
+                <span class="text-darkBlue text-sm ml-2 font-bold"> 30 Days</span>
+              </p>
+              <p>
+                Principal Return:<span class="text-darkBlue text-sm ml-2 font-bold">
+                  YES</span>
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
       <% if(investments.length> 0){ %>
         <section>
-      <h4 class="mt-10 text-base text-center font-bold md:text-xl">Running Investments...</h4>
-      <p class="mx-auto text-xs font-extralight capitalize text-darkBlue mt-2 text-center">Dear stakeholders, please find your active investments displayed below.</p>
-      <% investments.forEach(investment=> {%>
-      <div class="mx-auto my-10 flex flex-row items-center justify-evenly h-14 w-4/5 bg-darkBlue text-white">
-          <p class="text-sm md:text-base">$<%= investment.amount %></p>
-          <p class="text-sm md:text-base"><%= investment.createdAt.toLocaleDateString() %></p>
-          <p class="text-sm md:text-base"><%= investment.expiresAt.toLocaleDateString() %></p>
-        </div>
-        <% }) %>
-      </section>
-      <% } %>
-        <%- include ("partials/script"); -%>
-          <script src="../JS/deposit.js"></script>
+          <h4 class="mt-10 text-base text-center font-bold md:text-xl">Running Investments...</h4>
+          <p class="mx-auto text-xs font-extralight capitalize text-darkBlue mt-2 text-center">Dear stakeholders,
+            please find your active investments displayed below.</p>
+          <% investments.forEach(investment=> {%>
+            <div class="mx-auto my-10 flex flex-row items-center justify-evenly h-14 w-4/5 bg-darkBlue text-white">
+              <p class="text-sm md:text-base">$<%= investment.amount %>
+              </p>
+              <p class="text-sm md:text-base">
+                <%= investment.createdAt.toLocaleDateString() %>
+              </p>
+              <p class="text-sm md:text-base">
+                <%= investment.expiresAt.toLocaleDateString() %>
+              </p>
+            </div>
+            <% }) %>
+        </section>
+        <% } %>
+          <%- include ("partials/script"); -%>
+            <script src="../JS/deposit.js"></script>
 </body>
 
 </html>

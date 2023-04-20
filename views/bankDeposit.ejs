@@ -25,35 +25,37 @@
 
 <body class="bg-white main">
   <%- include ("partials/sidebar"); -%>
-    <section class="p-2"> 
-        <div class="text-center mt-32">
-            <h1 class="flex flex-row items-center justify-center text-2xl font-bold md:text-4xl">
-               Bank Funding Method <img class="h-14 ml-1" src="../Images/wallet.png" alt="Wallet Icon">
-            </h1>
-            <h4 class="text-sm mt-4 text-darkBlue md:text-base">
-                Deposit Into Your Account Using Bank Transfers And Deposit.
-              </h4>
+    <section class="p-2">
+      <div class="text-center mt-32">
+        <h1 class="flex flex-row items-center justify-center text-2xl font-bold md:text-4xl">
+          Bank Funding Method <img class="h-14 ml-1" src="../Images/wallet.png" alt="Wallet Icon">
+        </h1>
+        <h4 class="text-sm mt-4 text-darkBlue md:text-base">
+          Deposit Into Your Account Using Bank Transfers And Deposit.
+        </h4>
+      </div>
+      <div class="flex flex-col justify-center items-center">
+        <div class="flex flex-row justify-center space-x-4 items-center mt-10">
+          <div class="w-4 h-4 rounded-full bg-darkBlue"></div>
+          <div class="w-4 h-4 rounded-full bg-black"></div>
         </div>
-        <div class="flex flex-col justify-center items-center">
-            <div class="flex flex-row justify-center space-x-4 items-center mt-10">
-              <div class="w-4 h-4 rounded-full bg-darkBlue"></div>
-              <div class="w-4 h-4 rounded-full bg-black"></div>
-            </div>
-        <form action="" class="flex flex-col justify-center items-center">
-            <div class="mt-10">
-                <h4 class="text-sm text-center text-darkBlue md:text-base">
-                  Amount To Deposit
-                </h4>
-                <input
-                  class="px-8 py-3 mt-2 placeholder:text-center placeholder:text-sm w-72 border-2 border-darkBlue md:w-96"
-                  type="number" name="amount" id="amount" placeholder="Minimum Of $500 " required min="500" />
-              </div>
-              <button type="submit"
-          class="px-10 py-3 mt-10 w-72 duration-700 bg-green-500 text-black hover:bg-white hover:text-green-500 border-2 border-green-500 md:w-96">
-          Deposit
-        </button>
+        <form action="/user/deposit" class="flex flex-col justify-center items-center" method="post">
+          <div class="mt-10">
+            <h4 class="text-sm text-center text-darkBlue md:text-base">
+              Amount To Deposit
+            </h4>
+            <input
+              class="px-8 py-3 mt-2 placeholder:text-center placeholder:text-sm w-72 border-2 border-darkBlue md:w-96"
+              type="number" name="amount" id="amount" placeholder="Minimum Of $500 " required min="500" />
+
+            <input type="hidden" name="medium" value="bank">
+          </div>
+          <button type="submit"
+            class="px-10 py-3 mt-10 w-72 duration-700 bg-green-500 text-black hover:bg-white hover:text-green-500 border-2 border-green-500 md:w-96">
+            Deposit
+          </button>
         </form>
     </section>
-  <%- include ("partials/script"); -%>
-  <script src="../JS/deposit.js"></script>
+    <%- include ("partials/script"); -%>
+      <script src="../JS/deposit.js"></script>
 </body>

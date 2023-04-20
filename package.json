@@ -4,7 +4,7 @@
   "description": "This is the investment website of the spacex company.",
   "main": "app.js",
   "engines": {
-    "node": "18.0.0"
+    "node": ">=18 <19"
   },
   "scripts": {
     "build": "npm install",

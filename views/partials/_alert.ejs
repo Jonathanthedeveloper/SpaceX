@@ -1,0 +1,9 @@
+<%if(message.error) {%>
+    <div class="alert alert-error bg-red-400 text-red-600">
+        <%=message.error%>
+    </div>
+    <%} else if(message.success){%>
+        <div class="alert alert-success bg-green-400 bg-green-900">
+            <%=message.success%>
+        </div>
+        <%}%>

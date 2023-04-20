@@ -20,6 +20,7 @@ const transactionService = require('../services/transaction.service');
 const { User } = require('../models/user.model');
 const Email = require('../utils/mail.util');
 const Transaction = require('../models/transaction.model')
+const splitTransactions = require("../utils/splitTransactions.util")
 class UserController {
 
     // registering a user 
@@ -30,28 +31,28 @@ class UserController {
             email: req.body.email,
             username: req.body.username,
             password: req.body.password,
-            secret: {
-                question: req.body.secretQuestion,
-                answer: req.body.secretAnswer
-            },
-            role: req.body.role || 'user',
-            withdrawals: [],
-            deposits: [],
-            investments: [],
-            earnings: []
+            passwordConfirm: req.body.passwordConfirm,
+            country: req.body.country,
+            phoneNumber: req.body.phoneNumber,
+            role: req.body.role || 'user'
         }
 
+
         // checking if referral exists 
-        const referral = await userService.findOne({ userId: req.body.referredBy })
-        if (referral) {
-            userData.referredBy = referral._id;
+        let referral;
+        if (req.body.referredBy !== "") {
+            referral = await userService.findOne({ userId: req.body.referredBy })
+            if (referral) {
+                userData.referredBy = referral._id;
+            }
         }
+
 
         // checking if user already exists
         const userAlreadyExists = await userService.findOne({ email: userData.email });
         if (userAlreadyExists) {
             // throw an errow message saying user already exists
-            req.flash('alert', JSON.stringify({ "message": "User already Exists, Please login in", "status": "info" }));
+            req.flash('error', "user already exists");
             res.redirect('/user/login')
             return;
         }
@@ -84,11 +85,16 @@ class UserController {
         }, process.env.JWT_SECRET_KEY, { expiresIn: "1h" });
 
 
-        new Email(user).sendWelcome()
+        // new Email(user).sendWelcome()
+
+
+
+        // redirect to dashboard
+
+        req.flash('success', "your account has been successfully created");
 
         res
             .cookie('token', token, { httpOnly: true, maxAge: 1000 * 60 * 60 })
-            .header('Authorization', token)
             .redirect('/user/dashboard')
 
     }
@@ -102,7 +108,8 @@ class UserController {
         const foundUser = await userService.findOne({ email: userCredentials.email });
         if (!foundUser) {
             // throw an error with incorrect email or password
-            req.flash('alert', JSON.stringify({ "message": "Invalid Username or Password", "status": "error" }));
+            req.flash("error", "Invalid username or password");
+
             res.redirect('/user/login')
             console.error("user does not exist");
             return;
@@ -113,7 +120,7 @@ class UserController {
 
         if (!isCorrectPassword) {
             // throw an error with incorrect email or password;
-            req.flash('alert', JSON.stringify({ "message": "Invalid Username or Password", "status": "error" }));
+            req.flash("error", "Invalid username or password");
             res.redirect('/user/login')
             console.error('incorrect email or password')
             return;
@@ -137,30 +144,24 @@ class UserController {
         res.clearCookie('token').redirect('/user/login')
     }
 
+
+
+
     async renderDashboard(req, res) {
-        const userInformation = req.user
+        const userInformation = req.userData;
         // console.log(userInformation);
         if (userInformation.role === 'admin') {
+            req.flash("success", "welcome back")
             return res.redirect('/user/admin')
         }
 
-
-        const deposits = userInformation.deposits.filter(deposit => deposit.status === "successful")
-
-        const withdrawals = userInformation.withdrawals.filter(withdrawal => withdrawal.status === "successful")
-
-        const investments = userInformation.investments.filter(investment => investment.status === "successful")
-
-        const earnings = userInformation.earnings.filter(earning => earning.status === "successful")
-
-        // console.log(deposits, withdrawals, investments, earnings);
-
+        const { deposits, earnings, investments, withdrawals } = splitTransactions(userInformation.transactions)
 
         return res.render('dashboard', { user: userInformation, deposits, withdrawals, investments, earnings });
     }
 
     async renderProfile(req, res) {
-        const userInformation = req.user;
+        const userInformation = req.userData;
         res.render('profile', { user: userInformation })
     }
 
@@ -190,20 +191,14 @@ class UserController {
     }
 
     async renderReferral(req, res) {
-        const userInformation = req.user;
+        const userInformation = req.userData;
         res.render('referral', { user: userInformation })
     }
 
     async renderTransaction(req, res) {
-        const userInformation = req.user;
-
-        // console.log(userInformation);
-
-
-        const transactions = [...userInformation.withdrawals, ...userInformation.deposits, ...userInformation.earnings, ...userInformation.investments]
+        const { transactions } = req.userData;
 
         transactions.sort((a, b) => b.createdAt - a.createdAt)
-
 
         res.render('history', { transactions })
     }
@@ -216,7 +211,7 @@ class UserController {
 
     async handleWithdrawal(req, res) {
         try {
-            
+
             if (req.body.amount > req.user.balance) {
                 return res.redirect('/user/deposit')
             }
@@ -263,12 +258,6 @@ class UserController {
                 case "dogecoin":
                     wallet = "DREBZME23eHTvKb7N5PdqxN9U3NvLMhSWW";
                     break;
-                case "place":
-                    wallet = "place";
-                    break;
-                case "place":
-                    wallet = "place";
-                    break;
                 default:
                     wallet = "you did not select a deposit method";
                     break;
@@ -301,29 +290,30 @@ class UserController {
                 transactionID: req.body.transactionID
             }
 
-            const deposit = await transactionService.create(transactionData)
-            const user = await userService.findOne({ _id: req.user._id })
-            user.deposits.push(deposit._id)
-            await user.save()
+            await transactionService.create(transactionData)
 
 
-            req.flash('status', 'success')
+            req.flash('status', 'Deposit placed successfully')
             res.redirect('/user/deposit')
 
 
         } catch (error) {
-            req.flash('status', 'fail')
+            req.flash('status', 'deposit failed')
             res.redirect('/user/deposit')
         }
     }
     async renderInvestment(req, res) {
         try {
-            const investments = await User.findOne({ _id: req.user._id }).populate('investments').select('investments -_id')
-            const activeInvestments = investments.investments.filter(investment => Date.now() < investment.expiresAt);
+            const userData = await User.findOne({ _id: req.user._id }).populate("transactions");
 
-            res.render('invest', { investments: activeInvestments, status: req.flash('status').join() })
+            const { investments } = splitTransactions(userData.transactions)
+
+            const activeInvestments = investments.filter(investment => Date.now() < investment.expiresAt);
+
+            res.render('invest', { investments: activeInvestments })
         } catch (error) {
-            res.redirect('/user/invest')
+            console.log(error)
+            // res.redirect('/user/invest')
         }
     }
 
@@ -341,7 +331,7 @@ class UserController {
                 case 'starter': payoutDuration = starterDuration; break;
                 case 'regular': payoutDuration = regularDuration; break;
                 case 'pro': payoutDuration = proDuration; break;
-                case 'elite': payoutDuration = eliteDuration; break;
+                case 'elite': payoutDuration = zenithDuration; break;
             }
 
             const transactionData = {
@@ -352,7 +342,7 @@ class UserController {
                 plan: req.body.plan,
                 active: true,
                 expiresAt: Date.now() + payoutDuration,
-               
+
             }
 
             const investment = await transactionService.create(transactionData);
@@ -409,12 +399,12 @@ class UserController {
 
             new Email(user, "", transactionData.amount).sendInvestment()
 
-            req.flash('status', 'success');
+            req.flash('success', 'Your investment request has been submitted successfully');
             res.redirect('/user/invest')
 
 
         } catch (error) {
-            req.flash('status', 'fail')
+            req.flash('error', error.message)
             res.redirect('/user/invest')
             console.error(error)
         }
