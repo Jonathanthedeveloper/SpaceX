@@ -1,9 +1,6 @@
 const userService = require("../services/user.service");
-const crypto = require("crypto");
 const Email = require("../utils/mail.util");
-const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const {generateUserId} = require("../utils/utils");
 
 
 class AuthController {

@@ -1,6 +1,4 @@
-const AdminService = require("../services/admin.service");
 const userService = require("../services/user.service");
-const depositService = require("../services/deposit.service");
 const transactionService = require("../services/transaction.service");
 const {User} = require("../models/user.model");
 const {referralEarningPercent} = require("../config");

@@ -1,6 +1,4 @@
 require('dotenv').config()
-const crypto = require('crypto');
-const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt');
 const scheduler = require('node-schedule')
 const saltRounds = 10;
@@ -14,16 +12,16 @@ const {
 } = require('../config')
 
 const userService = require('../services/user.service');
-const AdminService = require('../services/admin.service')
-const { generateUserId } = require('../utils/utils')
 const transactionService = require('../services/transaction.service');
 const { User } = require('../models/user.model');
 const Email = require('../utils/mail.util');
-const Transaction = require('../models/transaction.model')
-const splitTransactions = require("../utils/splitTransactions.util")
+const splitTransactions = require("../utils/splitTransactions.util");
+
+
+
 class UserController {
 
-    // registering a user 
+
 
 
 
