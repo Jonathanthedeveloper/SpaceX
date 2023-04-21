@@ -121,22 +121,14 @@ html {
   text-align: center;
   margin: 10px 10px;
   font-weight: bold;
-  border: 2px solid white;
-  background-color: #0D47A1;
-  color: white;
   cursor: pointer;
   transition: background-color 0.5s;
 }
-.hero-text button:hover{
+.hero-text .btn:hover{
   background-color: transparent;
 }
-.hero-text .btn-2{
-  background-color: transparent;
-}
-.hero-text .btn-2:hover{
-  background-color: #0D47A1;
-  border: 2px solid #0D47A1;
-}
+/* About Us */
+
 /* Scroll Bar */
 /* width */
 body::-webkit-scrollbar {
@@ -150,13 +142,13 @@ body::-webkit-scrollbar-track {
 
 /* Handle */
 body::-webkit-scrollbar-thumb {
-  background-color: #0D47A1;
+  background-color: #757575;
   border-radius: 10px;
 }
 
 /* Handle on hover */
 body::-webkit-scrollbar-thumb:hover { 
-  background-color: #000;
+  background-color: #080708;
 }
 
 /* Frequently Asked Questions */

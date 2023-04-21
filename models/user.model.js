@@ -221,10 +221,7 @@ const Deposit = model("Deposit", depositSchema)
 const Earning = model("Earning", earningSchema)
 const Investment = model("Investment", investmentSchema)
 const Wallet = model("Wallet", walletSchema)
-// const Transaction = model("Transaction", transactionSchema)
 const Secret = model('Secret', secretSchema);
 const Account = model('Account', accountSchema);
 const User = model('User', userSchema);
 module.exports = { User, Withdrawal, Deposit, Investment };
-
-// const { User, Withdrawal, Deposit, Investment } = require('../models/user.model')
