@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-const { renderPasswordReset, handlePasswordReset } = require('../controllers/user.controller');
+const { renderPasswordReset, handlePasswordReset } = require('../controllers/auth.controller');
 
-router.get('/:token', renderPasswordReset)
-router.post('/:token', handlePasswordReset)
+router.get('/:userId/:token', renderPasswordReset)
+router.post('/', handlePasswordReset)
 
 module.exports = router;

@@ -1,6 +1,4 @@
 require('dotenv').config()
-const crypto = require('crypto');
-const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt');
 const scheduler = require('node-schedule')
 const saltRounds = 10;
@@ -14,135 +12,15 @@ const {
 } = require('../config')
 
 const userService = require('../services/user.service');
-const AdminService = require('../services/admin.service')
-const { generateUserId } = require('../utils/utils')
 const transactionService = require('../services/transaction.service');
 const { User } = require('../models/user.model');
 const Email = require('../utils/mail.util');
-const Transaction = require('../models/transaction.model')
-const splitTransactions = require("../utils/splitTransactions.util")
+const splitTransactions = require("../utils/splitTransactions.util");
+
+
+
 class UserController {
 
-    // registering a user 
-    async registerUser(req, res) {
-
-        const userData = {
-            name: req.body.name,
-            email: req.body.email,
-            username: req.body.username,
-            password: req.body.password,
-            passwordConfirm: req.body.passwordConfirm,
-            country: req.body.country,
-            phoneNumber: req.body.phoneNumber,
-            role: req.body.role || 'user'
-        }
-
-
-        // checking if referral exists 
-        let referral;
-        if (req.body.referredBy !== "") {
-            referral = await userService.findOne({ userId: req.body.referredBy })
-            if (referral) {
-                userData.referredBy = referral._id;
-            }
-        }
-
-
-        // checking if user already exists
-        const userAlreadyExists = await userService.findOne({ email: userData.email });
-        if (userAlreadyExists) {
-            // throw an errow message saying user already exists
-            req.flash('error', "user already exists");
-            res.redirect('/user/login')
-            return;
-        }
-
-
-        // hashing users password
-        const hash = await bcrypt.hash(userData.password, saltRounds);
-
-        // saving it to thier user data object
-        userData.password = hash;
-        userData.userId = generateUserId()
-
-        const user = await userService.create(userData)
-
-        // adding user to his uplines array
-        if (referral) {
-            referral.referrals.push(user._id);
-            await referral.save()
-        }
-
-        // const admin = await AdminService.findAll({})
-        // admin.users.push(user._id);
-        // await admin.save()
-
-
-        const token = jwt.sign({
-            _id: user._id,
-            email: user.email,
-            role: user.role
-        }, process.env.JWT_SECRET_KEY, { expiresIn: "1h" });
-
-
-        // new Email(user).sendWelcome()
-
-
-
-        // redirect to dashboard
-
-        req.flash('success', "your account has been successfully created");
-
-        res
-            .cookie('token', token, { httpOnly: true, maxAge: 1000 * 60 * 60 })
-            .redirect('/user/dashboard')
-
-    }
-
-    async loginUser(req, res) {
-
-        const userCredentials = req.body;
-
-
-        // check if user exists
-        const foundUser = await userService.findOne({ email: userCredentials.email });
-        if (!foundUser) {
-            // throw an error with incorrect email or password
-            req.flash("error", "Invalid username or password");
-
-            res.redirect('/user/login')
-            console.error("user does not exist");
-            return;
-        }
-
-        // comparing passwords
-        const isCorrectPassword = await bcrypt.compare(userCredentials.password, foundUser.password);
-
-        if (!isCorrectPassword) {
-            // throw an error with incorrect email or password;
-            req.flash("error", "Invalid username or password");
-            res.redirect('/user/login')
-            console.error('incorrect email or password')
-            return;
-        }
-
-        const token = jwt.sign({
-            _id: foundUser._id,
-            email: foundUser.email,
-            role: foundUser.role
-        }, process.env.JWT_SECRET_KEY);
-
-
-        res
-            .cookie('token', token, { httpOnly: true, maxAge: 1000 * 60 * 60 })
-            .header('Authorization', token)
-            .redirect('/user/dashboard')
-
-    }
-
-    async logoutUser(req, res) {
-        res.clearCookie('token').redirect('/user/login')
-    }
 
 
 
@@ -410,82 +288,6 @@ class UserController {
         }
     }
 
-    async handleForgotPassword(req, res) {
-        const user = await userService.findOne({ email: req.body.email });
-        if (!user) {
-            req.flash('status', 'fail')
-            return res.redirect('/user/forgot-password')
-        }
-
-        try {
-            const token = crypto.randomBytes(20).toString('hex');
-            user.passwordResetToken = token;
-            user.passwordResetExpires = Date.now() + 1000 * 60 * 10;
-            await user?.save();
-
-
-            const link = `${req.protocol}://${req.get('host')}/user/reset-password/${token}`;
-            new Email(user, link).sendForgotPassword()
-
-        } catch (error) {
-            user.passwordResetToken = undefined;
-            user.passwordResetExpires = undefined;
-            await user.save()
-            req.flash('status', 'fail')
-            res.redirect('/user/forgot-password')
-            return
-        }
-        req.flash('status', 'success')
-        res.redirect('/user/forgot-password')
-    }
-
-
-    async handlePasswordReset(req, res) {
-        try {
-
-            const user = userService.findOne({
-                $and: [{ passwordResetToken: req.body.resetToken }, { passwordResetExpires: { $gte: Date.now() } }]
-            })
-
-            if (!user) {
-                req.flash('status', 'fail')
-                return res.redirect('/user/forgot-password')
-            }
-
-            const hash = await bcrypt.hash(req.body.password, saltRounds)
-
-            user.password = hash;
-            user.passwordResetToken = undefined;
-            user.passwordResetExpires = undefined;
-            await user.save();
-
-            const token = jwt.sign({
-                _id: user._id,
-                email: user.email,
-                role: user.role
-            }, process.env.JWT_SECRET_KEY, { expiresIn: "1h" });
-
-            cookie('token', token, { httpOnly: true, maxAge: 1000 * 60 * 60 })
-            req.flash('status', 'success')
-            res
-                .cookie('token', token, { httpOnly: true, maxAge: 1000 * 60 * 60 })
-                .redirect('/user/dashboard')
-
-        } catch (error) {
-            req.flash('status', 'fail')
-            res.redirect('/user/dashboard')
-        }
-    }
-
-    async renderPasswordReset(req, res) {
-
-        try {
-            res.render('resetPassword', { resetToken: req.params.token })
-        } catch (error) {
-            req.flash('status', 'fail')
-            res.redirect('/user/dashboard')
-        }
-    }
 
 
 }

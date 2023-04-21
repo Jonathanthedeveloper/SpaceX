@@ -1,22 +1,11 @@
-
-
-const { Schema, model, default: mongoose } = require('mongoose');
-const { generateUserId } = require('../utils/utils');
+const {Schema, model, default: mongoose} = require('mongoose');
+const {generateUserId} = require('../utils/utils');
 const splitTransactions = require("../utils/splitTransactions.util")
-
-
-
-
-
-
+const bcrypt = require("bcrypt");
+const crypto = require("crypto");
 
 
 const accountSchema = new Schema({ //done
-    bitcoinAddress: {
-        type: String,
-        trim: true,
-        default: ""
-    },
     bitcoinAddress: {
         type: String,
         trim: true,
@@ -70,7 +59,6 @@ referralSchema = new Schema({
         required: true
     }
 })
-
 
 
 const userSchema = new Schema({
@@ -136,16 +124,48 @@ userSchema.virtual("transactions", {
 });
 
 
-
 userSchema.virtual("balance").get(function () {
 
 
-    const { deposits, withdrawals, investments, earnings } = splitTransactions(this.transactions)
+    const {deposits, withdrawals, investments, earnings} = splitTransactions(this.transactions)
 
     return (deposits + earnings) - (withdrawals + investments)
 })
 
+/**
+ * hash user's password on save
+ */
+userSchema.pre("save", async function (next) {
+    if (this.isNew || this.isModified("password")) {
 
+        // hashing users password
+        const salt = await bcrypt.genSalt(10)
+        const hash = await bcrypt.hash(this.password, salt);
+
+        // saving it to their user data object
+        this.password = hash;
+        next()
+    }
+})
+
+
+userSchema.methods.isPasswordCorrect = async function (enteredPassword, userPassword) {
+    return await bcrypt.compare(enteredPassword, userPassword)
+}
+
+userSchema.methods.genPasswordResetToken = async function (){
+    const token = crypto.randomBytes(20).toString('hex');
+
+    // hash token
+    const hash = bcrypt.hash(token,5);
+
+    this.passwordResetToken = hash;
+    this.passwordResetExpires = Date.now() + 1000 * 60 * 10;
+
+    await this.save();
+
+    return token
+}
 
 const User = model('User', userSchema);
-module.exports = { User };
+module.exports = {User};
