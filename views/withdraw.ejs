@@ -28,17 +28,6 @@
 <%- include("partials/_alert")%>
   <%- include ("partials/sidebar"); -%>
     <section>
-      <% if(status==='success' ){ %>
-        <div id="info" class="flex flex-row items-center justify-between mx-auto px-3 mt-20 py-5 m-3 bg-green-300 text-green-700 w-11/12 md:w-3/4 text-xs text-center capitalize md:text-sm md:mt-0">
-          Your withdrawal request has been submitted successfully.
-          <ion-icon id="closeIcon" class="text-xl hover:cursor-pointer" name="close-circle-outline"></ion-icon>
-        </div>
-        <% } else if (status==='fail' ){%>
-          <div id="info" class="flex flex-row items-center justify-between mx-auto px-3 mt-20 py-5 m-3 bg-red-300 text-red-700 w-11/12 md:w-3/4 text-xs text-center capitalize md:text-sm md:mt-0">
-            withdrawal failed, please try again later, thank you.
-            <ion-icon id="closeIcon" class="text-xl hover:cursor-pointer" name="close-circle-outline"></ion-icon>
-          </div>
-          <% }%>
       <div class="flex flex-col justify-center items-center">
         <div class="text-center text-brightBlue mt-32">
           <h1 class="flex flex-row items-center text-2xl font-bold md:text-4xl">Make A Withdrawal <span><img class="ml-1 h-14" src="../Images/withdrawal.png" alt="This is a withdrawal icon"></span></h1>

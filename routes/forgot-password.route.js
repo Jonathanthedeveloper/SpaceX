@@ -1,12 +1,13 @@
 const express = require('express');
-const { handleForgotPassword } = require('../controllers/auth.controller');
+const {handleForgotPassword} = require('../controllers/auth.controller');
 const router = express.Router();
 
-router.get('/', function (req, res) {
-    res.render('forgotPassword', { status: req.flash('status').join("") });
-});
 
-router.post('/', handleForgotPassword)
+router.route('/')
+    .get(function (req, res) {
+        res.render('forgotPassword')
+    })
+    .post(handleForgotPassword)
 
 
 module.exports = router;
