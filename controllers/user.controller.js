@@ -1,6 +1,4 @@
 require('dotenv').config()
-const crypto = require('crypto');
-const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt');
 const scheduler = require('node-schedule')
 const saltRounds = 10;
@@ -14,153 +12,34 @@ const {
 } = require('../config')
 
 const userService = require('../services/user.service');
-const AdminService = require('../services/admin.service')
-const { generateUserId } = require('../utils/utils')
 const transactionService = require('../services/transaction.service');
 const { User } = require('../models/user.model');
 const Email = require('../utils/mail.util');
-const Transaction = require('../models/transaction.model')
+const splitTransactions = require("../utils/splitTransactions.util");
+
+
+
 class UserController {
 
-    // registering a user 
-    async registerUser(req, res) {
-
-        const userData = {
-            name: req.body.name,
-            email: req.body.email,
-            username: req.body.username,
-            password: req.body.password,
-            secret: {
-                question: req.body.secretQuestion,
-                answer: req.body.secretAnswer
-            },
-            role: req.body.role || 'user',
-            withdrawals: [],
-            deposits: [],
-            investments: [],
-            earnings: []
-        }
-
-        // checking if referral exists 
-        const referral = await userService.findOne({ userId: req.body.referredBy })
-        if (referral) {
-            userData.referredBy = referral._id;
-        }
-
-        // checking if user already exists
-        const userAlreadyExists = await userService.findOne({ email: userData.email });
-        if (userAlreadyExists) {
-            // throw an errow message saying user already exists
-            req.flash('alert', JSON.stringify({ "message": "User already Exists, Please login in", "status": "info" }));
-            res.redirect('/user/login')
-            return;
-        }
 
 
-        // hashing users password
-        const hash = await bcrypt.hash(userData.password, saltRounds);
 
-        // saving it to thier user data object
-        userData.password = hash;
-        userData.userId = generateUserId()
-
-        const user = await userService.create(userData)
-
-        // adding user to his uplines array
-        if (referral) {
-            referral.referrals.push(user._id);
-            await referral.save()
-        }
-
-        // const admin = await AdminService.findAll({})
-        // admin.users.push(user._id);
-        // await admin.save()
-
-
-        const token = jwt.sign({
-            _id: user._id,
-            email: user.email,
-            role: user.role
-        }, process.env.JWT_SECRET_KEY, { expiresIn: "1h" });
-
-
-        new Email(user).sendWelcome()
-
-        res
-            .cookie('token', token, { httpOnly: true, maxAge: 1000 * 60 * 60 })
-            .header('Authorization', token)
-            .redirect('/user/dashboard')
-
-    }
-
-    async loginUser(req, res) {
-
-        const userCredentials = req.body;
-
-
-        // check if user exists
-        const foundUser = await userService.findOne({ email: userCredentials.email });
-        if (!foundUser) {
-            // throw an error with incorrect email or password
-            req.flash('alert', JSON.stringify({ "message": "Invalid Username or Password", "status": "error" }));
-            res.redirect('/user/login')
-            console.error("user does not exist");
-            return;
-        }
-
-        // comparing passwords
-        const isCorrectPassword = await bcrypt.compare(userCredentials.password, foundUser.password);
-
-        if (!isCorrectPassword) {
-            // throw an error with incorrect email or password;
-            req.flash('alert', JSON.stringify({ "message": "Invalid Username or Password", "status": "error" }));
-            res.redirect('/user/login')
-            console.error('incorrect email or password')
-            return;
-        }
-
-        const token = jwt.sign({
-            _id: foundUser._id,
-            email: foundUser.email,
-            role: foundUser.role
-        }, process.env.JWT_SECRET_KEY);
-
-
-        res
-            .cookie('token', token, { httpOnly: true, maxAge: 1000 * 60 * 60 })
-            .header('Authorization', token)
-            .redirect('/user/dashboard')
-
-    }
-
-    async logoutUser(req, res) {
-        res.clearCookie('token').redirect('/user/login')
-    }
 
     async renderDashboard(req, res) {
-        const userInformation = req.user
+        const userInformation = req.userData;
         // console.log(userInformation);
         if (userInformation.role === 'admin') {
+            req.flash("success", "welcome back")
             return res.redirect('/user/admin')
         }
 
-
-        const deposits = userInformation.deposits.filter(deposit => deposit.status === "successful")
-
-        const withdrawals = userInformation.withdrawals.filter(withdrawal => withdrawal.status === "successful")
-
-        const investments = userInformation.investments.filter(investment => investment.status === "successful")
-
-        const earnings = userInformation.earnings.filter(earning => earning.status === "successful")
-
-        // console.log(deposits, withdrawals, investments, earnings);
-
+        const { deposits, earnings, investments, withdrawals } = splitTransactions(userInformation.transactions)
 
         return res.render('dashboard', { user: userInformation, deposits, withdrawals, investments, earnings });
     }
 
     async renderProfile(req, res) {
-        const userInformation = req.user;
+        const userInformation = req.userData;
         res.render('profile', { user: userInformation })
     }
 
@@ -190,20 +69,14 @@ class UserController {
     }
 
     async renderReferral(req, res) {
-        const userInformation = req.user;
+        const userInformation = req.userData;
         res.render('referral', { user: userInformation })
     }
 
     async renderTransaction(req, res) {
-        const userInformation = req.user;
-
-        // console.log(userInformation);
-
-
-        const transactions = [...userInformation.withdrawals, ...userInformation.deposits, ...userInformation.earnings, ...userInformation.investments]
+        const { transactions } = req.userData;
 
         transactions.sort((a, b) => b.createdAt - a.createdAt)
-
 
         res.render('history', { transactions })
     }
@@ -216,7 +89,7 @@ class UserController {
 
     async handleWithdrawal(req, res) {
         try {
-            
+
             if (req.body.amount > req.user.balance) {
                 return res.redirect('/user/deposit')
             }
@@ -263,12 +136,6 @@ class UserController {
                 case "dogecoin":
                     wallet = "DREBZME23eHTvKb7N5PdqxN9U3NvLMhSWW";
                     break;
-                case "place":
-                    wallet = "place";
-                    break;
-                case "place":
-                    wallet = "place";
-                    break;
                 default:
                     wallet = "you did not select a deposit method";
                     break;
@@ -301,29 +168,30 @@ class UserController {
                 transactionID: req.body.transactionID
             }
 
-            const deposit = await transactionService.create(transactionData)
-            const user = await userService.findOne({ _id: req.user._id })
-            user.deposits.push(deposit._id)
-            await user.save()
+            await transactionService.create(transactionData)
 
 
-            req.flash('status', 'success')
+            req.flash('status', 'Deposit placed successfully')
             res.redirect('/user/deposit')
 
 
         } catch (error) {
-            req.flash('status', 'fail')
+            req.flash('status', 'deposit failed')
             res.redirect('/user/deposit')
         }
     }
     async renderInvestment(req, res) {
         try {
-            const investments = await User.findOne({ _id: req.user._id }).populate('investments').select('investments -_id')
-            const activeInvestments = investments.investments.filter(investment => Date.now() < investment.expiresAt);
+            const userData = await User.findOne({ _id: req.user._id }).populate("transactions");
 
-            res.render('invest', { investments: activeInvestments, status: req.flash('status').join() })
+            const { investments } = splitTransactions(userData.transactions)
+
+            const activeInvestments = investments.filter(investment => Date.now() < investment.expiresAt);
+
+            res.render('invest', { investments: activeInvestments })
         } catch (error) {
-            res.redirect('/user/invest')
+            console.log(error)
+            // res.redirect('/user/invest')
         }
     }
 
@@ -341,7 +209,7 @@ class UserController {
                 case 'starter': payoutDuration = starterDuration; break;
                 case 'regular': payoutDuration = regularDuration; break;
                 case 'pro': payoutDuration = proDuration; break;
-                case 'elite': payoutDuration = eliteDuration; break;
+                case 'elite': payoutDuration = zenithDuration; break;
             }
 
             const transactionData = {
@@ -352,7 +220,7 @@ class UserController {
                 plan: req.body.plan,
                 active: true,
                 expiresAt: Date.now() + payoutDuration,
-               
+
             }
 
             const investment = await transactionService.create(transactionData);
@@ -409,93 +277,17 @@ class UserController {
 
             new Email(user, "", transactionData.amount).sendInvestment()
 
-            req.flash('status', 'success');
+            req.flash('success', 'Your investment request has been submitted successfully');
             res.redirect('/user/invest')
 
 
         } catch (error) {
-            req.flash('status', 'fail')
+            req.flash('error', error.message)
             res.redirect('/user/invest')
             console.error(error)
         }
     }
 
-    async handleForgotPassword(req, res) {
-        const user = await userService.findOne({ email: req.body.email });
-        if (!user) {
-            req.flash('status', 'fail')
-            return res.redirect('/user/forgot-password')
-        }
-
-        try {
-            const token = crypto.randomBytes(20).toString('hex');
-            user.passwordResetToken = token;
-            user.passwordResetExpires = Date.now() + 1000 * 60 * 10;
-            await user?.save();
-
-
-            const link = `${req.protocol}://${req.get('host')}/user/reset-password/${token}`;
-            new Email(user, link).sendForgotPassword()
-
-        } catch (error) {
-            user.passwordResetToken = undefined;
-            user.passwordResetExpires = undefined;
-            await user.save()
-            req.flash('status', 'fail')
-            res.redirect('/user/forgot-password')
-            return
-        }
-        req.flash('status', 'success')
-        res.redirect('/user/forgot-password')
-    }
-
-
-    async handlePasswordReset(req, res) {
-        try {
-
-            const user = userService.findOne({
-                $and: [{ passwordResetToken: req.body.resetToken }, { passwordResetExpires: { $gte: Date.now() } }]
-            })
-
-            if (!user) {
-                req.flash('status', 'fail')
-                return res.redirect('/user/forgot-password')
-            }
-
-            const hash = await bcrypt.hash(req.body.password, saltRounds)
-
-            user.password = hash;
-            user.passwordResetToken = undefined;
-            user.passwordResetExpires = undefined;
-            await user.save();
-
-            const token = jwt.sign({
-                _id: user._id,
-                email: user.email,
-                role: user.role
-            }, process.env.JWT_SECRET_KEY, { expiresIn: "1h" });
-
-            cookie('token', token, { httpOnly: true, maxAge: 1000 * 60 * 60 })
-            req.flash('status', 'success')
-            res
-                .cookie('token', token, { httpOnly: true, maxAge: 1000 * 60 * 60 })
-                .redirect('/user/dashboard')
-
-        } catch (error) {
-            req.flash('status', 'fail')
-            res.redirect('/user/dashboard')
-        }
-    }
-
-    async renderPasswordReset(req, res) {
-
-        try {
-            res.render('resetPassword', { resetToken: req.params.token })
-        } catch (error) {
-            req.flash('status', 'fail')
-            res.redirect('/user/dashboard')
-        }
-    }
 
 
 }

@@ -1,69 +1,11 @@
+const {Schema, model, default: mongoose} = require('mongoose');
+const {generateUserId} = require('../utils/utils');
+const splitTransactions = require("../utils/splitTransactions.util")
+const bcrypt = require("bcrypt");
+const crypto = require("crypto");
 
-
-const { Schema, model, default: mongoose } = require('mongoose');
-const { generateUserId } = require('../utils/utils');
-
-
-
-const secretSchema = new Schema({
-    question: {
-        type: String,
-        default: ""
-    },
-    answer: {
-        type: String,
-        trim: true,
-        default: ""
-    }
-});
-
-
-const depositSchema = new Schema({
-    amount: {
-        type: Number,
-        required: true,
-    },
-
-}, { timestamps: true })
-
-
-const withdrawalSchema = new Schema({
-    amount: {
-        type: Number,
-        required: true,
-    },
-}, { timestamps: true })
-
-
-const earningSchema = new Schema({
-    amount: {
-        type: Number,
-        required: true,
-    },
-}, { timestamps: true })
-
-const investmentSchema = new Schema({
-    amount: {
-        type: Number,
-        required: true
-    }
-}, { timestamps: true })
-
-
-const walletSchema = new Schema({ //done
-    balance: {
-        type: Number,
-        required: true,
-        default: 0.00
-    }
-})
 
 const accountSchema = new Schema({ //done
-    bitcoinAddress: {
-        type: String,
-        trim: true,
-        default: ""
-    },
     bitcoinAddress: {
         type: String,
         trim: true,
@@ -119,13 +61,12 @@ referralSchema = new Schema({
 })
 
 
-
 const userSchema = new Schema({
     userId: {
         type: String,
         trim: true,
         unique: true,
-        required: true
+        default: generateUserId()
     },
     name: {
         type: String,
@@ -141,6 +82,7 @@ const userSchema = new Schema({
         unique: true,
         trim: true
     },
+    phoneNumber: String,
     password: {
         type: String,
         required: true,
@@ -150,10 +92,6 @@ const userSchema = new Schema({
         required: true,
         enum: ["user", "admin"],
         default: "user"
-    },
-    secret: {
-        type: secretSchema,
-        required: true,
     },
     account: {
         type: accountSchema,
@@ -167,55 +105,69 @@ const userSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    withdrawals: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Transaction'
-    }],
-    deposits: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Transaction'
-    }],
-    investments: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Transaction'
-    }],
-    earnings: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Transaction'
-    }],
     passwordResetExpires: Date,
     passwordResetToken: String,
 
 }, {
     timestamps: true, toObject: {
-        virtual: true
+        virtuals: true
     }, toJSON: {
-        virtual: true
+        virtuals: true
     },
 });
 
 
+userSchema.virtual("transactions", {
+    ref: "Transaction",
+    localField: "_id",
+    foreignField: "user"
+});
 
 
 userSchema.virtual("balance").get(function () {
 
-    const withdrawals = this.withdrawals.filter(withdrawal => withdrawal.status === 'successful').reduce((total, current) => {
-        return total + current.amount
-    }, 0)
-    const deposits = this.deposits.filter(deposit => deposit.status === 'successful').reduce((total, current) => {
-        return total + current.amount
-    }, 0)
-    const investments = this.investments.filter(investment => investment.status === 'successful').reduce((total, current) => {
-        return total + current.amount
-    }, 0)
-    const earnings = this.earnings.filter(earning => earning.status === 'successful').reduce((total, current) => {
-        return total + current.amount
-    }, 0)
+
+    const {deposits, withdrawals, investments, earnings} = splitTransactions(this.transactions)
 
     return (deposits + earnings) - (withdrawals + investments)
 })
 
+/**
+ * hash user's password on save
+ */
+userSchema.pre("save", async function (next) {
+    if (this.isNew || this.isModified("password")) {
 
+        // hashing users password
+        const salt = await bcrypt.genSalt(10)
+        const hash = await bcrypt.hash(this.password, salt);
+
+        // saving it to their user data object
+        this.password = hash;
+        next()
+    }
+})
+
+
+userSchema.methods.isPasswordCorrect = async function (enteredPassword, userPassword) {
+    return await bcrypt.compare(enteredPassword, userPassword)
+}
+
+userSchema.methods.genPasswordResetToken = async function (){
+    const token = crypto.randomBytes(20).toString('hex');
+
+    // hash token
+    const hash = bcrypt.hash(token,5);
+
+    this.passwordResetToken = hash;
+    this.passwordResetExpires = Date.now() + 1000 * 60 * 10;
+
+    await this.save();
+
+    return token
+}
+
+<<<<<<< HEAD
 const Withdrawal = model("Withdrawal", withdrawalSchema)
 const Deposit = model("Deposit", depositSchema)
 const Earning = model("Earning", earningSchema)
@@ -225,3 +177,7 @@ const Secret = model('Secret', secretSchema);
 const Account = model('Account', accountSchema);
 const User = model('User', userSchema);
 module.exports = { User, Withdrawal, Deposit, Investment };
+=======
+const User = model('User', userSchema);
+module.exports = {User};
+>>>>>>> 061a37c3814f392474413208982620f755e543c7

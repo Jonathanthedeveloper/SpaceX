@@ -1,37 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Create Account</title>
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="../Images/logo.ico" type="image/x-ico" />
-    <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <!-- Font-Awesome -->
-    <script
-      src="https://kit.fontawesome.com/f5af09e245.js"
-      crossorigin="anonymous"
-    ></script>
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="../CSS/main.css" />
-    <!-- For the country code flags -->
-    <link rel="stylesheet" href="../build/css/intlTelInput.css">
-    <!-- Jivo Chat -->
-    <!-- <script src="//code.jivosite.com/widget/IQVm7Hn4FQ" async></script> -->
-  </head>
 
-  <body class="loginBody">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account</title>
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="../Images/logo.ico" type="image/x-ico" />
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <!-- Font-Awesome -->
+  <script src="https://kit.fontawesome.com/f5af09e245.js" crossorigin="anonymous"></script>
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="../CSS/main.css" />
+  <!-- For the country code flags -->
+  <link rel="stylesheet" href="../build/css/intlTelInput.css">
+  <!-- Jivo Chat -->
+  <!-- <script src="//code.jivosite.com/widget/IQVm7Hn4FQ" async></script> -->
+</head>
+
+<body class="loginBody">
+<%- include("partials/_alert")%>
+  <%- include("partials/_alert")%>
+
     <section id="main-section" class="flex items-center justify-center">
+
       <div
-        class="mt-14 p-6 flex flex-col bg-white items-center justify-center w-96 shadow-2xl ease-in-out duration-500 hover:shadow-none"
-      >
+        class="mt-14 p-6 flex flex-col bg-white items-center justify-center w-96 shadow-2xl ease-in-out duration-500 hover:shadow-none">
         <img class="w-14" src="../Images/Logo.png" alt="Space X Shares Logo" />
         <h1 class="text-3xl mt-4 text-darkBlue font-extrabold">
           Create An Account
@@ -43,48 +42,26 @@
           <p>
             <input
               class="border-darkBlue dark:border-lightBlue border-solid border-2 ml-1 px-6 py-2 w-80 placeholder:font-light placeholder:text-sm placeholder:text-gray-400 outline-darkBlue dark:bg-lightBlue"
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Enter Your Full Name"
-            />
+              type="text" id="name" name="name" placeholder="Enter Your Full Name" />
           </p>
           <p class="mt-2">
             <input
               class="border-darkBlue dark:border-lightBlue border-solid border-2 ml-1 px-6 py-2 w-80 placeholder:font-light placeholder:text-sm placeholder:text-gray-400 outline-darkBlue dark:bg-lightBlue"
-              type="text"
-              id="email"
-              name="email"
-              placeholder="Enter Your Email Address"
-            />
+              type="text" id="email" name="email" placeholder="Enter Your Email Address" />
           </p>
           <p class="mt-2">
             <input
               class="border-darkBlue dark:border-lightBlue border-solid border-2 ml-1 px-6 py-2 w-80 placeholder:font-light placeholder:text-sm placeholder:text-gray-400 outline-darkBlue dark:bg-lightBlue"
-              type="text"
-              id="username"
-              name="username"
-              placeholder="Enter Your Username"
-            />
+              type="text" id="username" name="username" placeholder="Enter Your Username" />
           </p>
           <p class="mt-2 flex justify-center mr-2">
             <input
               class="border-darkBlue dark:border-lightBlue border-solid border-2 ml-1 px-6 py-2 w-80 placeholder:font-light placeholder:text-sm placeholder:text-gray-400 outline-darkBlue dark:bg-lightBlue"
-              type="password"
-              id="myPassword"
-              name="password"
-              placeholder="Enter Your Password"
-            />
-            <i
-              class="fas fa-eye -ml-6 mt-3.5"
-              id="eye"
-              onclick="myFunction()"
-            ></i>
+              type="password" id="myPassword" name="password" placeholder="Enter Your Password" />
+            <i class="fas fa-eye -ml-6 mt-3.5" id="eye" onclick="myFunction()"></i>
           </p>
 
-          <p
-            class="text-xs font-extralight capitalize text-darkBlue mt-2 w-80 text-center"
-          >
+          <p class="text-xs font-extralight capitalize text-darkBlue mt-2 w-80 text-center">
             Use at least 8 characters - 1 uppercase and 1 lowercase letter, and
             1 number.
           </p>
@@ -92,20 +69,10 @@
           <p class="mt-2 flex justify-center mr-2">
             <input
               class="border-darkBlue dark:border-lightBlue border-solid border-2 ml-1 px-6 py-2 w-80 placeholder:font-light placeholder:text-sm placeholder:text-gray-400 outline-darkBlue dark:outline-lightBlue"
-              type="password"
-              id="myPassword1"
-              name="confirmPassword"
-              placeholder="Confirm Your Password"
-            />
-            <i
-              class="fas fa-eye -ml-6 mt-3.5"
-              id="eye1"
-              onclick="myFunction1()"
-            ></i>
+              type="password" id="myPassword1" name="passwordConfirm" placeholder="Confirm Your Password" />
+            <i class="fas fa-eye -ml-6 mt-3.5" id="eye1" onclick="myFunction1()"></i>
           </p>
-          <div
-            class="custom-select mt-2 w-80 ml-1 border-2 border-darkBlue dark:border-lightBlue"
-          >
+          <div class="custom-select mt-2 w-80 ml-1 border-2 border-darkBlue dark:border-lightBlue">
             <select id="country" name="country">
               <option value="">Select Your Country</option>
               <option value="Afghanistan">Afghanistan</option>
@@ -426,43 +393,27 @@
           <p class="mt-2 ml-1">
             <input
               class="border-darkBlue dark:border-lightBlue border-solid border-2 ml-1 px-6 py-2 w-80 placeholder:font-light placeholder:text-sm placeholder:text-gray-400 outline-darkBlue dark:bg-lightBlue"
-              type="tel"
-              id="phone"
-              name="phoneNumber"
-              placeholder="Enter Your Phone Number"
-            />
+              type="tel" id="phone" name="phoneNumber" placeholder="Enter Your Phone Number" />
           </p>
-          <p
-            class="text-xs font-extralight capitalize text-darkBlue mt-2 w-80 text-center"
-          >
-          Don't Forget To Include Your International Calling Code.
+          <p class="text-xs font-extralight capitalize text-darkBlue mt-2 w-80 text-center">
+            Don't Forget To Include Your International Calling Code.
           </p>
           <p class="mt-2">
             <input
               class="border-darkBlue dark:border-lightBlue border-solid border-2 ml-1 px-6 py-2 w-80 placeholder:font-light placeholder:text-sm placeholder:text-gray-400 outline-darkBlue dark:bg-lightBlue"
-              type="text"
-              name="referredBy"
-              placeholder="Referral Code"
-              value="<%= referral %>"
-            />
+              type="text" name="referredBy" placeholder="Referral Code" value="<%= referral %>" />
           </p>
           <!-- <input type="hidden" name="referredBy" value="<%= referral %>"> -->
           <input type="hidden" name="role" value="<%= role %>" />
           <p class="mt-5 text-center">
-            <input
-              type="submit"
+            <input type="submit"
               class="py-2 w-80 cursor-pointer duration-500 text-darkBlue border-2 border-darkBlue dark:border-lightBlue hover:bg-darkBlue dark:hover:bg-lightBlue hover:text-white"
-              value="Create Account"
-            />
+              value="Create Account" />
           </p>
         </form>
         <p class="mt-4 w-72 text-left text-gray-500 text-sm">
-          By Signing Up, You Agree To Our<a
-            class="text-darkBlue hover:text-brightBlue"
-            href="/legal"
-          >
-            Terms Of Service, Privacy And Anti-Spam</a
-          >
+          By Signing Up, You Agree To Our<a class="text-darkBlue hover:text-brightBlue" href="/legal">
+            Terms Of Service, Privacy And Anti-Spam</a>
           Policies.
         </p>
       </div>
@@ -473,5 +424,6 @@
       let phone = document.querySelector("#phone");
       window.intlTelInput(phone, {});
     </script>
-  </body>
+</body>
+
 </html>

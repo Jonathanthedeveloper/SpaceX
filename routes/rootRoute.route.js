@@ -16,33 +16,22 @@ const indexRoute = require("./index.route");
 const helpRoute = require("./help.route");
 const legalRoute = require("./legal.route");
 const marketRoute = require("./market.route");
-const payInvestorsRoute = require('./payInvestors');
-const { handlePayouts } = require("../controllers/admin.controller");
-
-
-const job = new CronJob('* * * * * *', handlePayouts, null, false)
 
 
 // configuring routes
 
 // router.use("/adminDashboard", aDashboard);
 // router.use("/admin", adminRoute);
-router.use("/user", userRoute)
 router.use("/", indexRoute);
-router.use("/index", indexRoute);
 router.use("/aboutUs", aboutRoute);
 router.use("/contact", contactRoute);
 router.use("/faq", faqRoute);
-router.use("/services", servicesRoute);
-router.use('/payinvestors', payInvestorsRoute)
-router.use('/support', helpRoute)
+router.use("/index", indexRoute);
 router.use("/legal", legalRoute);
 router.use("/market", marketRoute);
-
-
-
-// job.start()
-
+router.use("/services", servicesRoute);
+router.use('/support', helpRoute)
+router.use("/user", userRoute)
 
 
 // exporting router middleware
