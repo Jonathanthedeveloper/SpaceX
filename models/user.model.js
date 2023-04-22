@@ -187,5 +187,8 @@ userSchema.methods.genPasswordResetToken = async function (){
     return token
 }
 
+
 const User = model('User', userSchema);
+
 module.exports = User;
+

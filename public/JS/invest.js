@@ -4,10 +4,10 @@ form.addEventListener("submit", function (event) {
     if (!plan || !amount) {
         return event.preventDefault()
     }
-    if (plan === "starter" && (amount < 500 || amount >= 5000) ){
+    if (plan === "regular" && (amount < 500 || amount >= 5000) ){
         alert("Invalid Amount")
         event.preventDefault()
-    } else if(plan === "regular" && (amount < 5000 || amount >=10000) ){
+    } else if(plan === "premium" && (amount < 5000 || amount >=10000) ){
         alert("Invalid Amount")
         event.preventDefault()
     }else if(plan === "pro" && (amount < 10000 || amount >=50000) ){

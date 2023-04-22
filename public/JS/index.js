@@ -60,7 +60,7 @@ let slideImg = document.getElementById("slideImg");
 let images = new Array (
   "../Images/forex.jpg",
   "../Images/loan.jpg",
-  "../Images/retirement.jpg"
+  "../Images/rocket.jpg"
 );
 let len = images.length;
 let i = 0;
@@ -101,4 +101,17 @@ var swiper = new Swiper(".mySwiper", {
     el: ".swiper-pagination",
     dynamicBullets: true,
   },
+});
+
+//Contact Us 
+const complaintField = document.getElementById("message");
+
+complaintField.addEventListener("input", function() {
+  if (complaintField.value.length < 50) {
+    complaintField.setCustomValidity("Your complaint message should be at least 50 characters long.");
+  } else if (complaintField.value.length > 1000) {
+    complaintField.setCustomValidity("Your complaint message should be no more than 1000 characters long.");
+  } else {
+    complaintField.setCustomValidity("");
+  }
 });
