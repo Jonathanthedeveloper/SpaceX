@@ -43,11 +43,11 @@
           <p class="mt-10 font-bold text-base md:text-xl">Update Your Information</p>
         <form action="/user/profile?_method=patch" method="post">
          <p> <input class="w-72 md:w-96 px-8 py-3 mt-4 placeholder:text-sm border-2 border-darkBlue" type="text" name="name" id="name"
-          placeholder="Update Your Full Name" /></p>
+          placeholder="Update Your Full Name" value="<%= user.name%>"/></p>
           <p> <input class="w-72 md:w-96 px-8 py-3 mt-4 placeholder:text-sm border-2 border-darkBlue" type="text" name="username" id="username"
-            placeholder="Update Your Username" /></p>
+            placeholder="Update Your Username" value="<%= user.username%>" /></p>
             <p> <input class="w-72 md:w-96 px-8 py-3 mt-4 placeholder:text-sm border-2 border-darkBlue" type="text" name="email" id="email"
-              placeholder="Update Your Email" /></p>
+              placeholder="Update Your Email" value="<%= user.email%>" /></p>
           <p><input class="w-72 md:w-96 px-8 py-3 mt-4 placeholder:text-sm border-2 border-darkBlue" type="text" name="password"
             id="password" placeholder="Update Your Password" /></p>
             <p class=" mt-4 font-extralight text-xs text-darkBlue capitalize">Please update only necessary fields.</p>

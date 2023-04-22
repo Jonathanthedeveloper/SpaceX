@@ -1058,10 +1058,6 @@ video {
   width: 12rem;
 }
 
-.w-60 {
-  width: 15rem;
-}
-
 .min-w-\[100vw\] {
   min-width: 100vw;
 }
@@ -1132,20 +1128,12 @@ video {
   align-items: flex-start;
 }
 
-.items-end {
-  align-items: flex-end;
-}
-
 .items-center {
   align-items: center;
 }
 
 .items-baseline {
   align-items: baseline;
-}
-
-.justify-end {
-  justify-content: flex-end;
 }
 
 .justify-center {
@@ -1240,12 +1228,6 @@ video {
   --tw-space-x-reverse: 0;
   margin-right: calc(0.75rem * var(--tw-space-x-reverse));
   margin-left: calc(0.75rem * calc(1 - var(--tw-space-x-reverse)));
-}
-
-.space-x-12 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(3rem * var(--tw-space-x-reverse));
-  margin-left: calc(3rem * calc(1 - var(--tw-space-x-reverse)));
 }
 
 .self-end {
@@ -1402,13 +1384,6 @@ video {
   background-color: rgb(34 197 94 / var(--tw-bg-opacity));
 }
 
-
-.bg-red-400 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(248 113 113 / var(--tw-bg-opacity));
-}
-
-
 .bg-yellow-300 {
   --tw-bg-opacity: 1;
   background-color: rgb(253 224 71 / var(--tw-bg-opacity));
@@ -1432,16 +1407,6 @@ video {
 .bg-red-400 {
   --tw-bg-opacity: 1;
   background-color: rgb(248 113 113 / var(--tw-bg-opacity));
-}
-
-.bg-green-400 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(74 222 128 / var(--tw-bg-opacity));
-}
-
-.bg-green-900 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(20 83 45 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-80 {
@@ -2052,21 +2017,12 @@ html {
   text-align: center;
   margin: 10px 10px;
   font-weight: bold;
-
-
   border: 2px solid white;
   background-color: #0d47a1;
   color: white;
   cursor: pointer;
   transition: background-color 0.5s;
 }
-
-
-.hero-text .btn:hover{
-  background-color: transparent;
-}
-
-/* About Us */
 
 .hero-text button:hover {
   background-color: transparent;
@@ -2099,9 +2055,6 @@ body::-webkit-scrollbar-track {
 /* Handle */
 
 body::-webkit-scrollbar-thumb {
-
-  background-color: #757575;
-
   background-color: #0d47a1;
   border-radius: 10px;
 }
@@ -2109,7 +2062,7 @@ body::-webkit-scrollbar-thumb {
 /* Handle on hover */
 
 body::-webkit-scrollbar-thumb:hover {
-  background-color: #080708;
+  background-color: #000;
 }
 
 /* Frequently Asked Questions */
@@ -2650,11 +2603,6 @@ body::-webkit-scrollbar-thumb:hover {
   color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
-.dark .dark\:hover\:text-lightBlue:hover {
-  --tw-text-opacity: 1;
-  color: rgb(100 181 246 / var(--tw-text-opacity));
-}
-
 .dark .dark\:focus\:outline-lightBlue:focus {
   outline-color: #64B5F6;
 }
@@ -2727,7 +2675,6 @@ body::-webkit-scrollbar-thumb:hover {
   .md\:-mt-8 {
     margin-top: -2rem;
   }
-
 
   .md\:mb-0 {
     margin-bottom: 0px;

@@ -3,7 +3,10 @@ const bcrypt = require('bcrypt');
 const scheduler = require('node-schedule')
 const saltRounds = 10;
 const {
-    starterDuration, platinumDuration, premiumDuration, zenithDuration,
+    starterDuration,
+    platinumDuration,
+    premiumDuration,
+    zenithDuration,
     starterPercent,
     platinumPercent,
     premiumPercent,
@@ -13,16 +16,12 @@ const {
 
 const userService = require('../services/user.service');
 const transactionService = require('../services/transaction.service');
-const { User } = require('../models/user.model');
+const {User} = require('../models/user.model');
 const Email = require('../utils/mail.util');
 const splitTransactions = require("../utils/splitTransactions.util");
 
 
-
 class UserController {
-
-
-
 
 
     async renderDashboard(req, res) {
@@ -33,58 +32,59 @@ class UserController {
             return res.redirect('/user/admin')
         }
 
-        const { deposits, earnings, investments, withdrawals } = splitTransactions(userInformation.transactions)
+        const {deposits, earnings, investments, withdrawals} = splitTransactions(userInformation.transactions)
 
-        return res.render('dashboard', { user: userInformation, deposits, withdrawals, investments, earnings });
+        return res.render('dashboard', {user: userInformation, deposits, withdrawals, investments, earnings});
     }
 
     async renderProfile(req, res) {
         const userInformation = req.userData;
-        res.render('profile', { user: userInformation })
+        res.render('profile', {user: userInformation})
     }
 
     async editUserProfile(req, res) {
 
+       try {
+           const updateData = {...req.body}
+           delete updateData.password;
 
-        const updateData = {
-            name: req.body.name || req.user.name,
-            email: req.body.email || req.user.email,
-            username: req.body.username || req.user.username,
-        }
 
-        if (req.body.password) {
-            try {
-                const hash = await bcrypt.hash(req.body.password, saltRounds);
-                updateData.password = hash
+           const user = await userService.update({_id: req.user._id}, updateData, {
+               new: true, runValidators: true
+           });
 
-            } catch (error) {
-                console.error(error)
-            }
-        }
 
-        await userService.update({ _id: req.user.id }, updateData);
+           if (req.body.password && req.body.password.length > 3) {
+               user.password = req.body.password;
+               await user.save()
+           }
 
-        res.redirect('/user/profile')
+           req.flash("success", "profile updated successfully")
+           res.redirect('/user/profile')
+       }
+       catch (error) {
+           req.flash("fail", "failed to update  your profile. please try again")
+           res.redirect('/user/profile')
+       }
 
     }
 
     async renderReferral(req, res) {
         const userInformation = req.userData;
-        res.render('referral', { user: userInformation })
+        res.render('referral', {user: userInformation})
     }
 
     async renderTransaction(req, res) {
-        const { transactions } = req.userData;
+        const {transactions} = req.userData;
 
         transactions.sort((a, b) => b.createdAt - a.createdAt)
 
-        res.render('history', { transactions })
+        res.render('history', {transactions})
     }
 
     async renderRegisterPage(req, res) {
-        const { role, ref: referral } = req.query
-        // if(!role) return console.log('user')
-        res.render('create', { referral, role })
+        const {role, ref: referral} = req.query
+        res.render('create', {referral, role})
     }
 
     async handleWithdrawal(req, res) {
@@ -94,25 +94,21 @@ class UserController {
                 return res.redirect('/user/deposit')
             }
             const transactionData = {
-                user: req.user._id,
-                type: 'withdrawal',
-                amount: req.body.amount,
-                account: {
-                    walletType: req.body.wallet,
-                    address: req.body.address
+                user: req.user._id, type: 'withdrawal', amount: req.body.amount, account: {
+                    walletType: req.body.wallet, address: req.body.address
                 }
             }
 
             const withdrawal = await transactionService.create(transactionData);
-            const user = await userService.findOne({ _id: req.user._id })
+            const user = await userService.findOne({_id: req.user._id})
             user.withdrawals.push(withdrawal._id)
             await user.save()
 
 
-            req.flash('status', 'success');
+            req.flash('success', 'withdrawal request placed successfully');
             res.redirect('/user/withdraw')
         } catch (error) {
-            req.flash('status', 'fail')
+            req.flash('fail', 'something went wrong')
             res.redirect('/user/withdraw')
         }
     }
@@ -142,7 +138,7 @@ class UserController {
             }
 
 
-            res.render('checkout', { amount: req.body.amount, medium: req.body.medium, wallet });
+            res.render('checkout', {amount: req.body.amount, medium: req.body.medium, wallet});
 
 
         } catch (error) {
@@ -180,18 +176,18 @@ class UserController {
             res.redirect('/user/deposit')
         }
     }
+
     async renderInvestment(req, res) {
         try {
-            const userData = await User.findOne({ _id: req.user._id }).populate("transactions");
+            const userData = await User.findOne({_id: req.user._id}).populate("transactions");
 
-            const { investments } = splitTransactions(userData.transactions)
+            const {investments} = splitTransactions(userData.transactions)
 
             const activeInvestments = investments.filter(investment => Date.now() < investment.expiresAt);
 
-            res.render('invest', { investments: activeInvestments })
+            res.render('invest', {investments: activeInvestments})
         } catch (error) {
-            console.log(error)
-            // res.redirect('/user/invest')
+            res.redirect('/user/invest')
         }
     }
 
@@ -206,10 +202,18 @@ class UserController {
             let payoutDuration;
 
             switch (req.body.plan) {
-                case 'starter': payoutDuration = starterDuration; break;
-                case 'regular': payoutDuration = regularDuration; break;
-                case 'pro': payoutDuration = proDuration; break;
-                case 'elite': payoutDuration = zenithDuration; break;
+                case 'starter':
+                    payoutDuration = starterDuration;
+                    break;
+                case 'regular':
+                    payoutDuration = regularDuration;
+                    break;
+                case 'pro':
+                    payoutDuration = proDuration;
+                    break;
+                case 'elite':
+                    payoutDuration = zenithDuration;
+                    break;
             }
 
             const transactionData = {
@@ -224,7 +228,7 @@ class UserController {
             }
 
             const investment = await transactionService.create(transactionData);
-            const user = await userService.findOne({ _id: req.user._id })
+            const user = await userService.findOne({_id: req.user._id})
             user.investments.push(investment._id)
             await user.save()
 
@@ -235,7 +239,7 @@ class UserController {
             const job = scheduler.scheduleJob(payoutDate, async function () {
 
 
-                const transaction = await transactionService.update({ _id: investment._id }, { active: false });
+                const transaction = await transactionService.update({_id: investment._id}, {active: false});
 
                 let amount;
 
@@ -260,17 +264,13 @@ class UserController {
 
 
                 const earningData = {
-                    user: transaction.user._id,
-                    type: 'earning',
-                    amount,
-                    status: 'successful',
-                    plan: transaction.plan
+                    user: transaction.user._id, type: 'earning', amount, status: 'successful', plan: transaction.plan
                 }
 
 
                 const earning = await transactionService.create(earningData)
 
-                const user = await userService.findOne({ _id: earning.user._id });
+                const user = await userService.findOne({_id: earning.user._id});
                 user.earnings.push(earning._id)
                 await user.save()
             });
@@ -287,7 +287,6 @@ class UserController {
             console.error(error)
         }
     }
-
 
 
 }
