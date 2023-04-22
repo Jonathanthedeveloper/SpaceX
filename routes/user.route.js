@@ -31,8 +31,6 @@ const bankCheckoutRoute = require('./bankCheckout.route');
 
 
 // configuring routes
-router.use("/transactions", authenticate, transactionRoute)
-router.use("/dashboard", authenticate, dashboardRoute);
 router.use("/login", loginRoute);
 router.use("/logout", logoutRoute);
 router.use("/forgot-password", forgotPasswordRoute);
@@ -40,20 +38,25 @@ router.use("/reset-password", resetPasswordRoute);
 router.use("/create", registerRoute);
 router.use("/notfound", notFoundRoute);
 
-router.use("/checkout", authenticate, checkoutRoute);
-router.use("/invest", authenticate, investRoute);
-router.use("/loan", authenticate, loanRoute);
-router.use("/kyc", authenticate, kycRoute);
-router.use("/deposit", authenticate, depositRoute);
-router.use("/withdraw", authenticate, withdrawRoute);
-router.use("/profile", authenticate, profileRoute);
-router.use("/referral", authenticate, referralRoute);
-router.use("/choose-deposit", authenticate, depositFrontendRoute);
-router.use("/bank", authenticate, bankDepositRoute);
-router.use("/bankCheckout", authenticate, bankCheckoutRoute)
+
+router.use(authenticate)
+
+router.use("/transactions", transactionRoute)
+router.use("/dashboard", dashboardRoute);
+router.use("/checkout",  checkoutRoute);
+router.use("/invest",  investRoute);
+router.use("/loan",  loanRoute);
+router.use("/kyc",  kycRoute);
+router.use("/deposit",  depositRoute);
+router.use("/withdraw",  withdrawRoute);
+router.use("/profile",  profileRoute);
+router.use("/referral",  referralRoute);
+router.use("/choose-deposit",  depositFrontendRoute);
+router.use("/bank",  bankDepositRoute);
+router.use("/bankCheckout",  bankCheckoutRoute)
 
 // ADMIN
-router.use('/admin', authenticate, authorize('admin'), adminRoute)
+router.use('/admin', authorize('admin'), adminRoute)
 
 
 

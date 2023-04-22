@@ -1,7 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const CronJob = require('cron').CronJob
-const axios = require('axios')
 
 const userRoute = require('./user.route')
 // const adminRoute = require('./admin.route')
