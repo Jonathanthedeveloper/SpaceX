@@ -32,9 +32,8 @@
     <!-- Jivo Chat -->
     <!-- <script src="//code.jivosite.com/widget/IQVm7Hn4FQ" async></script> -->
   </head>
-  <body class="bg-lightGray" onload="slider()">
-  <%- include("partials/_alert")%>
-    <%- include("partials/nav"); -%>
+  <body class="bg-white dark:bg-lightBlack" onload="slider()">
+    <%- include("partials/_alert")%> <%- include("partials/nav"); -%>
     <section id="hero">
       <div
         class="w-14 h-14 rounded-full bg-white dark:bg-black fixed top-20 left-2 z-30 flex justify-center items-center"
@@ -51,7 +50,7 @@
       <div class="banner">
         <div class="slider">
           <img
-            src="../Images/real-estate.jpg"
+            src="../Images/rocket.jpg"
             id="slideImg"
             alt="This is space-x image"
           />
@@ -97,80 +96,111 @@
       </div>
     </section>
     <section id="aboutUs">
-      <div
-        class="flex flex-col bg-white dark:bg-lightBlack p-4 md:p-20"
-      >
-        <h1
-          class="text-black dark:text-white text-4xl md:text-6xl my-4"
-        >
+      <div class="flex flex-col bg-white dark:bg-lightBlack p-4 md:p-20">
+        <h1 class="text-black dark:text-white text-4xl md:text-6xl my-4">
           About Us
         </h1>
-        <p
-          class="text-black dark:text-white capitalize"
-        >
-          Company Overview: Providing a
-          brief history of the company and its founding principles.
+        <p class="text-black dark:text-white capitalize">
+          Company Overview: Providing a brief history of the company and its
+          founding principles.
         </p>
-            <div class="mt-20">
-              <p class="text-grey w-full md:w-4/5">
-                SpaceXShares is a subsidiary company of <a class="text-darkBlue dark:text-lightBlue hover:underline font-bold" href="https://www.spacex.com/" target="_blank"> SpaceX</a>, the aerospace
-                company founded by visionary entrepreneur Elon Musk in 2002. The
-                company is based in Hawthorne, California and specializes in
-                developing and manufacturing advanced rockets and spacecraft for
-                missions ranging from delivering satellites into orbit to
-                transporting humans to other planets. <br> <br> As a subsidiary of SpaceX,
-                SpaceXShares focuses on the investment and shares aspect of the
-                company's operations. The company offers investors the
-                opportunity to invest in SpaceX and participate in the company's
-                success by purchasing shares of SpaceX stock. This provides a
-                unique opportunity for individuals and organizations to get
-                involved with one of the most innovative and forward-thinking
-                companies in the world.
-              </p>
-             <p class="mt-20 text-black dark:text-white flex flex-row items-center hover:-translate-y-2 duration-500 w-40"> <a class="uppercase hover:underline" href="">Read More</a><ion-icon class="ml-1 text-2xl" name="open-outline"></ion-icon></p>
+        <div class="mt-20">
+          <p class="text-grey w-full md:w-4/5">
+            SpaceXShares is a subsidiary company of
+            <a
+              class="text-darkBlue dark:text-lightBlue hover:underline font-bold"
+              href="https://www.spacex.com/"
+              target="_blank"
+            >
+              SpaceX</a
+            >, the aerospace company founded by visionary entrepreneur Elon Musk
+            in 2002. The company is based in Hawthorne, California and
+            specializes in developing and manufacturing advanced rockets and
+            spacecraft for missions ranging from delivering satellites into
+            orbit to transporting humans to other planets. <br />
+            <br /> <br />
+            As a subsidiary of SpaceX, SpaceXShares focuses on the investment
+            and shares aspect of the company's operations. The company offers
+            investors the opportunity to invest in SpaceX and participate in the
+            company's success by purchasing shares of SpaceX stock or in any other available company shares. This
+            provides a unique opportunity for individuals and organizations to
+            get involved with one of the most innovative and forward-thinking
+            companies in the world.
+          </p>
+          <p
+            class="mt-20 text-black dark:text-white flex flex-row items-center hover:-translate-y-2 duration-500 w-40"
+          >
+            <a class="uppercase hover:underline" href="">Read More</a
+            ><ion-icon class="ml-1 text-2xl" name="open-outline"></ion-icon>
+          </p>
+        </div>
+        <div class="flex flex-row flex-wrap my-32 justify-between md:space-y-4">
+          <div class="flex flex-row items-center mt-0 md:mt-4">
+            <div>
+              <h1
+                class="text-black dark:text-white text-4xl md:text-6xl font-extralight"
+              >
+                500+
+              </h1>
+              <div
+                class="h-4 md:h-8 w-40 bg-darkBlue dark:bg-gradient-to-r from-lightBlue to-black -m-4 md:-mt-8"
+              ></div>
+            </div>
+            <h4
+              class="uppercase ml-4 text-black dark:text-white w-40 leading-loose text-sm md:text-base"
+            >
+              Happy customers on worldwide
+            </h4>
           </div>
-          <div class="flex flex-row flex-wrap my-32 justify-between md:space-y-4">
-            <div class="flex flex-row items-center mt-0 md:mt-4">
-              <div>
-              <h1 class="text-black dark:text-white text-4xl md:text-6xl font-extralight">500+</h1>
-              <div class="h-4 md:h-8 w-40 bg-darkBlue dark:bg-gradient-to-r from-lightBlue to-black -m-4 md:-mt-8">
-              </div></div>
-              <h4 class="uppercase ml-4 text-black dark:text-white w-40 leading-loose text-sm md:text-base">Happy customers on worldwide</h4>
+          <div class="flex flex-row items-center mt-4 md:mt-0">
+            <div>
+              <h1
+                class="text-black dark:text-white text-4xl md:text-6xl font-extralight"
+              >
+                180K+
+              </h1>
+              <div
+                class="h-4 md:h-8 w-40 bg-darkBlue dark:bg-gradient-to-r from-lightBlue to-black -m-4 md:-mt-8"
+              ></div>
             </div>
-            <div class="flex flex-row items-center mt-4 md:mt-0">
-              <div>
-              <h1 class="text-black dark:text-white text-4xl md:text-6xl font-extralight">180K+</h1>
-              <div class="h-4 md:h-8 w-40 bg-darkBlue dark:bg-gradient-to-r from-lightBlue to-black -m-4 md:-mt-8">
-              </div></div>
-              <h4 class="uppercase ml-4 text-black dark:text-white w-20 leading-loose text-sm md:text-base">Hours In Business.</h4>
-            </div>
-            <div class="flex flex-row items-center mt-4 md:mt-0">
-              <div>
-              <h1 class="text-black dark:text-white text-4xl md:text-6xl font-extralight">40+</h1>
-              <div class="h-4 md:h-8 w-40 bg-darkBlue dark:bg-gradient-to-r from-lightBlue to-black -m-4 md:-mt-8">
-              </div></div>
-              <h4 class="uppercase ml-4 text-black dark:text-white w-40 md:w-60 leading-loose text-sm md:text-base">Intellectual & Passionate Workers.</h4>
-            </div>
+            <h4
+              class="uppercase ml-4 text-black dark:text-white w-20 leading-loose text-sm md:text-base"
+            >
+              Hours In Business.
+            </h4>
           </div>
-          <hr class="mt-10 mb-10 md:mb-0">
+          <div class="flex flex-row items-center mt-4 md:mt-0">
+            <div>
+              <h1
+                class="text-black dark:text-white text-4xl md:text-6xl font-extralight"
+              >
+                40+
+              </h1>
+              <div
+                class="h-4 md:h-8 w-40 bg-darkBlue dark:bg-gradient-to-r from-lightBlue to-black -m-4 md:-mt-8"
+              ></div>
+            </div>
+            <h4
+              class="uppercase ml-4 text-black dark:text-white w-40 md:w-60 leading-loose text-sm md:text-base"
+            >
+              Intellectual & Passionate Workers.
+            </h4>
+          </div>
+        </div>
+        <hr class="mt-10 mb-10 md:mb-0" />
       </div>
     </section>
     <section id="whatWeDo">
-      <div
-        class="flex flex-col dark:bg-lightBlue bg-darkBlue"
-      >
-      <div class="p-4 md:p-20">
-        <h1
-          class="text-white dark:text-black text-4xl md:text-6xl my-4"
-        >
-          What We Do.
-        </h1>
-        <p
-          class="text-white dark:text-black capitalize"
-        >
-          We are opportunistic in our pursuit of deals and will look at deals
-          outside of our traditional framework.
-        </p></div>
+      <div class="flex flex-col dark:bg-lightBlue bg-darkBlue">
+        <div class="p-4 md:p-20">
+          <h1 class="text-white dark:text-black text-4xl md:text-6xl my-4">
+            What We Do.
+          </h1>
+          <p class="text-white dark:text-black capitalize">
+            We are opportunistic in our pursuit of deals and will look at deals
+            outside of our traditional framework.
+          </p>
+        </div>
         <div
           class="flex flex-col md:flex-row items-center justify-center p-4 flex-wrap space-y-4 md:space-x-8 w-full"
         >
@@ -185,8 +215,12 @@
               />
             </div>
             <div class="ml-4 flex flex-col">
-            <h4 class="font-bold">Diverse Investment Strategies</h4>
-            <p class="text-grey dark:text-black text-xs md:text-sm mt-1">Exploring a variety of investment strategies to help clients meet their financial goals.</p></div>
+              <h4 class="font-bold">Diverse Investment Strategies</h4>
+              <p class="text-grey dark:text-black text-xs md:text-sm mt-1">
+                Exploring a variety of investment strategies to help clients
+                meet their financial goals.
+              </p>
+            </div>
           </div>
           <div
             class="bg-white dark:bg-lightBlue shadow-lg border-2 border-white dark:border-black h-32 md:w-[28rem] w-[20rem] flex flex-row items-center p-4"
@@ -199,8 +233,12 @@
               />
             </div>
             <div class="ml-4 flex flex-col">
-            <h4 class="font-bold">Thorough Due Diligence</h4>
-            <p class="text-grey dark:text-black text-xs md:text-sm mt-1">Conducting rigorous research and analysis to ensure sound investment decisions.</p></div>
+              <h4 class="font-bold">Thorough Due Diligence</h4>
+              <p class="text-grey dark:text-black text-xs md:text-sm mt-1">
+                Conducting rigorous research and analysis to ensure sound
+                investment decisions.
+              </p>
+            </div>
           </div>
           <div
             class="bg-white dark:bg-lightBlue shadow-lg border-2 border-white dark:border-black h-32 md:w-[28rem] w-[20rem] flex flex-row items-center p-4"
@@ -213,11 +251,15 @@
               />
             </div>
             <div class="ml-4 flex flex-col">
-            <h4 class="font-bold">Risk Management</h4>
-            <p class="text-grey dark:text-black text-xs md:text-sm mt-1">Implementing proactive risk management strategies to minimize potential losses.</p></div>
+              <h4 class="font-bold">Risk Management</h4>
+              <p class="text-grey dark:text-black text-xs md:text-sm mt-1">
+                Implementing proactive risk management strategies to minimize
+                potential losses.
+              </p>
+            </div>
           </div>
         </div>
-        <div 
+        <div
           class="flex flex-col md:flex-row items-center justify-center p-4 mb-20 flex-wrap space-y-4 md:space-x-8 w-full"
         >
           <div
@@ -231,9 +273,12 @@
               />
             </div>
             <div class="ml-4 flex flex-col">
-            <h4 class="font-bold">Customized Portfolios</h4>
-            <p class="text-grey dark:text-black text-xs md:text-sm mt-1">Tailoring investment portfolios to match the unique needs and goals of each client.</p>
-          </div>
+              <h4 class="font-bold">Customized Portfolios</h4>
+              <p class="text-grey dark:text-black text-xs md:text-sm mt-1">
+                Tailoring investment portfolios to match the unique needs and
+                goals of each client.
+              </p>
+            </div>
           </div>
           <div
             class="bg-white dark:bg-lightBlue shadow-lg border-2 border-white dark:border-black h-32 md:w-[28rem] w-[20rem] flex flex-row items-center p-4"
@@ -246,9 +291,12 @@
               />
             </div>
             <div class="ml-4 flex flex-col">
-            <h4 class="font-bold">Industry Expertise</h4>
-            <p class="text-grey dark:text-black text-xs md:text-sm mt-1">Using deep industry expertise to identify investment opportunities and stay ahead of market trends.</p>
-          </div>
+              <h4 class="font-bold">Industry Expertise</h4>
+              <p class="text-grey dark:text-black text-xs md:text-sm mt-1">
+                Using deep industry expertise to identify investment
+                opportunities and stay ahead of market trends.
+              </p>
+            </div>
           </div>
           <div
             class="bg-white dark:bg-lightBlue shadow-lg border-2 border-white dark:border-black h-32 md:w-[28rem] w-[20rem] flex flex-row items-center p-4"
@@ -261,72 +309,148 @@
               />
             </div>
             <div class="ml-4 flex flex-col">
-            <h4 class="font-bold">Partnership Approach</h4>
-            <p  class="text-grey dark:text-black text-xs md:text-sm mt-1">Working closely with clients to build long-term partnerships based on trust and transparency.</p></div>
+              <h4 class="font-bold">Partnership Approach</h4>
+              <p class="text-grey dark:text-black text-xs md:text-sm mt-1">
+                Working closely with clients to build long-term partnerships
+                based on trust and transparency.
+              </p>
+            </div>
           </div>
         </div>
-        <div class="px-4 md:px-20 mt-10 mb-20"><hr class=""></div>
+        <div class="px-4 md:px-20 mt-10 mb-20"><hr class="" /></div>
       </div>
     </section>
     <section id="ethos">
       <div class="flex flex-col bg-white dark:bg-lightBlack p-4 md:p-20">
-        <h1
-          class="text-black dark:text-white text-4xl md:text-6xl my-4"
-        >
+        <h1 class="text-black dark:text-white text-4xl md:text-6xl my-4">
           Ethos- 5 Things We Value.
         </h1>
-        <p
-          class="text-black dark:text-white capitalize"
-        >
+        <p class="text-black dark:text-white capitalize">
           Strong values that bring great people together.
         </p>
-        <div class="flex flex-col md:flex-row items-center justify-center space-x-2 flex-wrap space-y-4 my-20">
-          <img class="h-[28rem] mt-4" src="../Images/i.png" alt="Space X Shares Image.">
-          <img class="h-[28rem]" src="../Images/ii.png" alt="Space X Shares Image.">
-          <img class="h-[28rem]" src="../Images/iii.png" alt="Space X Shares Image.">
-          <img class="h-[28rem]" src="../Images/iv.png" alt="Space X Shares Image.">
-          <img class="h-[28rem]" src="../Images/v.png" alt="Space X Shares Image.">
+        <div
+          class="flex flex-col md:flex-row items-center justify-center space-x-2 flex-wrap space-y-4 my-20"
+        >
+          <img
+            class="h-[28rem] mt-4"
+            src="../Images/i.png"
+            alt="Space X Shares Image."
+          />
+          <img
+            class="h-[28rem]"
+            src="../Images/ii.png"
+            alt="Space X Shares Image."
+          />
+          <img
+            class="h-[28rem]"
+            src="../Images/iii.png"
+            alt="Space X Shares Image."
+          />
+          <img
+            class="h-[28rem]"
+            src="../Images/iv.png"
+            alt="Space X Shares Image."
+          />
+          <img
+            class="h-[28rem]"
+            src="../Images/v.png"
+            alt="Space X Shares Image."
+          />
         </div>
       </div>
     </section>
     <section id="howToStart">
-      <div class="flex flex-col text-white dark:text-black dark:bg-lightBlue bg-darkBlue p-4 md:p-20">
-        <h1
-          class="text-4xl md:text-6xl my-4"
-        >
-        Maximizing Your Profit.
-        </h1>
-        <p
-          class="capitalize"
-        >
-        A 5-Step Guide,for increasing your investment returns and achieving financial success.
+      <div
+        class="flex flex-col text-white dark:text-black dark:bg-lightBlue bg-darkBlue p-4 md:p-20"
+      >
+        <h1 class="text-4xl md:text-6xl my-4">Maximizing Your Profit.</h1>
+        <p class="capitalize">
+          A 5-Step Guide,for increasing your investment returns and achieving
+          financial success.
         </p>
-        <div class="flex flex-col-reverse md:flex-row items-center justify-between mt-20">
+        <div
+          class="flex flex-col-reverse md:flex-row items-center justify-between mt-20"
+        >
           <div class="flex flex-col">
-            <div class="mt-8 hover:text-green-400 dark:hover:text-green-400 duration-500">
-              <a href="/user/create"><h4 class="text-lg md:text-2xl hover:underline">Create an Account</h4></a>
-              <p class="text-gray-400 dark:text-gray-700 hover:text-white dark:hover:text-white duration-500 capitalize text-xs md:text-sm mt-2">Register for an account with your email address, a phone number and a secure password.</p>
+            <div
+              class="mt-8 hover:text-green-400 dark:hover:text-green-400 duration-500"
+            >
+              <a href="/user/create"
+                ><h4 class="text-lg md:text-2xl hover:underline">
+                  Create an Account
+                </h4></a
+              >
+              <p
+                class="text-gray-400 dark:text-gray-700 hover:text-white dark:hover:text-white duration-500 capitalize text-xs md:text-sm mt-2"
+              >
+                Register for an account with your email address, a phone number
+                and a secure password.
+              </p>
             </div>
-            <div class="mt-8 hover:text-green-400 dark:hover:text-green-400 duration-500">
-              <a href="/user/create"><h4 class="text-lg md:text-2xl hover:underline">Login</h4></a>
-              <p class="text-gray-400 dark:text-gray-700 hover:text-white dark:hover:text-white duration-500 capitalize text-xs md:text-sm mt-2">Enter your registered email address and password to login to your account.</p>
+            <div
+              class="mt-8 hover:text-green-400 dark:hover:text-green-400 duration-500"
+            >
+              <a href="/user/create"
+                ><h4 class="text-lg md:text-2xl hover:underline">Login</h4></a
+              >
+              <p
+                class="text-gray-400 dark:text-gray-700 hover:text-white dark:hover:text-white duration-500 capitalize text-xs md:text-sm mt-2"
+              >
+                Enter your registered email address and password to login to
+                your account.
+              </p>
             </div>
-            <div class="mt-8 hover:text-green-400 dark:hover:text-green-400 duration-500">
-              <a href="/user/create"><h4 class="text-lg md:text-2xl hover:underline">Deposit</h4></a>
-              <p class="text-gray-400 dark:text-gray-700 hover:text-white dark:hover:text-white duration-500 capitalize text-xs md:text-sm mt-2">Choose your preferred deposit method and enter the amount you wish to invest.</p>
+            <div
+              class="mt-8 hover:text-green-400 dark:hover:text-green-400 duration-500"
+            >
+              <a href="/user/create"
+                ><h4 class="text-lg md:text-2xl hover:underline">Deposit</h4></a
+              >
+              <p
+                class="text-gray-400 dark:text-gray-700 hover:text-white dark:hover:text-white duration-500 capitalize text-xs md:text-sm mt-2"
+              >
+                Choose your preferred deposit method and enter the amount you
+                wish to invest.
+              </p>
             </div>
-            <div class="mt-8 hover:text-green-400 dark:hover:text-green-400 duration-500">
-              <a href="/user/create"><h4 class="text-lg md:text-2xl hover:underline">Invest</h4></a>
-              <p class="text-gray-400 dark:text-gray-700 hover:text-white dark:hover:text-white duration-500 capitalize text-xs md:text-sm mt-2">Browse the available share options and select the one that best fits your financial goals.</p>
+            <div
+              class="mt-8 hover:text-green-400 dark:hover:text-green-400 duration-500"
+            >
+              <a href="/user/create"
+                ><h4 class="text-lg md:text-2xl hover:underline">Invest</h4></a
+              >
+              <p
+                class="text-gray-400 dark:text-gray-700 hover:text-white dark:hover:text-white duration-500 capitalize text-xs md:text-sm mt-2"
+              >
+                Browse the available share options and select the one that best
+                fits your financial goals.
+              </p>
             </div>
-            <div class="mt-8 hover:text-green-400 dark:hover:text-green-400 duration-500">
-              <a href="/user/create"><h4 class="text-lg md:text-2xl hover:underline">Withdraw Your Profit</h4></a>
-              <p class="text-gray-400 dark:text-gray-700 hover:text-white dark:hover:text-white duration-500 capitalize text-xs md:text-sm mt-2">Monitor your investment performance through your account dashboard,
-                and When you're ready to withdraw your profits, navigate to the withdrawal section.</p>
+            <div
+              class="mt-8 hover:text-green-400 dark:hover:text-green-400 duration-500"
+            >
+              <a href="/user/create"
+                ><h4 class="text-lg md:text-2xl hover:underline">
+                  Withdraw Your Profit
+                </h4></a
+              >
+              <p
+                class="text-gray-400 dark:text-gray-700 hover:text-white dark:hover:text-white duration-500 capitalize text-xs md:text-sm mt-2"
+              >
+                Monitor your investment performance through your account
+                dashboard, and When you're ready to withdraw your profits,
+                navigate to the withdrawal section.
+              </p>
             </div>
           </div>
-          <div class="h-80 w-80 bg-white dark:bg-black rounded-full p-4 flex flex-col items-center justify-center">
-          <img class="h-52" src="../Images/steps.png" alt="Finance Step Image">
+          <div
+            class="h-80 w-80 bg-white dark:bg-black rounded-full p-4 flex flex-col items-center justify-center"
+          >
+            <img
+              class="h-52"
+              src="../Images/steps.png"
+              alt="Finance Step Image"
+            />
           </div>
         </div>
       </div>
@@ -338,7 +462,9 @@
         <div class="mt-10">
           <h1 class="text-black dark:text-white text-4xl md:text-6xl my-4">
             Some Of Our
-            <span class="text-darkBlue dark:text-lightBlue"> Investors' Reviews.</span>
+            <span class="text-darkBlue dark:text-lightBlue">
+              Investors' Reviews.</span
+            >
           </h1>
           <p class="text-grey">
             Some of our shareholders have provided valuable feedback on their
@@ -382,9 +508,9 @@
                   Human Resources Manager
                 </p>
                 <p class="text-sm font-semibold p-6 mt-0">
-                  Investing with Spacex Shares was easy and
-                  straightforward. Their customer support team was always
-                  available to answer my questions.
+                  Investing with Spacex Shares was easy and straightforward.
+                  Their customer support team was always available to answer my
+                  questions.
                 </p>
               </div>
             </div>
@@ -402,9 +528,9 @@
                   Business Development Manager
                 </p>
                 <p class="text-sm font-semibold p-6 mt-0">
-                  Spacex Shares is the best investment platform I have
-                  come across. Their fees are competitive, and their commitment
-                  to customer service is impressive.
+                  Spacex Shares is the best investment platform I have come
+                  across. Their fees are competitive, and their commitment to
+                  customer service is impressive.
                 </p>
               </div>
             </div>
@@ -422,10 +548,9 @@
                   Operations Manager
                 </p>
                 <p class="text-sm font-semibold p-6 mt-0">
-                  I highly recommend Spacex Sharesto anyone looking to
-                  invest in cryptocurrency. Their team is passionate and
-                  knowledgeable, and they truly care about the success of their
-                  clients.
+                  I highly recommend Spacex Shares to anyone looking to invest in
+                  cryptocurrency. Their team is passionate and knowledgeable,
+                  and they truly care about the success of their clients.
                 </p>
               </div>
             </div>
@@ -443,9 +568,9 @@
                   Marketing Manager
                 </p>
                 <p class="text-sm font-semibold p-6 mt-0">
-                  Spacex Shares has helped me achieve my investment
-                  goals. Their platform is diverse and innovative, and their
-                  customer service is top-notch.
+                  Spacex Shares has helped me achieve my investment goals. Their
+                  platform is diverse and innovative, and their customer service
+                  is top-notch.
                 </p>
               </div>
             </div>
@@ -456,33 +581,61 @@
     </section>
     <section id="contactUS">
       <div
-      class="flex flex-col dark:bg-lightBlue bg-darkBlue text-white dark:text-black"
-    >
-    <div class="p-4 md:p-20 flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-20 my-4">
-      <div class="flex flex-col w-full">
-      <h1
-        class="text-4xl md:text-6xl"
+        class="flex flex-col dark:bg-lightBlue bg-darkBlue text-white dark:text-black"
       >
-      Get in Touch
-      </h1>
-      <img class="w-20 mt-20 mb-10 mx-auto" src="../Images/send.png" alt="Send Image">
-    </div>
-      <form action="" class="w-full">
-        <div>
-          <p class="text-xs md:text-sm">Hello, I am</p>
-          <input class="w-4/5 mt-2 outline-none focus:outline-none border-b-2 border-white dark:border-black dark:bg-lightBlue bg-darkBlue" type="text" name="name" id="name" required>
+        <div
+          class="p-4 md:p-20 flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-20 my-4"
+        >
+          <div class="flex flex-col w-full">
+            <h1 class="text-4xl md:text-6xl">Get in Touch</h1>
+            <img
+              class="w-20 mt-20 mb-10 mx-auto"
+              src="../Images/send.png"
+              alt="Send Image"
+            />
+          </div>
+          <form action="" class="w-full">
+            <div>
+              <p class="text-xs md:text-sm">Hello, I am</p>
+              <input
+                class="w-4/5 mt-2 outline-none focus:outline-none border-b-2 border-white dark:border-black dark:bg-lightBlue bg-darkBlue"
+                type="text"
+                name="name"
+                id="name"
+                required
+              />
+            </div>
+            <div class="mt-10">
+              <p class="text-xs md:text-sm">Your Subject of Inquiry</p>
+              <input
+                class="w-4/5 mt-2 outline-none focus:outline-none border-b-2 border-white dark:border-black dark:bg-lightBlue bg-darkBlue"
+                type="text"
+                name="subject"
+                id="subject"
+                required
+              />
+            </div>
+            <div class="mt-10">
+              <p class="text-xs md:text-sm">Your Message</p>
+              <input
+                class="w-4/5 mt-2 outline-none focus:outline-none border-b-2 border-white dark:border-black dark:bg-lightBlue bg-darkBlue"
+                type="text"
+                name="message"
+                id="message"
+                required
+              />
+            </div>
+            <p
+              class="mt-20 flex flex-row items-center hover:-translate-y-2 duration-500 w-40"
+            >
+              <input type="submit" class="uppercase hover:underline" /><ion-icon
+                class="ml-1 text-2xl"
+                name="send-outline"
+              ></ion-icon>
+            </p>
+          </form>
         </div>
-        <div class="mt-10">
-          <p class="text-xs md:text-sm">Your Subject of Inquiry</p>
-          <input class="w-4/5 mt-2 outline-none focus:outline-none border-b-2 border-white dark:border-black dark:bg-lightBlue bg-darkBlue" type="text" name="subject" id="subject" required>
-        </div>
-        <div class="mt-10">
-          <p class="text-xs md:text-sm">Your Message</p>
-          <input class="w-4/5 mt-2 outline-none focus:outline-none border-b-2 border-white dark:border-black dark:bg-lightBlue bg-darkBlue" type="text" name="message" id="message" required>
-        </div>
-        <p class="mt-20 flex flex-row items-center hover:-translate-y-2 duration-500 w-40"> <input type="submit" class="uppercase hover:underline"></><ion-icon class="ml-1 text-2xl" name="send-outline"></ion-icon></p>
-      </form>
-  </div>
+      </div>
     </section>
     <%- include("partials/cta"); -%> <%- include("partials/footer"); -%>
     <!-- Swiper.js -->

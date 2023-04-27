@@ -167,17 +167,5 @@ userSchema.methods.genPasswordResetToken = async function (){
     return token
 }
 
-<<<<<<< HEAD
-const Withdrawal = model("Withdrawal", withdrawalSchema)
-const Deposit = model("Deposit", depositSchema)
-const Earning = model("Earning", earningSchema)
-const Investment = model("Investment", investmentSchema)
-const Wallet = model("Wallet", walletSchema)
-const Secret = model('Secret', secretSchema);
-const Account = model('Account', accountSchema);
-const User = model('User', userSchema);
-module.exports = { User, Withdrawal, Deposit, Investment };
-=======
 const User = model('User', userSchema);
 module.exports = {User};
->>>>>>> 061a37c3814f392474413208982620f755e543c7

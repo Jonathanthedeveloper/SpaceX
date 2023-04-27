@@ -59,8 +59,10 @@ themeCheck();
 let slideImg = document.getElementById("slideImg");
 let images = new Array (
   "../Images/forex.jpg",
+  "../Images/rocket1.jpg",
   "../Images/loan.jpg",
-  "../Images/rocket.jpg"
+  "../Images/rocket.jpg",
+  "../Images/Building.jpg"
 );
 let len = images.length;
 let i = 0;
