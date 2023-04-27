@@ -1,190 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Dashboard</title>
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../Images/logo.ico" type="image/x-ico" />
+    <link rel="shortcut icon" href="../Images/logo.ico" type="image/x-ico"/>
     <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link
-      href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;600;600;700;800&display=swap"
-      rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;600;600;700;800&display=swap"
+            rel="stylesheet"
     />
     <!-- Bootstrap Icon -->
     <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
     />
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="../CSS/main.css" />
+    <link rel="stylesheet" href="../CSS/main.css"/>
     <!-- Custom JavaScript -->
     <script defer src="../JS/dashboard.js"></script>
     <!-- Jivo Chat -->
     <!-- <script src="//code.jivosite.com/widget/IQVm7Hn4FQ" async></script> -->
-  </head>
-  <body class="main">
-  <%- include("partials/_alert")%>
-    <%- include ("partials/sidebar"); -%>
-    <section>
-      <div class="mt-20 flex flex-col items-center justify-center space-y-4">
+</head>
+<body class="main">
+<%- include("partials/_alert") %>
+<%- include ("partials/sidebar"); -%>
+<section>
+    <div class="mt-20 flex flex-col items-center justify-center space-y-4">
         <div>
-          <h1
-            class="flex flex-row items-center text-2xl mt-2 text-brightBlue font-bold md:text-4xl"
-          >
-            Identity Verification (KYC)
-            <span
-              ><img
-                class="h-14 ml-1"
-                src="../Images/kyc.png"
-                alt="This is a kyc Icon."
-            /></span>
-          </h1>
-          <h4
-            class="text-sm mt-2 text-center text-darkBlue md:text-base capitalize"
-          >
-            Verify your identity for access to loans and more.
-          </h4>
+            <h1
+                    class="flex flex-row items-center text-2xl mt-2 text-brightBlue font-bold md:text-4xl"
+            >
+                Identity Verification (KYC)
+                <span
+                ><img
+                            class="h-14 ml-1"
+                            src="../Images/kyc.png"
+                            alt="This is a kyc Icon."
+                    /></span>
+            </h1>
+            <h4
+                    class="text-sm mt-2 text-center text-darkBlue md:text-base capitalize"
+            >
+                Verify your identity for access to loans and more.
+            </h4>
         </div>
 
-        <form action="/user/profile" method="post">
-          <p class="flex flex-row items-center">
-            <input
-              class="capitalize w-72 md:w-96 px-8 py-3 mt-4 placeholder:text-sm border-2 border-darkBlue"
-              type="text"
-              name="name"
-              id="name"
-              placeholder="Enter Your Full Name"
-            /><ion-icon
-              id="nameIcon"
-              class="hidden mt-5 text-green-600 text-2xl ml-2"
-              name="checkmark-circle"
-            ></ion-icon>
-          </p>
-          <p class="flex flex-row items-center">
-            <input
-              class="capitalize w-72 md:w-96 px-8 py-3 mt-4 placeholder:text-sm border-2 border-darkBlue"
-              type="text"
-              name="address"
-              id="address"
-              placeholder="Enter Your Address"
-            /><ion-icon
-              id="addressIcon"
-              class="hidden mt-5 text-green-600 text-2xl ml-2"
-              name="checkmark-circle"
-            ></ion-icon>
-          </p>
-          <p class="flex flex-row items-center">
-            <input
-              class="capitalize w-72 md:w-96 px-8 py-3 mt-4 placeholder:text-sm border-2 border-darkBlue"
-              type="text"
-              name="city"
-              id="city"
-              placeholder="Enter Your City"
-            /><ion-icon
-              id="cityIcon"
-              class="hidden mt-5 text-green-600 text-2xl ml-2"
-              name="checkmark-circle"
-            ></ion-icon>
-          </p>
-          <p class="flex flex-row items-center">
-            <input
-              class="capitalize w-72 md:w-96 px-8 py-3 mt-4 placeholder:text-sm border-2 border-darkBlue"
-              type="text"
-              name="state"
-              id="state"
-              placeholder="Enter Your State"
-            /><ion-icon
-              id="stateIcon"
-              class="hidden mt-5 text-green-600 text-2xl ml-2"
-              name="checkmark-circle"
-            ></ion-icon>
-          </p>
-          <p class="flex flex-row items-center">
-            <input
-              class="capitalize w-72 md:w-96 px-8 py-3 mt-4 placeholder:text-sm border-2 border-darkBlue"
-              type="text"
-              name="country"
-              id="country"
-              placeholder="Enter Your Country"
-            /><ion-icon
-              id="countryIcon"
-              class="hidden mt-5 text-green-600 text-2xl ml-2"
-              name="checkmark-circle"
-            ></ion-icon>
-          </p>
-          <div class="custom-select mt-4 w-72 md:w-96 border-2 border-darkBlue">
-            <select name="verificationDoc">
-              <option>Choose Your Verification Document</option>
-              <option value="nationalID" selected>
-                National Identification Card
-              </option>
-              <option value="passport">Passport</option>
-              <option value="driversLicense">Drivers License</option>
-            </select>
-          </div>
-          <div
-            class="my-8 flex flex-row items-center justify-evenly duration-600 w-72 md:w-96 "
-          >
-            <div>
-              <input
-                type="file"
-                id="myFileInput"
-                onchange="displayFileName()"
-              />
-              <label for="myFileInput" id="fileInputLabel">Front Copy</label>
+        <form action="/user/kyc?_method=put" method="post" enctype="multipart/form-data">
+            <p class="flex flex-row items-center">
+                <input
+                        class="capitalize w-72 md:w-96 px-8 py-3 mt-4 placeholder:text-sm border-2 border-darkBlue"
+                        type="text"
+                        name="fullName"
+                        id="name"
+                        placeholder="Enter Your Full Name"
+                />
+                <ion-icon
+                        id="nameIcon"
+                        class="hidden mt-5 text-green-600 text-2xl ml-2"
+                        name="checkmark-circle"
+                ></ion-icon>
+            </p>
+            <p class="flex flex-row items-center">
+                <input
+                        class="capitalize w-72 md:w-96 px-8 py-3 mt-4 placeholder:text-sm border-2 border-darkBlue"
+                        type="text"
+                        name="address"
+                        id="address"
+                        placeholder="Enter Your Address"
+                />
+                <ion-icon
+                        id="addressIcon"
+                        class="hidden mt-5 text-green-600 text-2xl ml-2"
+                        name="checkmark-circle"
+                ></ion-icon>
+            </p>
+            <p class="flex flex-row items-center">
+                <input
+                        class="capitalize w-72 md:w-96 px-8 py-3 mt-4 placeholder:text-sm border-2 border-darkBlue"
+                        type="text"
+                        name="city"
+                        id="city"
+                        placeholder="Enter Your City"
+                />
+                <ion-icon
+                        id="cityIcon"
+                        class="hidden mt-5 text-green-600 text-2xl ml-2"
+                        name="checkmark-circle"
+                ></ion-icon>
+            </p>
+            <p class="flex flex-row items-center">
+                <input
+                        class="capitalize w-72 md:w-96 px-8 py-3 mt-4 placeholder:text-sm border-2 border-darkBlue"
+                        type="text"
+                        name="state"
+                        id="state"
+                        placeholder="Enter Your State"
+                />
+                <ion-icon
+                        id="stateIcon"
+                        class="hidden mt-5 text-green-600 text-2xl ml-2"
+                        name="checkmark-circle"
+                ></ion-icon>
+            </p>
+            <p class="flex flex-row items-center">
+                <input
+                        class="capitalize w-72 md:w-96 px-8 py-3 mt-4 placeholder:text-sm border-2 border-darkBlue"
+                        type="text"
+                        name="country"
+                        id="country"
+                        placeholder="Enter Your Country"
+                />
+                <ion-icon
+                        id="countryIcon"
+                        class="hidden mt-5 text-green-600 text-2xl ml-2"
+                        name="checkmark-circle"
+                ></ion-icon>
+            </p>
+            <div class="custom-select mt-4 w-72 md:w-96 border-2 border-darkBlue">
+                <select name="idType">
+                    <option>Choose Your Verification Document</option>
+                    <option value="national id" selected>
+                        National Identification Card
+                    </option>
+                    <option value="passport">Passport</option>
+                    <option value="drivers license">Drivers License</option>
+                </select>
             </div>
-            <div class="duration-600">
-              <input
-                type="file"
-                id="myFileInput1"
-                onchange="displayFileName1()"
-              />
-              <label for="myFileInput1" id="fileInputLabel1">Back Copy</label>
+            <div
+                    class="my-8 flex flex-row items-center justify-evenly duration-600 w-72 md:w-96 "
+            >
+                <div>
+                    <input
+                            name="photo"
+                            type="file"
+                            id="myFileInput"
+                            onchange="displayFileName()"
+                    />
+                    <label for="myFileInput" id="fileInputLabel">Front Copy</label>
+                </div>
+                <div class="duration-600">
+                    <input
+                            name="photo"
+                            type="file"
+                            id="myFileInput1"
+                            onchange="displayFileName1()"
+                    />
+                    <label for="myFileInput1" id="fileInputLabel1">Back Copy</label>
+                </div>
             </div>
-          </div>
 
-          <div
-            id="genderDiv"
-            class="mt-4 flex flex-row items-center justify-between w-72 md:w-96 space-x-4 border-2 border-darkBlue p-4"
-          >
-            <h4 class="text-sm md:text-base">Choose Your Gender</h4>
-            <p class="flex flex-row items-center">
-              <input type="radio" name="gender" id="male" />
-              <label for="male">
-                <img class="ml-1 h-10" src="../Images/male.png"
-              /></label>
+            <div
+                    id="genderDiv"
+                    class="mt-4 flex flex-row items-center justify-between w-72 md:w-96 space-x-4 border-2 border-darkBlue p-4"
+            >
+                <h4 class="text-sm md:text-base">Choose Your Gender</h4>
+                <p class="flex flex-row items-center">
+                    <input type="radio" name="gender" id="male"/>
+                    <label for="male">
+                        <img class="ml-1 h-10" src="../Images/male.png"
+                        /></label>
+                </p>
+                <p class="flex flex-row items-center">
+                    <input type="radio" name="gender" id="female"/>
+                    <label for="female">
+                        <img class="ml-1 h-10" src="../Images/female.png"
+                        /></label>
+                </p>
+                <ion-icon
+                        id="genderIcon"
+                        class="hidden text-green-600 text-2xl ml-2"
+                        name="checkmark-circle"
+                ></ion-icon>
+            </div>
+            <p
+                    class="mt-4 font-extralight w-72 md:w-96 text-center text-xs text-darkBlue capitalize"
+            >
+                Ensure that the verification details you provided matches with the
+                document you provided.
             </p>
-            <p class="flex flex-row items-center">
-              <input type="radio" name="gender" id="female" />
-              <label for="female">
-                <img class="ml-1 h-10" src="../Images/female.png"
-              /></label>
-            </p>
-            <ion-icon
-              id="genderIcon"
-              class="hidden text-green-600 text-2xl ml-2"
-              name="checkmark-circle"
-            ></ion-icon>
-          </div>
-          <p
-            class="mt-4 font-extralight w-72 md:w-96 text-center text-xs text-darkBlue capitalize"
-          >
-            Ensure that the verification details you provided matches with the
-            document you provided.
-          </p>
-          <button type="submit"
-          class="px-10 py-3 mt-4 w-72 duration-700 bg-green-600 text-white hover:bg-white hover:text-green-600 border-2 border-green-600 md:w-96">
-          Verify
-        </button>
+            <button type="submit"
+                    class="px-10 py-3 mt-4 w-72 duration-700 bg-green-600 text-white hover:bg-white hover:text-green-600 border-2 border-green-600 md:w-96">
+                Verify
+            </button>
         </form>
-      </div>
-    </section>
-    <%- include ("partials/script"); -%>
-    <script src="../JS/kyc.js"></script>
-    <script src="../JS/deposit.js"></script>
-  </body>
+    </div>
+</section>
+<%- include ("partials/script"); -%>
+<script src="../JS/kyc.js"></script>
+<script src="../JS/deposit.js"></script>
+</body>
 </html>

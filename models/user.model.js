@@ -93,6 +93,10 @@ const userSchema = new Schema({
         enum: ["user", "admin"],
         default: "user"
     },
+    isVerified: {
+        type: Boolean,
+        default: false
+    },
     account: {
         type: accountSchema,
         default: {},
@@ -104,6 +108,22 @@ const userSchema = new Schema({
     referredBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
+    },
+    kyc: {
+        fullName: String,
+        address: String,
+        city: String,
+        state: String,
+        country: String,
+        gender: String,
+        governmentIssuedId : {
+            idType: String,
+            picture: [String]
+        },
+        isVerified: {
+            type: Boolean,
+            default: false
+        }
     },
     passwordResetExpires: Date,
     passwordResetToken: String,
@@ -167,5 +187,8 @@ userSchema.methods.genPasswordResetToken = async function (){
     return token
 }
 
+
 const User = model('User', userSchema);
-module.exports = {User};
+
+module.exports = User;
+
