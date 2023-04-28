@@ -30,8 +30,8 @@
   <body class="bg-white main">
   <%- include("partials/_alert")%>
     <%- include ("partials/sidebar"); -%>
-    <section class="p-2">
-      <div class="text-center mt-10">
+    <section class="p-2" id="options">
+      <div class="text-center mt-32">
         <h1 class="flex flex-row items-baseline justify-center text-2xl font-bold md:text-4xl">
            Choose Your Funding Method <img class="h-24 ml-1" src="../Images/fund.png" alt="Fund Icon">
         </h1>
@@ -45,9 +45,9 @@
           action=""
         >
           <div
-            class="flex flex-col justify-center hover:-translate-y-2 duration-500"
+            class="flex flex-col justify-center hover:-translate-y-2 duration-500 hover:cursor-pointer"
           >
-            <a class="" href="/user/deposit"
+            <a id="cryptoButton"
               ><img
                 class="h-24"
                 src="../Images/crypto.png"
@@ -60,9 +60,9 @@
             </h4>
           </div>
           <div
-            class="flex flex-col justify-center hover:-translate-y-2 duration-500"
+            class="flex flex-col justify-center hover:-translate-y-2 duration-500 hover:cursor-pointer"
           >
-            <a class="" href="/user/bank"
+            <a id="bankButton"
               ><img
                 class="h-24"
                 src="../Images/wallet.png"
@@ -77,9 +77,13 @@
         </form>
       </div>
     </section>
-    <section id="bankOption" class="p-2">
+    <section id="bankOption" class="p-2 hidden">
       <div class="text-center mt-32">
-        <h1 class="flex flex-row items-center justify-center text-2xl font-bold md:text-4xl">
+        <div class="flex flex-row justify-center space-x-4 items-center mt-10">
+          <div class="w-4 h-4 rounded-full bg-darkBlue"></div>
+          <div class="w-4 h-4 rounded-full bg-black"></div>
+        </div>
+        <h1 class="flex flex-row items-center justify-center text-2xl font-bold md:text-4xl mt-10">
           Bank Funding Method <img class="h-14 ml-1" src="../Images/wallet.png" alt="Wallet Icon">
         </h1>
         <h4 class="text-sm mt-4 text-darkBlue md:text-base">
@@ -87,10 +91,6 @@
         </h4>
       </div>
       <div class="flex flex-col justify-center items-center">
-        <div class="flex flex-row justify-center space-x-4 items-center mt-10">
-          <div class="w-4 h-4 rounded-full bg-darkBlue"></div>
-          <div class="w-4 h-4 rounded-full bg-black"></div>
-        </div>
         <form action="/user/deposit" class="flex flex-col justify-center items-center" method="post">
           <div class="mt-10">
             <h4 class="text-sm text-center text-darkBlue md:text-base">
@@ -109,7 +109,7 @@
         </form>
       </div>
     </section>
-    <section id="cryptoOption">
+    <section id="cryptoOption" class="hidden">
       <form action="/user/deposit" method="post">
         <div class="flex flex-col justify-center items-center">
             <div class="flex flex-row justify-center space-x-4 items-center mt-32">

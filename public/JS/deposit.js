@@ -77,6 +77,25 @@ function closeAllSelect(element) {
 then close all select boxes:*/
 document.addEventListener("click", closeAllSelect);
 
+//Showing the deposit pages
+const bank = document.getElementById('bankOption');
+const crypto = document.getElementById('cryptoOption');
+const options = document.getElementById('options');
+const bankButton = document.getElementById('bankButton');
+const cryptoButton = document.getElementById('cryptoButton')
+
+//For Crypto
+cryptoButton.addEventListener("click", () =>{
+  options.classList.add("hidden")
+  crypto.classList.remove("hidden")
+})
+//For Bank
+bankButton.addEventListener("click", () =>{
+  options.classList.add("hidden")
+  bank.classList.remove("hidden")
+})
+
+
 //Close the notification box
 const info = document.getElementById("info");
 const closeIcon = document.getElementById("closeIcon");
