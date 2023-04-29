@@ -1,0 +1,27 @@
+1. render the admin investment
+    investments: [
+        {
+            _id: new ObjectId("644b45a19a9be6e574b144d8"),
+            name: 'user user',
+            email: 'user@user.com',
+            id: '644b45a19a9be6e574b144d8'
+        },
+        type: 'investment',
+        amount: 7000,
+        plan: 'starter',
+        status: 'successful',
+        expiresAt: 2023 - 05 - 06T03: 48: 34.628Z,
+        account: {
+            walletType: '',
+            address: '',
+            _id: new ObjectId("644c9392edd0d97aa91fa358")
+        },
+        createdAt: 2023 - 04 - 29T03: 48: 34.651Z,
+        updatedAt: 2023 - 04 - 29T03: 48: 34.651Z,
+        __v: 0
+    }
+    ]
+
+
+
+render the admin kyc ; check kyc controller for kyc data

@@ -1,5 +1,5 @@
-const {Schema, model, default: mongoose} = require('mongoose');
-const {generateUserId} = require('../utils/utils');
+const { Schema, model, default: mongoose } = require('mongoose');
+const { generateUserId } = require('../utils/utils');
 const splitTransactions = require("../utils/splitTransactions.util")
 const bcrypt = require("bcrypt");
 const crypto = require("crypto");
@@ -116,7 +116,7 @@ const userSchema = new Schema({
         state: String,
         country: String,
         gender: String,
-        governmentIssuedId : {
+        governmentIssuedId: {
             idType: String,
             picture: [String]
         },
@@ -144,13 +144,7 @@ userSchema.virtual("transactions", {
 });
 
 
-userSchema.virtual("balance").get(function () {
 
-
-    const {deposits, withdrawals, investments, earnings} = splitTransactions(this.transactions)
-
-    return (deposits + earnings) - (withdrawals + investments)
-})
 
 /**
  * hash user's password on save
@@ -173,11 +167,11 @@ userSchema.methods.isPasswordCorrect = async function (enteredPassword, userPass
     return await bcrypt.compare(enteredPassword, userPassword)
 }
 
-userSchema.methods.genPasswordResetToken = async function (){
+userSchema.methods.genPasswordResetToken = async function () {
     const token = crypto.randomBytes(20).toString('hex');
 
     // hash token
-    const hash = bcrypt.hash(token,5);
+    const hash = bcrypt.hash(token, 5);
 
     this.passwordResetToken = hash;
     this.passwordResetExpires = Date.now() + 1000 * 60 * 10;

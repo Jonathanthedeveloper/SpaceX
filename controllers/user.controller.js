@@ -16,9 +16,10 @@ const {
 
 const userService = require('../services/user.service');
 const transactionService = require('../services/transaction.service');
-const {User} = require('../models/user.model');
+const User = require('../models/user.model');
 const Email = require('../utils/mail.util');
 const splitTransactions = require("../utils/splitTransactions.util");
+const getWallet = require('../utils/getWallet.util');
 
 
 class UserController {
@@ -32,59 +33,59 @@ class UserController {
             return res.redirect('/user/admin')
         }
 
-        const {deposits, earnings, investments, withdrawals} = splitTransactions(userInformation.transactions)
+        const { deposits, earnings, investments, withdrawals } = splitTransactions(userInformation.transactions)
 
-        return res.render('dashboard', {user: userInformation, deposits, withdrawals, investments, earnings});
+        return res.render('dashboard', { user: userInformation, deposits, withdrawals, investments, earnings });
     }
 
     async renderProfile(req, res) {
         const userInformation = req.userData;
-        res.render('profile', {user: userInformation})
+        res.render('profile', { user: userInformation })
     }
 
     async editUserProfile(req, res) {
 
-       try {
-           const updateData = {...req.body}
-           delete updateData.password;
+        try {
+            const updateData = { ...req.body }
+            delete updateData.password;
 
 
-           const user = await userService.update({_id: req.user._id}, updateData, {
-               new: true, runValidators: true
-           });
+            const user = await userService.update({ _id: req.user._id }, updateData, {
+                new: true, runValidators: true
+            });
 
 
-           if (req.body.password && req.body.password.length > 3) {
-               user.password = req.body.password;
-               await user.save()
-           }
+            if (req.body.password && req.body.password.length > 3) {
+                user.password = req.body.password;
+                await user.save()
+            }
 
-           req.flash("success", "profile updated successfully")
-           res.redirect('/user/profile')
-       }
-       catch (error) {
-           req.flash("fail", "failed to update  your profile. please try again")
-           res.redirect('/user/profile')
-       }
+            req.flash("success", "profile updated successfully")
+            res.redirect('/user/profile')
+        }
+        catch (error) {
+            req.flash("fail", "failed to update  your profile. please try again")
+            res.redirect('/user/profile')
+        }
 
     }
 
     async renderReferral(req, res) {
         const userInformation = req.userData;
-        res.render('referral', {user: userInformation})
+        res.render('referral', { user: userInformation })
     }
 
     async renderTransaction(req, res) {
-        const {transactions} = req.userData;
+        const { transactions } = req.userData;
 
         transactions.sort((a, b) => b.createdAt - a.createdAt)
 
-        res.render('history', {transactions})
+        res.render('history', { transactions })
     }
 
     async renderRegisterPage(req, res) {
-        const {role, ref: referral} = req.query
-        res.render('create', {referral, role})
+        const { role, ref: referral } = req.query
+        res.render('create', { referral, role })
     }
 
     async handleWithdrawal(req, res) {
@@ -100,7 +101,7 @@ class UserController {
             }
 
             const withdrawal = await transactionService.create(transactionData);
-            const user = await userService.findOne({_id: req.user._id})
+            const user = await userService.findOne({ _id: req.user._id })
             user.withdrawals.push(withdrawal._id)
             await user.save()
 
@@ -117,28 +118,12 @@ class UserController {
 
         try {
 
-            let wallet;
-
-            switch (req.body.medium) {
-                case "Bitcoin":
-                    wallet = "1P4PiX2EsjeiX8PaBYLsfR3eAQ4MizRmyk";
-                    break;
-                case "Ethereum":
-                    wallet = "0x9EA7750Be23D5C34Df3646c391A0388291339f9f";
-                    break;
-                case "usdt":
-                    wallet = "0xD3fe264a1D8017DfBeA9499DB9Fb22a3106485AD";
-                    break;
-                case "dogecoin":
-                    wallet = "DREBZME23eHTvKb7N5PdqxN9U3NvLMhSWW";
-                    break;
-                default:
-                    wallet = "you did not select a deposit method";
-                    break;
+            if (req.body.medium === "bank") {
+                res.render('checkout', { amount: req.body.amount, medium: req.body.medium, wallet: "" });
             }
-
-
-            res.render('checkout', {amount: req.body.amount, medium: req.body.medium, wallet});
+            else if (req.body.medium == "crypto") {
+                res.render('checkout', { amount: req.body.amount, medium: req.body.medium, wallet: getWallet(req.body.coin) });
+            }
 
 
         } catch (error) {
@@ -152,7 +137,6 @@ class UserController {
         try {
 
             if (req.body.action === 'cancel') {
-                req.flash('status', 'fail')
                 return res.redirect('/user/deposit')
             }
 
@@ -167,27 +151,28 @@ class UserController {
             await transactionService.create(transactionData)
 
 
-            req.flash('status', 'Deposit placed successfully')
+            req.flash('success', 'Deposit placed successfully')
             res.redirect('/user/deposit')
 
 
         } catch (error) {
-            req.flash('status', 'deposit failed')
+            req.flash('fail', 'deposit failed')
             res.redirect('/user/deposit')
         }
     }
 
     async renderInvestment(req, res) {
         try {
-            const userData = await User.findOne({_id: req.user._id}).populate("transactions");
+            const userData = await User.findById(req.user._id).populate("transactions");
 
-            const {investments} = splitTransactions(userData.transactions)
+            const { investments } = splitTransactions(userData.transactions)
 
             const activeInvestments = investments.filter(investment => Date.now() < investment.expiresAt);
 
-            res.render('invest', {investments: activeInvestments})
+            res.render('invest', { investments: activeInvestments })
         } catch (error) {
-            res.redirect('/user/invest')
+            // res.redirect('/user/invest')
+            console.log(error)
         }
     }
 
@@ -195,7 +180,7 @@ class UserController {
         try {
 
 
-            if (req.body.amount > req.user.balance) {
+            if (req.body.amount > req.userData.balance) {
                 return res.redirect('/user/deposit')
             }
 
@@ -228,9 +213,7 @@ class UserController {
             }
 
             const investment = await transactionService.create(transactionData);
-            const user = await userService.findOne({_id: req.user._id})
-            user.investments.push(investment._id)
-            await user.save()
+
 
 
             const payoutDate = new Date(investment.expiresAt)
@@ -239,7 +222,7 @@ class UserController {
             const job = scheduler.scheduleJob(payoutDate, async function () {
 
 
-                const transaction = await transactionService.update({_id: investment._id}, {active: false});
+                const transaction = await transactionService.update({ _id: investment._id }, { active: false });
 
                 let amount;
 
@@ -268,12 +251,11 @@ class UserController {
                 }
 
 
-                const earning = await transactionService.create(earningData)
+                await transactionService.create(earningData)
 
-                const user = await userService.findOne({_id: earning.user._id});
-                user.earnings.push(earning._id)
-                await user.save()
             });
+
+            const user = await User.findById(req.user._id);
 
             new Email(user, "", transactionData.amount).sendInvestment()
 
@@ -284,7 +266,6 @@ class UserController {
         } catch (error) {
             req.flash('error', error.message)
             res.redirect('/user/invest')
-            console.error(error)
         }
     }
 
