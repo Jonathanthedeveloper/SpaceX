@@ -92,7 +92,8 @@
               </span></p>
             <hr>
             <p class="mt-1 text-sm md:text-base">Available Balance: <span class="text-darkBlue font-semibold">$
-                <%=user.balance %></span></p>
+                <%=user.balance %>
+              </span></p>
             <hr>
             <p class="mt-1 text-sm md:text-base">Total Earning: <span class="text-darkBlue font-semibold">$<%=
                   earnings.reduce( (total, current)=> total + current.amount, 0)%></span></p>
@@ -144,7 +145,8 @@
             <div
               class="h-36 flex flex-col items-center border-2 border-darkBlue shadow-xl hover:shadow-none duration-500 p-4">
               <h4>Total Withdrawal</h4>
-              <h1 class="text-xl md:text-2xl text-darkBlue font-bold"> $ <%= deposits.reduce( (total, current)=> total +
+              <h1 class="text-xl md:text-2xl text-darkBlue font-bold"> $ <%= withdrawals.reduce( (total, current)=>
+                  total +
                   current.amount, 0)%></h1>
               <a href="/user/withdraw"
                 class="cursor-pointer mt-2 duration-700 text-xs md:text-base py-2 hover:border-2 border-darkBlue text-white bg-darkBlue hover:bg-white hover:text-darkBlue">

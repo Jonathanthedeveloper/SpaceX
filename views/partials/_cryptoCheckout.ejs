@@ -1,0 +1,48 @@
+<section id="cryptoCheckout">
+    <div class="flex flex-col justify-center items-center">
+        <div class="flex flex-row justify-center space-x-4 items-center mt-24">
+            <div class="w-4 h-4 rounded-full bg-black"></div>
+            <div class="w-4 h-4 rounded-full bg-darkBlue"></div>
+        </div>
+        <div class="text-brightBlue mt-10 text-center">
+            <h1 class="text-2xl font-bold md:text-4xl flex flex-row items-center">Confirm Your Deposit<img
+                    class="h-20 ml-1" src="../Images/confirm.png" alt="Confirm Icon"></h1>
+        </div>
+        <div class="mt-10 text-center">
+            <h4 class="text-xs text-gray-500 md:text-sm">
+                Please send your payments to the following Wallet Address.
+            </h4>
+            <div class="flex flex-row mt-6">
+                <h4 id="wallet" class="text-xs text-darkBlue md:text-sm">
+                    <%= wallet %>
+                </h4>
+                <button onclick="copy()" class="text-darkBlue ml-2 duration-500">
+                    <ion-icon class="text-2xl" name="copy-outline"></ion-icon>
+                </button>
+            </div>
+        </div>
+        <div class="mt-10 text-center">
+            <h4 class="text-xs md:text-sm mt-6 text-gray-500">
+                Required Information
+            </h4>
+            <form action="/user/checkout" method="post">
+                <input type="hidden" name="amount" value="<%= amount %>">
+                <input type="hidden" name="medium" value="<%= medium %>">
+                <input
+                    class="mt-4 px-8 py-2 placeholder:text-center placeholder:text-sm w-72 md:w-96 border-2 border-darkBlue"
+                    type="text" name="transactionID" id="transaction-ID" placeholder="Input Your Transaction Hash" />
+                <p class="text-xs font-extralight capitalize text-darkBlue mt-2 text-center">
+                    Please include your transaction ID for seamless verification.
+                </p>
+                <div class="flex flex-row justify-center space-x-6 mt-16 text-white">
+                    <input
+                        class="px-10 py-3 duration-700 capitalize bg-red-600 hover:bg-white hover:text-darkBlue hover:border hover:border-darkBlue"
+                        type="submit" value="cancel" name="action">
+                    <input
+                        class="px-10 ml-4 py-3 duration-700 capitalize bg-green-600 hover:bg-white hover:text-darkBlue hover:border hover:border-darkBlue"
+                        type="submit" value="confirm" name="action">
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

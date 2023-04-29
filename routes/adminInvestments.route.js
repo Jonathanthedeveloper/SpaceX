@@ -1,9 +1,9 @@
 const express = require('express');
+const { renderAdminInvestments } = require('../controllers/admin.controller');
 const router = express.Router();
 
-router.get('/', function(req, res){
-    res.render('adminInvestments');
-});
+router.route("/")
+    .get(renderAdminInvestments)
 
 
 module.exports = router;

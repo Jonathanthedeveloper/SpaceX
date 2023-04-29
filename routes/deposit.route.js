@@ -4,7 +4,7 @@ const router = express.Router();
 const fetchUserData = require('../middlewares/fetchUserData.middleware');
 
 router.get('/', function (req, res) {
-    res.render('deposit', { status: req.flash('status').join() });
+    res.render('depositFrontPage');
 });
 
 router.post('/', fetchUserData, handleDeposit)
