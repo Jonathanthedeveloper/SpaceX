@@ -7,18 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard</title>
   <!-- Favicon -->
-  <link
-  rel="shortcut icon"
-  href="../../Images/logo.ico"
-  type="image/x-ico"
-/>
+  <link rel="shortcut icon" href="../../Images/logo.ico" type="image/x-ico" />
   <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;500;600;700;800&display=swap"
     rel="stylesheet" />
-          <!-- Bootstrap Icon -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+  <!-- Bootstrap Icon -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
   <!-- Stylesheet -->
   <link rel="stylesheet" href="../../CSS/main.css" />
   <link rel="stylesheet" href="../../CSS/toast.css" />
@@ -29,57 +25,65 @@
 </head>
 
 <body class="bg-darkGray main">
-<%- include("partials/_alert")%>
-  <%- include("partials/adminSidebar"); -%>
-    <section>
-      <div class="flex flex-col items-center justify-center">
-        <div class="mt-20 text-center">
-          <h1 class="text-2xl text-brightBlue font-bold md:text-4xl">Users</h1>
-          <h4 class="text-sm mt-2 md:text-base">
-            Total Of <span class="text-darkBlue font-bold text-base md:text-xl"><%= users.length %></span>  Accounts.
-          </h4>
-        </div>
+  <%- include("partials/_alert")%>
+    <%- include("partials/adminSidebar"); -%>
+      <section>
+        <div class="flex flex-col items-center justify-center">
+          <div class="mt-20 text-center">
+            <h1 class="text-2xl text-brightBlue font-bold md:text-4xl">Users</h1>
+            <h4 class="text-sm mt-2 md:text-base">
+              Total Of <span class="text-darkBlue font-bold text-base md:text-xl">
+                <%= users.length %>
+              </span> Accounts.
+            </h4>
+          </div>
 
-        <table class="mx-auto mt-12 mb-1 border-collapse w-4/5 text-xs md:text-sm">
-          <thead class="">
-            <tr class=" text-center h-16 border-b-2 border-cyan-500">
-              <th class="w-1/4 border border-slate-300 dark:border-slate-600 font-semibold text-center">
-                Investor's Name</th>
-              <th class="w-1/4 border border-slate-300 dark:border-slate-600 font-semibold text-center">
-                Registration Date</th>
+          <table class="mx-auto mt-12 mb-1 border-collapse w-4/5 text-xs md:text-sm">
+            <thead class="">
+              <tr class=" text-center h-16 border-b-2 border-cyan-500">
+                <th class="w-1/4 border border-slate-300 dark:border-slate-600 font-semibold text-center">
+                  Investor's Name</th>
+                <th class="w-1/4 border border-slate-300 dark:border-slate-600 font-semibold text-center">
+                  Registration Date</th>
                 <th class="w-1/4 border border-slate-300 dark:border-slate-600 font-semibold text-center">
                   Delete
                 </th>
                 <th class="w-1/4 border border-slate-300 dark:border-slate-600 font-semibold text-center">
                   Verify
                 </th>
-            </tr>
-          </thead>
-          <tbody>
-
-            <% users.forEach(user=> {%>
-              <tr class="border-b-1 h-10">
-                <td class="border capitalize text-center hover:underline hover:text-darkBlue p-2">
-                  <a href="/user/admin/profile/<%= user._id %>">
-                    <%= user.name || user.username %>
-                  </a>
-                </td>
-                <td class="border capitalize text-center">
-                  <%= user.createdAt.toLocaleDateString() %>
-                </td>
-                <td class="border capitalize text-center text-red-600 hover:underline">
-                  <a href="">Delete</a>
-                </td>
-                <td class="border capitalize text-center text-darkBlue hover:underline">
-                  <a href="">Verify</a>
-                </td>
               </tr>
-              <% }) %>
-          </tbody>
-        </table>
-      </div>
-    </section>
-    <%- include ("partials/script"); -%>
+            </thead>
+            <tbody>
+
+              <% users.forEach(user=> {%>
+                <tr class="border-b-1 h-10">
+                  <td class="border capitalize text-center hover:underline hover:text-darkBlue p-2">
+                    <a href="/user/admin/profile/<%= user._id %>">
+                      <%= user.name || user.username %>
+                    </a>
+                  </td>
+                  <td class="border capitalize text-center">
+                    <%= user.createdAt.toLocaleDateString() %>
+                  </td>
+                  <td class="border capitalize text-center text-red-600 hover:underline">
+                    <form action="/user/admin/user?_method=delete" method="post">
+                      <input type="hidden" name="user" value="<%= user._id %>">
+                      <input type="submit" name="action" value="delete">
+                    </form>
+                  </td>
+                  <td class="border capitalize text-center text-darkBlue hover:underline">
+                    <form action="/user/admin/user?_method=put" method="post">
+                      <input type="hidden" name="user" value="<%= user._id %>">
+                      <input type="submit" name="action" value="verify">
+                    </form>
+                  </td>
+                </tr>
+                <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <%- include ("partials/script"); -%>
 </body>
 
 </html>

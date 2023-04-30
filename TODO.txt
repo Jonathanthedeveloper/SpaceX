@@ -25,3 +25,16 @@
 
 
 render the admin kyc ; check kyc controller for kyc data
+
+Some errors I have uncovered
+
+1. Welcome back notification, I mean the flash, the positioning and all, and it doesn't go away.
+2. Wallet all round, are empty
+3. When a user invests $2 is removed and the rest is accounted for. Eg a user wants to invest 500, the website takes $2 away, and the user ends up investing 498
+4. Delete and Verify buttons in the users page not working
+5. KYC Time and stuff
+
+Questions 
+2. Wallet all round, are empty ; please explain 
+3. Please make sure to test this well or send me a video that shows this. I have tested this and it works fine.
+

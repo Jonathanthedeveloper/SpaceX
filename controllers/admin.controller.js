@@ -192,11 +192,32 @@ class AdminController {
 
     async renderAdminInvestments(req, res) {
 
-        const investments = await Transaction.find({ type: "investment" }).populate({ path: "user", select: "name email" });
+        const investments = await Transaction.find({ type: "investment" }).populate({ path: "user", select: "name email" }).sort({ createdAt: -1 })
 
-        console.log(investments)
+        res.render('adminInvestments', { investments });
+    }
 
-        res.render('adminInvestments', investments);
+    async verifyUser(req, res) {
+        try {
+            await User.findByIdAndUpdate(req.body.user, { isVerified: true })
+            req.flash('success', 'user verified successfully')
+            res.redirect('/user/admin/user')
+        } catch (error) {
+            req.flash('fail', 'failed to verify user')
+            res.redirect('/user/admin/user')
+        }
+
+    }
+
+    async deleteUser(req, res) {
+        try {
+            await User.findByIdAndDelete(req.body.user)
+            req.flash('success', 'user deleted successfully')
+            res.redirect('/user/admin/user')
+        } catch (error) {
+            req.flash('fail', 'failed to delete user')
+            res.redirect('/user/admin/user')
+        }
     }
 
 

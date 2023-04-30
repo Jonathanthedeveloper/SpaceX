@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const { renderAdminKyc, handleKycApproval } = require('../controllers/kyc.controller');
 
-router.get('/', function(req, res){
-    res.render('adminKYC');
-});
+
+router.route('/')
+    .get(renderAdminKyc)
+    .put(handleKycApproval)
 
 
 module.exports = router;

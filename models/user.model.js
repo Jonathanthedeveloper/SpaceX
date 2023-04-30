@@ -123,6 +123,13 @@ const userSchema = new Schema({
         isVerified: {
             type: Boolean,
             default: false
+        },
+        awaitingVerification: {
+            type: Boolean,
+        },
+        subbmittedAt: {
+            type: Date,
+            default: Date.now()
         }
     },
     passwordResetExpires: Date,
