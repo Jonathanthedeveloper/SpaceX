@@ -37,11 +37,12 @@
               </h3>
             </div>
           </div> 
+          <% kyc forEach(app => {%>
           <div class="flex flex-col items-center justify-center">
             <button class="another collapsible">
               <div class="flex flex-row items-center justify-evenly">
                 <h4 class="text-sm md:text-base capitalize">
-                  [Username]
+                  <%= app.fullName %>
                 </h4>
                 <p class="text-xs md:text-sm">
                     <input
@@ -57,32 +58,27 @@
               </div>
             </button>
               <div class="content">
-                <h4 class="text-darkBlue text-sm mt-6 md:text-base">
-                  <span class="text-black">Username:</span>
-                  [Username]
+                <h4 class="text-darkBlue text-sm mt-2 md:text-base">
+                  <span class="text-black">Full Name:</span> <%= app.fullName %>
                 </h4>
                 <hr>
                 <h4 class="text-darkBlue text-sm mt-2 md:text-base">
-                  <span class="text-black">Full Name:</span> [Full Name]
-                </h4>
-                <hr>
-                <h4 class="text-darkBlue text-sm mt-2 md:text-base">
-                  <span class="text-black">Address</span> [Address]
+                  <span class="text-black">Address</span> <%= app.address %>
                 </h4>
                 <hr>
                 <h4 class="text-darkBlue text-sm mt-2 md:text-base">
                   <span class="text-black">City:</span>
-                  [City]
+                  <%= app.city %>
                 </h4>
                 <hr>
                 <h4 class="text-darkBlue text-sm mt-2 md:text-base">
                   <span class="text-black">State:</span>
-                  [State]
+                  <%= app.state %>
                 </h4>
                 <hr>
                 <h4 class="text-darkBlue text-sm mt-2 md:text-base">
                   <span class="text-black">Country:</span>
-                  [Country]
+                  <%= app.country %>
                 </h4>
                 <hr>
                 <h4 class="text-darkBlue text-sm mt-2 md:text-base">
@@ -101,6 +97,7 @@
                 </h4>
               </div>
           </div>   
+          <% }) %>
     </section>
     <%- include ("partials/script"); -%>
     <script src="../../JS/collapsible.js"></script>

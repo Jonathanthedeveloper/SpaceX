@@ -28,8 +28,8 @@ router.use("/index", indexRoute);
 router.use("/legal", legalRoute);
 router.use("/market", marketRoute);
 router.use("/services", servicesRoute);
-router.use('/support', helpRoute)
-router.use("/user", userRoute)
+router.use('/support', helpRoute);
+router.use("/user", userRoute);
 
 
 // exporting router middleware

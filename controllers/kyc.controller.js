@@ -23,10 +23,10 @@ class KycController {
 
             const user = await User.findByIdAndUpdate(req.user._id, kycData);
 
-            req.flash("success", "your kyc information was submitted successfully")
+            req.flash("success", "Your Kyc Information Was Submitted Successfully")
             res.redirect("/user/kyc")
         } catch (error) {
-            req.flash("success", "Something went wrong. please try again")
+            req.flash("fail", "Something Went Wrong. Please Try Again")
             res.redirect("/user/kyc")
         }
 

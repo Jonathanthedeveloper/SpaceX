@@ -152,11 +152,11 @@ class AdminController {
 
             await user.save();
 
-            req.flash("success", `${transaction.type} added successfully`);
+            req.flash("success", `${transaction.type} Added Successfully`);
             res.redirect("/user/admin/bonus");
         } catch (error) {
             console.log(error);
-            req.flash("fail", `failed to add bonus ${user.name ? `to ${user.name}'s account` : ""}`);
+            req.flash("fail", `Failed To Add Bonus ${user.name ? `To ${user.name}'s Account` : ""}`);
             res.redirect("/user/admin/bonus");
         }
     }

@@ -37,33 +37,34 @@
               </h3>
             </div>
           </div> 
+          <% investments.forEach(investment=> { %>
           <div class="flex flex-col items-center justify-center">
             <button class="another collapsible">
               <div class="flex flex-row items-center justify-evenly">
                 <h4 class="text-sm md:text-base capitalize">
-                  [Username]
+                  <%= investment.name %>
                 </h4>
                 <p class="text-xs md:text-sm">
-                  [Investment Package]
+                  <%= investment.plan %>
                 </p>
                 <p class="text-xs md:text-sm">
-                    [Status]
+                  <%= investment.status %>
                   </p>
               </div>
             </button>
             <div class="content">
               <h4 class="text-darkBlue text-sm mt-6 md:text-base">
                 <span class="text-black">Username:</span>
-                [Username]
+                <%= investment.name %>
               </h4>
               <hr>
               <h4 class="text-darkBlue text-sm mt-2 md:text-base capitalize">
                 <span class="text-black">Package</span>
-                [Investment Package]
+                <%= investment.plan %>
               </h4>
               <hr>
               <h4 class="text-darkBlue text-sm mt-2 md:text-base">
-                <span class="text-black">Invested Amount:</span> $[Amount Invested]
+                <span class="text-black">Invested Amount:</span> $<%= investment.amount %>
               </h4>
               <hr>
               <h4 class="text-darkBlue text-sm mt-2 md:text-base">
@@ -72,20 +73,21 @@
               <hr>
               <h4 class="text-darkBlue text-sm mt-2 md:text-base">
                 <span class="text-black">Started Date and Time:</span>
-                [Date and Time]
+                <%= investment.createdAt.toLocaleDateString() %>
               </h4>
               <hr>
               <h4 class="text-darkBlue text-sm mt-2 md:text-base">
                 <span class="text-black">Expiring Date and Time:</span>
-                [Date and Time]
+                <%= investment.expiresAt.toLocaleDateString() %>
               </h4>
               <hr>
               <h4 class="text-darkBlue text-sm mt-2 md:text-base">
                 <span class="text-black">Status</span>
-                [Status Of The Investment]
+                <%= investment.status %>
               </h4>
             </div>
           </div>   
+          <% }) %>
     </section>
     <%- include ("partials/script"); -%>
     <script src="../../JS/collapsible.js"></script>
