@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Compose</title>
+    <title>News</title>
     <!-- Favicon -->
     <link rel="shortcut icon" href="../Images/logo.ico" type="image/x-ico" />
     <!-- Google Font -->
@@ -25,9 +25,9 @@
     <!-- <script src="//code.jivosite.com/widget/IQVm7Hn4FQ" async></script> -->
   </head>
   <body class="bg-white dark:bg-lightBlack">
-<%- include("partials/nav"); -%>
-<section id="Theme Selection">
-  <div
+    <%- include("partials/nav"); -%>
+    <section id="Theme Selection">
+      <div
         class="w-14 h-14 rounded-full bg-white dark:bg-black fixed top-20 left-2 z-30 flex justify-center items-center"
       >
         <ion-icon
@@ -39,35 +39,22 @@
           name="moon"
         ></ion-icon>
       </div>
-</section>
-<section id="Compose Form">
-  <div class="mt-20 p-4 md:p-20">
-    <h1 class="text-black dark:text-white text-3xl md:text-5xl my-4">Compose</h1>
-    <form class="" action="/compose" method="post">
-      <div class="flex flex-col text-grey">
-        <label class="mt-4">Title</label>
-        <input class="px-10 py-2 bg-gray-200 dark:bg-gray-400" type="text" name="postTitle">
-        <label class="mt-10">Post</label>
-        <textarea class="px-10 py-4 bg-gray-200 dark:bg-gray-400" name="postBody" rows="5" cols="30"></textarea>
-      </div>
-      <button class="mt-10 flex flex-row items-center px-4 py-3 font-bold text-black dark:text-white border-2 border-darkBlue dark:border-lightBlue hover:bg-darkBlue hover:dark:bg-lightBlue duration-500 hover:text-white hover:dark:text-black" type="submit" name="button">Publish <ion-icon
-        class="text-3xl ml-1"
-        name="navigate-circle-outline"
-      ></ion-icon
-    ></button>
-    </form>
-  </div>
-</section>
-<%- include("partials/footer"); -%>
-<script src="../JS/news.js"></script>
-<!-- Iconic Icon Scripts -->
-<script
-type="module"
-src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
-></script>
-<script
-nomodule
-src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
-></script>
+    </section>
+    <section id="Main Body">
+      <h1 class="text-black dark:text-white text-2xl md:text-4xl mt-10 mb-4">
+        <%=title%>
+      </h1>
+      <p class="text-grey capitalize leading-relaxed"><%=content%></p>
+    </section>
+    <script src="../JS/news.js"></script>
+    <!-- Iconic Icon Scripts -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
   </body>
 </html>

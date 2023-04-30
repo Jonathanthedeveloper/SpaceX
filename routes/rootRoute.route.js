@@ -9,11 +9,12 @@ const userRoute = require('./user.route')
 const aboutRoute = require("./about.route");
 const contactRoute = require("./contact.route");
 const faqRoute = require("./faq.route");
-const servicesRoute = require("./service.route");
 const indexRoute = require("./index.route");
 const helpRoute = require("./help.route");
-const legalRoute = require("./legal.route");
+const newsRoute = require("./news.route");
+const composeRoute = require("./compose.route");
 const marketRoute = require("./market.route");
+const viewPost = require("./viewPost.route")
 
 
 // configuring routes
@@ -25,11 +26,12 @@ router.use("/aboutUs", aboutRoute);
 router.use("/contact", contactRoute);
 router.use("/faq", faqRoute);
 router.use("/index", indexRoute);
-router.use("/legal", legalRoute);
 router.use("/market", marketRoute);
-router.use("/services", servicesRoute);
 router.use('/support', helpRoute);
+router.use("/news", newsRoute);
+router.use("/compose", composeRoute);
 router.use("/user", userRoute);
+router.use("/post", viewPost);
 
 
 // exporting router middleware
