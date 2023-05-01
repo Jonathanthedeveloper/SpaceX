@@ -38,3 +38,10 @@ Questions
 2. Wallet all round, are empty ; please explain 
 3. Please make sure to test this well or send me a video that shows this. I have tested this and it works fine.
 
+01/05/2023
+1. Investment Duration Correction
+2. Admin Last 5 Transactions
+3. KYC Image (I don't understand the magic ya want me to do there.)
+4. Emails Attachment and All. Thank You.
+5. Check The Withdrawal.
+6. The User Balance for the withdrawal page.

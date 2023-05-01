@@ -60,11 +60,11 @@ class UserController {
                 await user.save()
             }
 
-            req.flash("success", "profile updated successfully")
+            req.flash("success", "Your Profile Was Updated Successfully")
             res.redirect('/user/profile')
         }
         catch (error) {
-            req.flash("fail", "failed to update  your profile. please try again")
+            req.flash("fail", "Failed To Update  Your Profile. Please Try Again")
             res.redirect('/user/profile')
         }
 
@@ -106,10 +106,10 @@ class UserController {
             await user.save()
 
 
-            req.flash('success', 'withdrawal request placed successfully');
+            req.flash('success', 'Your Withdrawal Request Was Placed Successfully.');
             res.redirect('/user/withdraw')
         } catch (error) {
-            req.flash('fail', 'something went wrong')
+            req.flash('fail', 'Something Went Wrong, Please Try Again Later.')
             res.redirect('/user/withdraw')
         }
     }
@@ -151,7 +151,7 @@ class UserController {
             await transactionService.create(transactionData)
 
 
-            req.flash('success', 'Deposit placed successfully')
+            req.flash('success', 'Your Deposit Was Placed Successfully')
             res.redirect('/user/deposit')
 
 
@@ -259,7 +259,7 @@ class UserController {
 
             new Email(user, "", transactionData.amount).sendInvestment()
 
-            req.flash('success', 'Your investment request has been submitted successfully');
+            req.flash('success', 'Your Investment Request Has Been Submitted Successfully');
             res.redirect('/user/invest')
 
 

@@ -31,7 +31,7 @@ router.use('/support', helpRoute);
 router.use("/news", newsRoute);
 router.use("/compose", composeRoute);
 router.use("/user", userRoute);
-router.use("/post", viewPost);
+router.use("/posts", viewPost);
 
 
 // exporting router middleware

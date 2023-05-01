@@ -95,10 +95,3 @@ bankButton.addEventListener("click", () =>{
   bank.classList.remove("hidden")
 })
 
-
-//Close the notification box
-const info = document.getElementById("info");
-const closeIcon = document.getElementById("closeIcon");
-closeIcon.addEventListener("click", () => {
-  info.style.display = "none";
-} )

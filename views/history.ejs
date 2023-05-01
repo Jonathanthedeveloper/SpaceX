@@ -94,7 +94,7 @@
           <hr>
           <h4 class="text-sm mt-2 text-darkBlue md:text-base"><span class="text-black">Amount: </span>$<%= transaction.amount %></h4>
           <hr>
-          <h4 class="text-darkBlue text-sm mt-2 md:text-base"><span class="text-black">Wallet:</span> <%= transaction.account.wallet %></h4>
+          <h4 class="text-darkBlue text-sm mt-2 md:text-base capitalize"><span class="text-black">Medium:</span> <%= transaction.medium ? transaction.medium : 'unavailable' %> </h4>
           <hr>
           <h4 class="text-sm mt-2 md:text-base text-darkBlue">
             <span class="text-black">Date and Time: </span><%= transaction.createdAt.toLocaleDateString() %>

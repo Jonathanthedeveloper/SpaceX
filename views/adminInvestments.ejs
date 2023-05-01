@@ -29,7 +29,7 @@
               <h1 class="text-2xl text-black font-bold md:text-4xl">Investments</h1>
               <h4 class="text-sm mt-2 md:text-base">
                 Total Of <span class="text-darkBlue font-bold text-base md:text-xl">
-                    [numberOfInvestment]
+                  <%= investments.length %>
                 </span> Investments.
               </h4>
               <h3 class="my-10 text-black font-bold text-base md:text-2xl">
@@ -41,13 +41,13 @@
           <div class="flex flex-col items-center justify-center">
             <button class="another collapsible">
               <div class="flex flex-row items-center justify-evenly">
-                <h4 class="text-sm md:text-base capitalize">
-                  <%= investment.name %>
+                <h4 class="text-sm md:text-base capitalize text-green-600">
+                  <%= investment.user.name %>
                 </h4>
-                <p class="text-xs md:text-sm">
+                <p class="text-xs md:text-sm capitalize text-green-600">
                   <%= investment.plan %>
                 </p>
-                <p class="text-xs md:text-sm">
+                <p class="text-xs md:text-sm capitalize text-green-600">
                   <%= investment.status %>
                   </p>
               </div>
@@ -55,20 +55,16 @@
             <div class="content">
               <h4 class="text-darkBlue text-sm mt-6 md:text-base">
                 <span class="text-black">Username:</span>
-                <%= investment.name %>
+                <%= investment.user.name %>
               </h4>
               <hr>
               <h4 class="text-darkBlue text-sm mt-2 md:text-base capitalize">
-                <span class="text-black">Package</span>
+                <span class="text-black">Package:</span>
                 <%= investment.plan %>
               </h4>
               <hr>
               <h4 class="text-darkBlue text-sm mt-2 md:text-base">
                 <span class="text-black">Invested Amount:</span> $<%= investment.amount %>
-              </h4>
-              <hr>
-              <h4 class="text-darkBlue text-sm mt-2 md:text-base">
-                <span class="text-black">Return On Investment</span> $[Amount To Gain]
               </h4>
               <hr>
               <h4 class="text-darkBlue text-sm mt-2 md:text-base">
@@ -81,8 +77,8 @@
                 <%= investment.expiresAt.toLocaleDateString() %>
               </h4>
               <hr>
-              <h4 class="text-darkBlue text-sm mt-2 md:text-base">
-                <span class="text-black">Status</span>
+              <h4 class="text-darkBlue text-sm mt-2 md:text-base capitalize">
+                <span class="text-black">Status:</span>
                 <%= investment.status %>
               </h4>
             </div>

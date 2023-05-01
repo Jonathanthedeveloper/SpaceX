@@ -68,13 +68,13 @@
                   <td class="border capitalize text-center text-red-600 hover:underline">
                     <form action="/user/admin/user?_method=delete" method="post">
                       <input type="hidden" name="user" value="<%= user._id %>">
-                      <input type="submit" name="action" value="delete">
+                      <input class="capitalize hover:underline hover:cursor-pointer" type="submit" name="action" value="delete">
                     </form>
                   </td>
                   <td class="border capitalize text-center text-darkBlue hover:underline">
                     <form action="/user/admin/user?_method=put" method="post">
                       <input type="hidden" name="user" value="<%= user._id %>">
-                      <input type="submit" name="action" value="verify">
+                      <input class="capitalize hover:underline hover:cursor-pointer" type="submit" name="action" value="verify">
                     </form>
                   </td>
                 </tr>

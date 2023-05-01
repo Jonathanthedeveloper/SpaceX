@@ -43,11 +43,9 @@ class NewsHandler {
       res.render("post", {
         title: post.title,
         content: post.content,
-        requestedPostId: _id,
       });
     });
   };
-
 }
 
 module.exports = new NewsHandler()

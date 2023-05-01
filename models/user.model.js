@@ -83,6 +83,7 @@ const userSchema = new Schema({
         trim: true
     },
     phoneNumber: String,
+    country: String,
     password: {
         type: String,
         required: true,

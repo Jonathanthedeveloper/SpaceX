@@ -17,9 +17,3 @@ async function copy() {
     console.log(error.message)
   }
 }
-
-const info = document.getElementById("info");
-const closeIcon = document.getElementById("closeIcon");
-closeIcon.addEventListener("click", () => {
-  info.style.display = "none";
-} )

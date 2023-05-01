@@ -1,9 +1,16 @@
 <%if(message.error) {%>
-    <div class="alert alert-error bg-red-400 text-red-600">
-        <%=message.error%>
-    </div>
-    <%} else if(message.success){%>
-        <div class="alert alert-success bg-green-300 bg-green-600">
-            <%=message.success%>
-        </div>
-        <%}%>
+<div class="alert alert-error text-white bg-red-600 flex flex-row items-center justify-between mx-auto px-3 py-5 m-3 text-center text-xs capitalize md:text-sm"><%=message.error%></div>
+<%} else if(message.success){%>
+<div id="info" class="alert alert-success flex flex-row items-center justify-between mx-auto px-3 py-5 m-3 text-white bg-green-600 text-center text-xs capitalize md:text-sm">
+  <%=message.success%>
+  <ion-icon id="closeIcon" class="text-xl hover:cursor-pointer" name="close-circle-outline"></ion-icon>
+</div>
+<%}%>
+
+<script>
+  const info = document.getElementById("info");
+  const closeIcon = document.getElementById("closeIcon");
+  closeIcon.addEventListener("click", () => {
+    info.style.display = "none";
+  });
+</script>

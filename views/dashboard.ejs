@@ -30,7 +30,7 @@
   <%- include("partials/_alert")%>
 
     <%- include("partials/sidebar"); -%>
-      <!-- <div id="info" class="flex flex-row items-center justify-between mx-auto px-3 mt-20 py-5 m-3 bg-yellow-300 text-black w-11/12 md:w-3/4 text-center text-xs capitalize md:text-sm md:mt-0">
+      <!-- <div id="info" class="flex flex-row items-center justify-between mx-auto px-3 mt-20 py-5 m-3 text-white bg-green-600 w-11/12 md:w-3/4 text-center text-xs capitalize md:text-sm md:mt-0">
         Please complete your KYC verification process to ensure account safety. 
         <ion-icon id="closeIcon" class="text-xl hover:cursor-pointer" name="close-circle-outline"></ion-icon>
       </div> -->
@@ -43,9 +43,15 @@
             </h1>
           </div>
           <div class="flex flex-row items-center">
+            <% if(user.isVerified == true) { %>
+              <p class="font-bold text-xs md:text-sm text-darkBlue mr-0.5">
+              Verified
+            </p>
+           <% } else { %>
             <p class="font-bold text-xs md:text-sm text-red-500 mr-0.5">
               Not Verified
             </p>
+          <% } %>       
             <img class="h-8 md:h-12" src="../Images/user.png" alt="User-Icon" />
           </div>
         </div>
@@ -298,7 +304,7 @@
         <script>
           //For the Chart
           var xValues = ["Deposit", "Withdrawal", "Investment", "Loan", "Referral"];
-          var yValues = [55, 49, 44, 24, 15];
+          var yValues = [50, 40, 45, 25, 15];
           var barColors = ["red", "green", "blue", "orange", "brown"];
 
           new Chart("myChart", {
