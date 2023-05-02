@@ -88,15 +88,9 @@
                 <%= data.kyc.country %>
               </h4>
               <hr>
-              <h4 class="text-darkBlue text-sm mt-2 md:text-base">
-                <span class="text-black">Verification Front Copy:</span>
-                [Front Copy Image Download]
-              </h4>
-              <hr>
-              <h4 class="text-darkBlue text-sm mt-2 md:text-base">
-                <span class="text-black">Verification Back Copy:</span>
-                [Back Copy Image Download]
-              </h4>
+              <% data.kyc.governmentIssuedId.pictures.forEach((picture)=> { %>
+                <img src="/uploads/<%= picture %>" />
+                <% })%>
               <hr>
               <h4 class="text-darkBlue text-sm mt-2 md:text-base">
                 <span class="text-black">Status:</span>

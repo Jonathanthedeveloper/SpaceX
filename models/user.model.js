@@ -119,7 +119,7 @@ const userSchema = new Schema({
         gender: String,
         governmentIssuedId: {
             idType: String,
-            picture: [String]
+            pictures: [String]
         },
         isVerified: {
             type: Boolean,
