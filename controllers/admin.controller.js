@@ -27,12 +27,13 @@ class AdminController {
         const transactions = await transactionService.findAll({});
         const users = await userService.findAll({});
 
-        const { deposits, withdrawals, investments, earnings } = splitTransactions(transactions)
+        const recents = transactions.slice(0, 5)
+
+        const { deposits, withdrawals, investments, earnings  } = splitTransactions(transactions)
 
 
-        const pendings = transactions.filter(
-            (transaction) => transaction.status === "pending"
-        );
+
+
 
         res.render("adminDashboard", {
             users,
@@ -40,8 +41,8 @@ class AdminController {
             withdrawals,
             investments,
             earnings,
-            pendings,
             transactions,
+            recents
         });
     }
 
@@ -90,9 +91,12 @@ class AdminController {
                 });
             }
             new Email(transaction.user, ".", transaction.amount).sendDeposit();
+
+            req.flash("success", "transaction approved")
             res.redirect("/user/admin/deposit");
         } else if (transaction.type === "withdrawal") {
             new Email(transaction.user, ".", transaction.amount).sendWithdrawal();
+            req.flash("error", "something went wrong")
             res.redirect("/user/admin/withdraw");
         }
     }

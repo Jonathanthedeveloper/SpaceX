@@ -72,41 +72,16 @@
               A summary of your last 5 transactions.
             </h4>
           </div>
-          <div class="bg-darkBlue w-4/5 mt-2 h-16 flex flex-row items-center px-1 justify-between md:px-4">
-            <h4 class="text-white">Transaction</h4>
-            <h4 class="text-white">Amount</h4>
-            <div class="flex flex-row items-center justify-center">
-              <a href="" class="text-white text-sm mr-2">Status</a>
+          <% recents.forEach(recent => {%>
+            <div class="bg-darkBlue w-4/5 mt-2 h-16 flex flex-row items-center px-1 justify-between md:px-4">
+              <h4 class="text-white"><%= recent.type%></h4>
+              <h4 class="text-white"><%= recent.amount%></h4>
+              <div class="flex flex-row items-center justify-center">
+                <a href="" class="text-white text-sm mr-2"><%= recent.status%></a>
+              </div>
             </div>
-          </div>
-          <div class="bg-darkBlue w-4/5 mt-2 h-16 flex flex-row items-center px-1 justify-between md:px-4">
-            <h4 class="text-white">Transaction</h4>
-            <h4 class="text-white">Amount</h4>
-            <div class="flex flex-row items-center justify-center">
-              <a href="" class="text-white text-sm mr-2">Status</a>
-            </div>
-          </div>
-          <div class="bg-darkBlue w-4/5 mt-2 h-16 flex flex-row items-center px-1 justify-between md:px-4">
-            <h4 class="text-white">Transaction</h4>
-            <h4 class="text-white">Amount</h4>
-            <div class="flex flex-row items-center justify-center">
-              <a href="" class="text-white text-sm mr-2">Status</a>
-            </div>
-          </div>
-          <div class="bg-darkBlue w-4/5 mt-2 h-16 flex flex-row items-center px-1 justify-between md:px-4">
-            <h4 class="text-white">Transaction</h4>
-            <h4 class="text-white">Amount</h4>
-            <div class="flex flex-row items-center justify-center">
-              <a href="" class="text-white text-sm mr-2">Status</a>
-            </div>
-          </div>
-          <div class="bg-darkBlue w-4/5 mt-2 h-16 flex flex-row items-center px-1 justify-between md:px-4">
-            <h4 class="text-white">Transaction</h4>
-            <h4 class="text-white">Amount</h4>
-            <div class="flex flex-row items-center justify-center">
-              <a href="" class="text-white text-sm mr-2">Status</a>
-            </div>
-          </div>
+          <% })%>
+
         </div>
       </div>
       <div class="flex flex-col items-center justify-center mt-16 w-full">

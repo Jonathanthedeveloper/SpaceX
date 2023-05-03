@@ -14,7 +14,6 @@ const fetchUserData = async (req, res, next) => {
         return;
     }
 
-    // console.log(user);
 
 
     const userInformation = await User.findById(user._id).populate('transactions');
@@ -24,6 +23,7 @@ const fetchUserData = async (req, res, next) => {
         res.redirect('/user/login');
         return;
     }
+
 
     // claculating user balance
     userInformation.balance = calcUserBalance(userInformation.transactions);

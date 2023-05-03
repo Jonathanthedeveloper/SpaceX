@@ -4,13 +4,13 @@ const scheduler = require('node-schedule')
 const saltRounds = 10;
 const {
     starterDuration,
-    platinumDuration,
-    premiumDuration,
-    zenithDuration,
+    regularDuration,
+    proDuration,
+    eliteDuration,
     starterPercent,
-    platinumPercent,
-    premiumPercent,
-    zenithPercent,
+    regularPercent,
+    proPercent,
+    elitePercent,
     referralEarning
 } = require('../config')
 
@@ -33,24 +33,24 @@ class UserController {
             return res.redirect('/user/admin')
         }
 
-        const { deposits, earnings, investments, withdrawals } = splitTransactions(userInformation.transactions)
+        const {deposits, earnings, investments, withdrawals} = splitTransactions(userInformation.transactions)
 
-        return res.render('dashboard', { user: userInformation, deposits, withdrawals, investments, earnings });
+        return res.render('dashboard', {user: userInformation, deposits, withdrawals, investments, earnings});
     }
 
     async renderProfile(req, res) {
         const userInformation = req.userData;
-        res.render('profile', { user: userInformation })
+        res.render('profile', {user: userInformation})
     }
 
     async editUserProfile(req, res) {
 
         try {
-            const updateData = { ...req.body }
+            const updateData = {...req.body}
             delete updateData.password;
 
 
-            const user = await userService.update({ _id: req.user._id }, updateData, {
+            const user = await userService.update({_id: req.user._id}, updateData, {
                 new: true, runValidators: true
             });
 
@@ -62,8 +62,7 @@ class UserController {
 
             req.flash("success", "Your Profile Was Updated Successfully")
             res.redirect('/user/profile')
-        }
-        catch (error) {
+        } catch (error) {
             req.flash("fail", "Failed To Update  Your Profile. Please Try Again")
             res.redirect('/user/profile')
         }
@@ -72,44 +71,47 @@ class UserController {
 
     async renderReferral(req, res) {
         const userInformation = req.userData;
-        res.render('referral', { user: userInformation })
+        res.render('referral', {user: userInformation})
     }
 
     async renderTransaction(req, res) {
-        const { transactions } = req.userData;
+        const {transactions} = req.userData;
 
         transactions.sort((a, b) => b.createdAt - a.createdAt)
 
-        res.render('history', { transactions })
+        res.render('history', {transactions})
     }
 
     async renderRegisterPage(req, res) {
-        const { role, ref: referral } = req.query
-        res.render('create', { referral, role })
+        const {role, ref: referral} = req.query
+        res.render('create', {referral, role})
     }
 
     async handleWithdrawal(req, res) {
         try {
 
-            if (req.body.amount > req.user.balance) {
-                return res.redirect('/user/deposit')
+
+            if (req.body.amount > req.userData.balance) {
+                req.flash("success", "insufficient funds")
+                return res.redirect('/user/withdraw')
             }
             const transactionData = {
-                user: req.user._id, type: 'withdrawal', amount: req.body.amount, account: {
-                    walletType: req.body.wallet, address: req.body.address
+                user: req.user._id,
+                type: 'withdrawal',
+                amount: req.body.amount,
+                account: {
+                    walletType: req.body.wallet,
+                    address: req.body.address
                 }
             }
 
-            const withdrawal = await transactionService.create(transactionData);
-            const user = await userService.findOne({ _id: req.user._id })
-            user.withdrawals.push(withdrawal._id)
-            await user.save()
+            await transactionService.create(transactionData);
 
 
             req.flash('success', 'Your Withdrawal Request Was Placed Successfully.');
             res.redirect('/user/withdraw')
         } catch (error) {
-            req.flash('fail', 'Something Went Wrong, Please Try Again Later.')
+            req.flash('error', 'Something Went Wrong, Please Try Again Later.')
             res.redirect('/user/withdraw')
         }
     }
@@ -119,10 +121,13 @@ class UserController {
         try {
 
             if (req.body.medium === "bank") {
-                res.render('checkout', { amount: req.body.amount, medium: req.body.medium, wallet: "" });
-            }
-            else if (req.body.medium == "crypto") {
-                res.render('checkout', { amount: req.body.amount, medium: req.body.medium, wallet: getWallet(req.body.coin) });
+                res.render('checkout', {amount: req.body.amount, medium: req.body.medium, wallet: ""});
+            } else if (req.body.medium == "crypto") {
+                res.render('checkout', {
+                    amount: req.body.amount,
+                    medium: req.body.medium,
+                    wallet: getWallet(req.body.coin)
+                });
             }
 
 
@@ -165,14 +170,13 @@ class UserController {
         try {
             const userData = await User.findById(req.user._id).populate("transactions");
 
-            const { investments } = splitTransactions(userData.transactions)
+            const {investments} = splitTransactions(userData.transactions)
 
             const activeInvestments = investments.filter(investment => Date.now() < investment.expiresAt);
 
-            res.render('invest', { investments: activeInvestments })
+            res.render('invest', {investments: activeInvestments})
         } catch (error) {
-            // res.redirect('/user/invest')
-            console.log(error)
+            req.flash("error", error.message);
         }
     }
 
@@ -181,6 +185,7 @@ class UserController {
 
 
             if (req.body.amount > req.userData.balance) {
+                req.flash("info", "insufficient funds. please deposit to continue")
                 return res.redirect('/user/deposit')
             }
 
@@ -197,7 +202,7 @@ class UserController {
                     payoutDuration = proDuration;
                     break;
                 case 'elite':
-                    payoutDuration = zenithDuration;
+                    payoutDuration = eliteDuration;
                     break;
             }
 
@@ -215,14 +220,13 @@ class UserController {
             const investment = await transactionService.create(transactionData);
 
 
-
             const payoutDate = new Date(investment.expiresAt)
 
             // Schedule user's  investment
             const job = scheduler.scheduleJob(payoutDate, async function () {
 
 
-                const transaction = await transactionService.update({ _id: investment._id }, { active: false });
+                const transaction = await transactionService.update({_id: investment._id}, {active: false});
 
                 let amount;
 
@@ -231,14 +235,14 @@ class UserController {
                     case 'starter':
                         amount = (transaction.amount + ((starterPercent * transaction.amount) * 7)).toFixed(2);
                         break;
-                    case 'platinum':
-                        amount = (transaction.amount + ((platinumPercent * transaction.amount) * 7)).toFixed(2);
+                    case 'regular':
+                        amount = (transaction.amount + ((regularPercent * transaction.amount) * 7)).toFixed(2);
                         break;
-                    case 'premium':
-                        amount = (transaction.amount + ((premiumPercent * transaction.amount) * 7)).toFixed(2);
+                    case 'pro':
+                        amount = (transaction.amount + ((proPercent * transaction.amount) * 7)).toFixed(2);
                         break;
-                    case 'zenith':
-                        amount = (transaction.amount + ((zenithPercent * transaction.amount) * 7)).toFixed(2);
+                    case 'elite':
+                        amount = (transaction.amount + ((elitePercent * transaction.amount) * 7)).toFixed(2);
                         break;
                     default:
                         amount = 0;

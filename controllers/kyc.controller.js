@@ -16,7 +16,7 @@ class KycController {
 
                     governmentIssuedId: {
                         idType: req.body.idType,
-                        picture: req.files.map(file => file.filename)
+                        pictures: req.files.map(file => file.filename)
                     },
                     awaitingVerification: true
                 }
