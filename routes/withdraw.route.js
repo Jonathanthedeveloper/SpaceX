@@ -6,9 +6,9 @@ const { handleWithdrawal } = require('../controllers/user.controller')
 
 router.route('/')
     .get(fetchUserData, function (req, res) {
-        res.render('withdraw', { user: req.user, status: req.flash('status').join() });
+        res.render('withdraw', { user: req.userData});
     })
-    .post(handleWithdrawal)
+    .post(fetchUserData,handleWithdrawal)
 
 
 module.exports = router;

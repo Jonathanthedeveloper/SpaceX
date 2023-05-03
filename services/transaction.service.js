@@ -9,7 +9,7 @@ class TransactionService {
     }
 
     async findAll(filter) {
-        return await Transaction.find(filter).populate("user")
+        return await Transaction.find(filter).populate("user").sort("createdAt")
     }
 
     async findOne(filter) {
