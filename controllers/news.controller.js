@@ -10,8 +10,11 @@ class NewsHandler {
 
     async showNews(req, res) {
         const posts = Post.find({}, function (err, posts) {
-            res.render("news", {posts});
-        });
+            res.render("news", {
+              startingContent: homeStartingContent,
+              posts: posts,
+            });
+          });
     };
 
 
