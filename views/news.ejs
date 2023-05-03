@@ -93,14 +93,14 @@
     <section id="Main Body">
     <div class="mt-96 p-4 md:p-20">
     <h1 class="text-black dark:text-white text-3xl md:text-5xl my-4">Latest News</h1>
-    <p class="text-grey capitalize leading-relaxed"> <%= startingContent %> </p>
+    <p class="text-grey capitalize leading-loose"> <%= startingContent %> </p>
     <hr class="my-10">
 
 
-  <%  posts.forEach(function(post){ %>
+  <%  posts.sort(function(a, b){ return b.date - a.date; }).forEach(function(post) {%>
 
     <h1 class="text-black dark:text-white text-2xl md:text-4xl mt-10 mb-4"><%=post.title%></h1>
-    <p class="text-grey capitalize leading-relaxed">
+    <p class="text-grey capitalize leading-loose">
     <%=post.content.substring(0, 400) + " ..."%>
     <a class="text-darkBlue dark:text-lightBlue hover:underline" href="/posts/<%=post._id%>">Read More</a>
     </p>
