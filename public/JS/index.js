@@ -117,3 +117,26 @@ complaintField.addEventListener("input", function() {
     complaintField.setCustomValidity("");
   }
 });
+
+// For the form submission
+const form = document.getElementById('email-form');
+
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  const name = document.getElementById('name').value;
+  const subject = document.getElementById('subject').value;
+  const message = document.getElementById('message').value;
+
+  const emailLink = 'mailto:admin@spacexshares.net?subject=' + encodeURIComponent(subject) +
+                    '&body=' + encodeURIComponent('Name: ' + name + '\n\nMessage: ' + message);
+
+  window.location.href = emailLink;
+
+  // Clear form inputs
+  document.getElementById('name').value = '';
+  document.getElementById('subject').value = '';
+  document.getElementById('message').value = '';
+
+  alert('Email sent!');
+});
