@@ -4,9 +4,20 @@
     <img class="h-16 md:mt-10" src="../Images/Logo.png" alt="This is the company's logo">
     <p class="mt-2 text-footer">Space X Shares</p>
   </div>
-  
+  <div
+        class="px-6 md:px-20 w-14 h-14 rounded-full bg-white dark:bg-black justify-center items-center"
+      >
+        <ion-icon
+          class="text-3xl text-black dark:text-white sun-icon hover:cursor-pointer"
+          name="sunny"
+        ></ion-icon>
+        <ion-icon
+          class="text-3xl text-black dark:text-white moon-icon hover:cursor-pointer"
+          name="moon"
+        ></ion-icon>
+      </div>
     <!-- Flex Container -->
-    <div class="container flex flex-col items-center justify-between px-6 mx-auto space-y-6 md:flex-row md-space-y-0 md:items-start">
+    <div class="container flex flex-col justify-between px-6 mx-auto space-y-6 md:flex-row md-space-y-0 md:items-start">
       <div class="flex flex-col space-y-2 md:w-1/4 text-black dark:text-white md:mt-4">
         <h4 class="font-bold text-base mt-2 md:text-xl">Our Company</h4>
         <a class="text-brightBlue hover:underline" href="/aboutUs"><p>About Us</p></a> 
@@ -20,11 +31,11 @@
         <a class="text-black dark:text-white hover:underline" href="/user/forgot-password"><p>Forgot Password</p></a> 
       </div>
       <div class="flex flex-col justify-between">
-        <h4 class="text-2xl font-semibold text-black dark:text-white text-center md:text-left">
+        <h4 class="text-2xl font-semibold text-black dark:text-white md:text-left">
           Subscribe To Our Newsletter.
         </h4>
         <form action="post">
-          <div class="flex flex-col items-center mt-4 space-x-3">
+          <div class="flex flex-col mt-4">
             <input
               type="email"
               class="flex-1 px-6 py-2 focus:outline-darkBlue dark:focus:outline-lightBlue"
@@ -32,7 +43,7 @@
             />
             <a
               href="#"
-              class="duration-700 mt-4 p-3 px-6 text-black dark:text-white pt-3 border border-darkBlue dark:border-lightBlue dark:hover:bg-lightBlue  hover:bg-darkBlue hover:text-white"
+              class="duration-500 w-32 mt-4 p-3 px-4 text-black dark:text-white pt-3 border border-darkBlue dark:border-lightBlue dark:hover:bg-lightBlue  hover:bg-darkBlue hover:text-white"
               >Subscribe</a
             >
           </div>
@@ -46,8 +57,3 @@
         United States.</h4>
   </div>
   </footer>
-  <!-- Google Translator -->
-  <script
-  type="text/javascript"
-  src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
-></script>

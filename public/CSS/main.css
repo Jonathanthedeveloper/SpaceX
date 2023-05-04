@@ -758,10 +758,6 @@ video {
   margin-top: 8rem;
 }
 
-.ml-10 {
-  margin-left: 2.5rem;
-}
-
 .mt-14 {
   margin-top: 3.5rem;
 }
@@ -824,6 +820,10 @@ video {
 
 .ml-20 {
   margin-left: 5rem;
+}
+
+.ml-10 {
+  margin-left: 2.5rem;
 }
 
 .mt-24 {
@@ -974,6 +974,10 @@ video {
   width: 1rem;
 }
 
+.w-\[20rem\] {
+  width: 20rem;
+}
+
 .w-96 {
   width: 24rem;
 }
@@ -1014,10 +1018,6 @@ video {
   width: 5rem;
 }
 
-.w-\[20rem\] {
-  width: 20rem;
-}
-
 .w-24 {
   width: 6rem;
 }
@@ -1032,6 +1032,10 @@ video {
 
 .w-48 {
   width: 12rem;
+}
+
+.w-32 {
+  width: 8rem;
 }
 
 .min-w-\[100vw\] {
@@ -1476,6 +1480,11 @@ video {
 .py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+.px-20 {
+  padding-left: 5rem;
+  padding-right: 5rem;
 }
 
 .pb-20 {
@@ -2204,38 +2213,6 @@ body::-webkit-scrollbar-thumb:hover {
   color: #0d47a1;
 }
 
-/* Google Translate */
-
-#google_translate_element select {
-  background: #0085fe;
-  color: #fdfdfd;
-  border: none;
-  border-radius: 3px;
-  padding: 10px;
-}
-
-.goog-logo-link {
-  display: none !important;
-}
-
-.goog-te-gadget {
-  color: transparent !important;
-}
-
-.goog-te-banner-frame {
-  display: none !important;
-}
-
-#goog-gt-tt,
-.goog-te-balloon-frame {
-  display: none !important;
-}
-
-.goog-text-highlight {
-  background: none !important;
-  box-shadow: none !important;
-}
-
 .alert {
   min-width: 200px;
   max-width: 90%;
@@ -2640,6 +2617,10 @@ body::-webkit-scrollbar-thumb:hover {
     width: 66.666667%;
   }
 
+  .md\:w-4\/5 {
+    width: 80%;
+  }
+
   .md\:w-3\/4 {
     width: 75%;
   }
@@ -2654,10 +2635,6 @@ body::-webkit-scrollbar-thumb:hover {
 
   .md\:w-auto {
     width: auto;
-  }
-
-  .md\:w-4\/5 {
-    width: 80%;
   }
 
   .md\:w-60 {

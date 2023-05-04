@@ -361,32 +361,6 @@ body::-webkit-scrollbar-thumb:hover {
   color: #0d47a1;
 }
 
-/* Google Translate */
-#google_translate_element select {
-  background: #0085fe;
-  color: #fdfdfd;
-  border: none;
-  border-radius: 3px;
-  padding: 10px;
-}
-.goog-logo-link {
-  display: none !important;
-}
-.goog-te-gadget {
-  color: transparent !important;
-}
-.goog-te-banner-frame {
-  display: none !important;
-}
-
-#goog-gt-tt,
-.goog-te-balloon-frame {
-  display: none !important;
-}
-.goog-text-highlight {
-  background: none !important;
-  box-shadow: none !important;
-}
 
 .alert {
   min-width: 200px;

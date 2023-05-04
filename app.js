@@ -52,7 +52,7 @@ app.use('*', notFoundRoute)
 
 
 
-// so that mongoose no go disturb my ear with deprecation warning
+//So that mongoose no go disturb my ear with deprecation warning
 mongoose.set('strictQuery', true)
 
 
