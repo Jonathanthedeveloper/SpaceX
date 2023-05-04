@@ -33,24 +33,24 @@ class UserController {
             return res.redirect('/user/admin')
         }
 
-        const {deposits, earnings, investments, withdrawals} = splitTransactions(userInformation.transactions)
+        const { deposits, earnings, investments, withdrawals } = splitTransactions(userInformation.transactions)
 
-        return res.render('dashboard', {user: userInformation, deposits, withdrawals, investments, earnings});
+        return res.render('dashboard', { user: userInformation, deposits, withdrawals, investments, earnings });
     }
 
     async renderProfile(req, res) {
         const userInformation = req.userData;
-        res.render('profile', {user: userInformation})
+        res.render('profile', { user: userInformation })
     }
 
     async editUserProfile(req, res) {
 
         try {
-            const updateData = {...req.body}
+            const updateData = { ...req.body }
             delete updateData.password;
 
 
-            const user = await userService.update({_id: req.user._id}, updateData, {
+            const user = await userService.update({ _id: req.user._id }, updateData, {
                 new: true, runValidators: true
             });
 
@@ -71,20 +71,20 @@ class UserController {
 
     async renderReferral(req, res) {
         const userInformation = req.userData;
-        res.render('referral', {user: userInformation})
+        res.render('referral', { user: userInformation })
     }
 
     async renderTransaction(req, res) {
-        const {transactions} = req.userData;
+        const { transactions } = req.userData;
 
         transactions.sort((a, b) => b.createdAt - a.createdAt)
 
-        res.render('history', {transactions})
+        res.render('history', { transactions })
     }
 
     async renderRegisterPage(req, res) {
-        const {role, ref: referral} = req.query
-        res.render('create', {referral, role})
+        const { role, ref: referral } = req.query
+        res.render('create', { referral, role })
     }
 
     async handleWithdrawal(req, res) {
@@ -121,7 +121,7 @@ class UserController {
         try {
 
             if (req.body.medium === "bank") {
-                res.render('checkout', {amount: req.body.amount, medium: req.body.medium, wallet: ""});
+                res.render('checkout', { amount: req.body.amount, medium: req.body.medium, wallet: "" });
             } else if (req.body.medium == "crypto") {
                 res.render('checkout', {
                     amount: req.body.amount,
@@ -170,11 +170,11 @@ class UserController {
         try {
             const userData = await User.findById(req.user._id).populate("transactions");
 
-            const {investments} = splitTransactions(userData.transactions)
+            const { investments } = splitTransactions(userData.transactions)
 
             const activeInvestments = investments.filter(investment => Date.now() < investment.expiresAt);
 
-            res.render('invest', {investments: activeInvestments})
+            res.render('invest', { investments: activeInvestments })
         } catch (error) {
             req.flash("error", error.message);
         }
@@ -226,23 +226,23 @@ class UserController {
             const job = scheduler.scheduleJob(payoutDate, async function () {
 
 
-                const transaction = await transactionService.update({_id: investment._id}, {active: false});
+                const transaction = await transactionService.update({ _id: investment._id }, { active: false });
 
                 let amount;
 
 
                 switch (transaction.plan) {
                     case 'starter':
-                        amount = (transaction.amount + ((starterPercent * transaction.amount) * 7)).toFixed(2);
+                        amount = (transaction.amount + ((starterPercent * transaction.amount) * 1)).toFixed(2);
                         break;
                     case 'regular':
-                        amount = (transaction.amount + ((regularPercent * transaction.amount) * 7)).toFixed(2);
+                        amount = (transaction.amount + ((regularPercent * transaction.amount) * 2)).toFixed(2);
                         break;
                     case 'pro':
-                        amount = (transaction.amount + ((proPercent * transaction.amount) * 7)).toFixed(2);
+                        amount = (transaction.amount + ((proPercent * transaction.amount) * 6)).toFixed(2);
                         break;
                     case 'elite':
-                        amount = (transaction.amount + ((elitePercent * transaction.amount) * 7)).toFixed(2);
+                        amount = (transaction.amount + ((elitePercent * transaction.amount) * 30)).toFixed(2);
                         break;
                     default:
                         amount = 0;

@@ -1,5 +1,5 @@
 {
-  "name": "SpaceXShares",
+  "name": "spacex-shares",
   "version": "1.0.0",
   "description": "This is the investment website of the spacex company.",
   "main": "app.js",
@@ -10,8 +10,8 @@
     "build": "npm install",
     "build-css": "tailwindcss -i ./index.css -o ./public/CSS/main.css",
     "watch": "tailwindcss -i ./index.css -o ./public/CSS/main.css --watch",
-    "start": "node app.js",
-    "dev": "nodemon app.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "author": "Space X Shares Developers",
   "license": "ISC",
