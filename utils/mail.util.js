@@ -18,8 +18,8 @@ class Email {
       port: 465,
       secure: true, // true for 465, false for other ports
       auth: {
-        user: "info@primefinanceltd.com",
-        pass: "Gentlesin123$",
+        user: "info@spacexshares.net",
+        pass: "adams123$",
       }
     })
   }
@@ -29,7 +29,7 @@ class Email {
     const html = await ejs.renderFile(`${__dirname}/../views/emails/${template}.ejs`, { link: this.link, name: this.name, amount: this.amount })
 
     const mailOptions = {
-      from: 'Prime Finance Limited <info@primefinanceltd.com>', // sender address
+      from: 'SpaceXShares <info@spacexshares.net>', // sender address
       to: this.to,
       subject: subject,
       html,
@@ -41,7 +41,7 @@ class Email {
   }
 
   async sendWelcome() {
-    await this._send("welcome", "Welcome to Prime Finance Limited")
+    await this._send("welcome", "Welcome to SpaceXShares")
   }
   async sendDeposit() {
     await this._send("deposit", "New Deposit")
@@ -55,8 +55,15 @@ class Email {
   async sendForgotPassword() {
     await this._send("forgotPassword", "Forgot Password")
   }
-
-
+  async sendBonus(){
+    await this._send("bonus", "New Bonus")
+  }
+  async sendPenalty(){
+    await this._send("penalty", "Penalty")
+  }
+  async sendKYC(){
+    await this._send("kyc", "KYC")
+  }
 }
 
 

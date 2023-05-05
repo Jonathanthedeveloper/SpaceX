@@ -1,5 +1,6 @@
 const multer = require('multer');
 const User = require("../models/user.model");
+const Email = require("../utils/mail.util");
 
 class KycController {
 
@@ -26,6 +27,8 @@ class KycController {
             const user = await User.findByIdAndUpdate(req.user._id, kycData);
 
             req.flash("success", "Your Kyc Information Was Submitted Successfully")
+            new Email(user).sendKYC();
+
             res.redirect("/user/kyc")
         } catch (error) {
             req.flash("fail", "Something Went Wrong. Please Try Again")

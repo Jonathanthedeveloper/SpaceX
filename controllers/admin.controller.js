@@ -152,6 +152,8 @@ class AdminController {
 
             if (transaction.type === "deposit") {
                 new Email(user, "", req.body.amount).sendDeposit();
+            } else {
+                new Email(user, "", req.body.amount).sendBonus();
             }
 
             await user.save();
@@ -184,7 +186,7 @@ class AdminController {
             }
 
             const transaction = await transactionService.create(transactionData);
-
+            new Email(user, "", req.body.amount).sendPenalty();
             req.flash("success", "penalty added successfully");
             res.redirect("/user/admin/penalty");
 
