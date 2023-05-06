@@ -67,7 +67,7 @@
           <h1 class="text-black dark:text-white text-2xl md:text-4xl mt-10 mb-4">
             <%=post.title%>
           </h1>
-          <p class="text-grey capitalize leading-loose">
+          <p class="text-grey capitalize leading-loose text-sm">
             <%=post.content.substring(0, 400) + " ..." %>
               <a class="text-darkBlue dark:text-lightBlue hover:underline" href="/posts/<%=post._id%>">Read More</a>
           </p>
@@ -75,6 +75,7 @@
           <% }) %>
       </div>
     </section>
+    <%- include("partials/cta1.ejs") -%>
     <%- include("partials/footer"); -%>
       <script src="../JS/news.js"></script>
       <!-- Iconic Icon Scripts -->
