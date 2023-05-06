@@ -19,7 +19,7 @@ class KycController {
                         idType: req.body.idType,
                         pictures: req.files.map(file => file.filename)
                     },
-                    awaitingVerification: true
+                    awaitingVerification: false
                 }
             }
 
