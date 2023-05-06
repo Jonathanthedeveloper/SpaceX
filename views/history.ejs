@@ -78,7 +78,7 @@
         </div>
       </div>
 
-      <% transactions.forEach(transaction => {%>
+      <% transactions.forEach(transaction => { %>
       <div class="flex flex-col items-center justify-center">
         <button class="another collapsible">
           <div class="flex flex-row items-center text-center">
@@ -94,13 +94,24 @@
           <hr>
           <h4 class="text-sm mt-2 text-darkBlue md:text-base"><span class="text-black">Amount: </span>$<%= transaction.amount %></h4>
           <hr>
-          <h4 class="text-darkBlue text-sm mt-2 md:text-base capitalize"><span class="text-black">Medium:</span> <%= transaction.medium ? transaction.medium : 'unavailable' %> </h4>
+          <% if (transaction.type == "withdrawal"){ %>
+            <h4 class="text-darkBlue text-sm mt-2 md:text-base capitalize"><span class="text-black">Wallet:</span> <%= transaction.account.walletType %> </h4>
+            <hr>
+            <h4 class="text-darkBlue text-sm mt-2 md:text-base capitalize"><span class="text-black">Address:</span> <%= transaction.account.address %> </h4> 
+            <hr>
+          <% }else{ %>
+            <h4 class="text-darkBlue text-sm mt-2 md:text-base capitalize"><span class="text-black">Medium:</span> <%= transaction.medium ? transaction.medium : 'unavailable' %> </h4>
+            <hr>
+          <% } %>
+          <% if (transaction.type == "deposit") { %>
+            <h4 class="text-darkBlue text-sm mt-2 md:text-base capitalize"><span class="text-black">Transaction ID:</span> <%= transaction.transactionID %> </h4>
           <hr>
+          <% } %>
           <h4 class="text-sm mt-2 md:text-base text-darkBlue">
             <span class="text-black">Date and Time: </span><%= transaction.createdAt.toLocaleDateString() %>
           </h4>
           <hr>
-          <h4 class="text-sm text-orange-400 mt-2 md:text-base capitalize mb-5"><%= transaction.status %></h4>
+          <h4 class="text-sm text-green-600 mt-2 md:text-base capitalize mb-5"><%= transaction.status %></h4>
         </div>
       </div>
       <% }) %>

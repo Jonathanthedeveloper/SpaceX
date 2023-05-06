@@ -92,11 +92,11 @@ class AdminController {
             }
             new Email(transaction.user, ".", transaction.amount).sendDeposit();
 
-            req.flash("success", "transaction approved")
+            req.flash("success", "Transaction Approved")
             res.redirect("/user/admin/deposit");
         } else if (transaction.type === "withdrawal") {
             new Email(transaction.user, ".", transaction.amount).sendWithdrawal();
-            req.flash("error", "something went wrong")
+            req.flash("success", "Transaction Approved")
             res.redirect("/user/admin/withdraw");
         }
     }

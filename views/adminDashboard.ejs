@@ -74,10 +74,16 @@
           </div>
           <% recents.forEach(recent => {%>
             <div class="bg-darkBlue w-4/5 mt-2 h-16 flex flex-row items-center px-1 justify-between md:px-4">
-              <h4 class="text-white"><%= recent.type%></h4>
+              <h4 class="text-white capitalize"><%= recent.type%></h4>
               <h4 class="text-white"><%= recent.amount%></h4>
               <div class="flex flex-row items-center justify-center">
-                <a href="" class="text-white text-sm mr-2"><%= recent.status%></a>
+                <% if(recent.type == "deposit") { %>
+                  <a href="/user/admin/deposit" class="text-sm mr-2 capitalize text-green-400 hover:underline"><%= recent.status%></a>
+               <% } else if(recent.type == "withdrawal") { %>
+                <a href="/user/admin/withdraw" class="text-sm mr-2 capitalize text-orange-400 hover:underline"><%= recent.status%></a>
+             <% } else { %>
+              <a href="/" class="text-white text-sm mr-2 capitalize"><%= recent.status%></a>
+             <% } %>
               </div>
             </div>
           <% })%>

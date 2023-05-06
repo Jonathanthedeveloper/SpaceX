@@ -858,10 +858,6 @@ video {
   display: none;
 }
 
-.h-14 {
-  height: 3.5rem;
-}
-
 .h-4\/5 {
   height: 80%;
 }
@@ -888,6 +884,10 @@ video {
 
 .h-20 {
   height: 5rem;
+}
+
+.h-14 {
+  height: 3.5rem;
 }
 
 .h-40 {
@@ -946,10 +946,6 @@ video {
   min-height: 100vh;
 }
 
-.w-14 {
-  width: 3.5rem;
-}
-
 .w-full {
   width: 100%;
 }
@@ -972,6 +968,10 @@ video {
 
 .w-4 {
   width: 1rem;
+}
+
+.w-14 {
+  width: 3.5rem;
 }
 
 .w-\[20rem\] {
@@ -1342,6 +1342,11 @@ video {
   background-color: rgb(16 185 129 / var(--tw-bg-opacity));
 }
 
+.bg-orange-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(234 88 12 / var(--tw-bg-opacity));
+}
+
 .bg-\[url\(\'\.\.\/images\/blackBlue\.png\'\)\] {
   background-image: url('../images/blackBlue.png');
 }
@@ -1510,11 +1515,6 @@ video {
   line-height: 1.25rem;
 }
 
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
-}
-
 .text-4xl {
   font-size: 2.25rem;
   line-height: 2.5rem;
@@ -1533,6 +1533,11 @@ video {
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
+}
+
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
 
 .text-xl {
@@ -1702,6 +1707,16 @@ video {
 .text-gray-600 {
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity));
+}
+
+.text-orange-600 {
+  --tw-text-opacity: 1;
+  color: rgb(234 88 12 / var(--tw-text-opacity));
+}
+
+.text-green-400 {
+  --tw-text-opacity: 1;
+  color: rgb(74 222 128 / var(--tw-text-opacity));
 }
 
 .underline {
@@ -2416,14 +2431,14 @@ body::-webkit-scrollbar-thumb:hover {
   background-color: rgb(8 7 8 / var(--tw-bg-opacity));
 }
 
-.dark .dark\:bg-black {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
-}
-
 .dark .dark\:bg-lightBlue {
   --tw-bg-opacity: 1;
   background-color: rgb(100 181 246 / var(--tw-bg-opacity));
+}
+
+.dark .dark\:bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
 .dark .dark\:bg-gray-400 {
@@ -2440,14 +2455,14 @@ body::-webkit-scrollbar-thumb:hover {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
 }
 
-.dark .dark\:text-white {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
 .dark .dark\:text-black {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.dark .dark\:text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .dark .dark\:text-lightBlue {

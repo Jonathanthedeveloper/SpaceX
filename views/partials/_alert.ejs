@@ -1,5 +1,6 @@
 <%if(message.error) {%>
-<div class="alert alert-error text-white bg-red-600 flex flex-row items-center justify-between mx-auto px-3 py-5 m-3 text-center text-xs capitalize md:text-sm"><%=message.error%></div>
+<div id="info1" class="alert alert-error text-white bg-red-600 flex flex-row items-center justify-between mx-auto px-3 py-5 m-3 text-center text-xs capitalize md:text-sm"><%=message.error%></div>
+<ion-icon id="closeIcon1" class="text-xl hover:cursor-pointer" name="close-circle-outline"></ion-icon>
 <%} else if(message.success){%>
 <div id="info" class="alert alert-success flex flex-row items-center justify-between mx-auto px-3 py-5 m-3 text-white bg-green-600 text-center text-xs capitalize md:text-sm">
   <%=message.success%>
@@ -12,5 +13,11 @@
   const closeIcon = document.getElementById("closeIcon");
   closeIcon.addEventListener("click", () => {
     info.style.display = "none";
+  });
+  //For the second one
+  const info1 = document.getElementById("info1");
+  const closeIcon1 = document.getElementById("closeIcon1");
+  closeIcon.addEventListener("click", () => {
+    info1.style.display = "none";
   });
 </script>
