@@ -27,7 +27,7 @@ class KycController {
             const user = await User.findByIdAndUpdate(req.user._id, kycData);
 
             req.flash("success", "Your Kyc Information Was Submitted Successfully")
-            new Email(user).sendKYC();
+            // new Email(user).sendKYC();
 
             res.redirect("/user/kyc")
         } catch (error) {

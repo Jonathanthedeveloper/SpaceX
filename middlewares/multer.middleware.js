@@ -1,13 +1,13 @@
 const multer = require("multer")
 const crypto = require("crypto");
-
+const path = require("path")
 
 const storage = multer.diskStorage({
     destination(req, file, cb) {
-        cb(null, `${__dirname}/../public/uploads`);
+        cb(null, path.join(`${__dirname}/../public/uploads`));
     },
     filename(req, file, cb) {
-
+        console.log(path.join(`${__dirname}/../public/uploads`))
         const ext = file.originalname.split('.').at(-1);
         const fileName = `kyc-${req.user._id}-${crypto.randomUUID()}-${Date.now()}.${ext}`;
         cb(null, fileName)
