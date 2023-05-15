@@ -1,5 +1,6 @@
 const PORT = process.env.PORT || 3000;
-const starterDuration = 86400000;
+// const starterDuration = 86400000;
+const starterDuration = 1000;
 const regularDuration = 172800000;
 const proDuration = 518400000;
 const eliteDuration = 2592000000;

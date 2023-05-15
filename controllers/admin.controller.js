@@ -1,7 +1,7 @@
 const userService = require("../services/user.service");
 const transactionService = require("../services/transaction.service");
 const User = require("../models/user.model");
-const { referralEarningPercent } = require("../config");
+const {referralEarningPercent} = require("../config");
 const Email = require("../utils/mail.util");
 const CronJob = require("cron").CronJob;
 const payInvestors = require("../utils/payInvestors");
@@ -29,10 +29,7 @@ class AdminController {
 
         const recents = transactions.slice(0, 5)
 
-        const { deposits, withdrawals, investments, earnings  } = splitTransactions(transactions)
-
-
-
+        const {deposits, withdrawals, investments, earnings} = splitTransactions(transactions)
 
 
         res.render("adminDashboard", {
@@ -54,7 +51,7 @@ class AdminController {
 
         deposits.sort((a, b) => b.createdAt - a.createdAt);
 
-        res.render("adminDeposit", { deposits });
+        res.render("adminDeposit", {deposits});
     }
 
     async renderAdminWithdrawal(req, res) {
@@ -64,40 +61,45 @@ class AdminController {
         });
 
         withdrawals.sort((a, b) => b.createdAt - a.createdAt);
-        res.render("adminWithdraw", { withdrawals });
+        res.render("adminWithdraw", {withdrawals});
     }
 
     async handleApproval(req, res) {
-        const { id, approve } = req.body;
-        const status = approve === "confirm" ? "successful" : "failed";
-        const transaction = await transactionService.update(
-            { _id: id },
-            { status }
-        );
+        try {
+            const {id, approve} = req.body;
+            const status = approve === "confirm" ? "successful" : "failed";
+            const transaction = await transactionService.update(
+                {_id: id},
+                {status}
+            );
 
-        if (transaction.type === "deposit") {
-            if (transaction.user.referredBy) {
-                const referralEarnings = {
-                    from: transaction.user._id,
-                    user: transaction.user.referredBy,
-                    type: "referral earnings",
-                    status: "successful",
-                    amount: referralEarningPercent * transaction.amount,
-                };
+            if (transaction.type === "deposit") {
 
-                const refEarnings = await transactionService.create(referralEarnings);
-                await User.findByIdAndUpdate(transaction.user.referredBy, {
-                    $push: { earnings: refEarnings._id },
-                });
+                if (transaction.user.referredBy && !transaction.user.hasDeposited) {
+                    const referralEarnings = {
+                        from: transaction.user._id,
+                        user: transaction.user.referredBy,
+                        type: "referral earnings",
+                        status: "successful",
+                        amount: referralEarningPercent * transaction.amount,
+                    };
+
+                    await transactionService.create(referralEarnings);
+
+
+                }
+                new Email(transaction.user, ".", transaction.amount).sendDeposit();
+
+                req.flash("success", "Transaction Approved")
+                res.redirect("/user/admin/deposit");
+            } else if (transaction.type === "withdrawal") {
+                new Email(transaction.user, ".", transaction.amount).sendWithdrawal();
+                req.flash("success", "Transaction Approved")
+                res.redirect("/user/admin/withdraw");
             }
-            new Email(transaction.user, ".", transaction.amount).sendDeposit();
-
-            req.flash("success", "Transaction Approved")
-            res.redirect("/user/admin/deposit");
-        } else if (transaction.type === "withdrawal") {
-            new Email(transaction.user, ".", transaction.amount).sendWithdrawal();
-            req.flash("success", "Transaction Approved")
-            res.redirect("/user/admin/withdraw");
+        } catch (error) {
+            req.flash("error", error.message)
+            res.redirect(req.originalUrl);
         }
     }
 
@@ -108,7 +110,7 @@ class AdminController {
 
         // res.send(referredUsers)
 
-        res.render("adminRefer", { referredUsers });
+        res.render("adminRefer", {referredUsers});
     }
 
     async renderAdminUsers(req, res) {
@@ -118,23 +120,24 @@ class AdminController {
             user.balance = calcUserBalance(user.transactions)
         })
 
-        res.render("adminUser", { users });
+        res.render("adminUser", {users});
     }
 
     async renderAdminUsersProfile(req, res) {
-        const user = await userService.findOne({ _id: req.params.user });
+        const user = await userService.findOne({_id: req.params.user});
 
 
         user.balance = calcUserBalance(user.transactions)
 
 
-        res.render("adminPersonalProfile", { user });
+        res.render("adminPersonalProfile", {user});
     }
 
 
     async handleBonus(req, res) {
-        const user = await userService.findOne({ email: req.body.email });
         try {
+            const user = await userService.findOne({email: req.body.email});
+
             if (!user) {
                 req.flash("status", "fail");
                 res.redirect("/user/admin/bonus");
@@ -161,8 +164,7 @@ class AdminController {
             req.flash("success", `${transaction.type} Added Successfully`);
             res.redirect("/user/admin/bonus");
         } catch (error) {
-            console.log(error);
-            req.flash("fail", `Failed To Add Bonus ${user.name ? `To ${user.name}'s Account` : ""}`);
+            req.flash("error", `Failed To Add Bonus ${user.name ? `To ${user.name}'s Account` : ""}`);
             res.redirect("/user/admin/bonus");
         }
     }
@@ -172,7 +174,7 @@ class AdminController {
 
             // email amount
 
-            const user = await User.findOne({ email: req.body.email });
+            const user = await User.findOne({email: req.body.email});
 
             if (!user) {
                 throw new Error("user not found");
@@ -191,25 +193,28 @@ class AdminController {
             res.redirect("/user/admin/penalty");
 
         } catch (error) {
-            req.flash("fail", error.message);
+            req.flash("error", error.message);
             res.redirect("/user/admin/penalty");
         }
     }
 
     async renderAdminInvestments(req, res) {
 
-        const investments = await Transaction.find({ type: "investment" }).populate({ path: "user", select: "name email" }).sort({ createdAt: -1 })
+        const investments = await Transaction.find({type: "investment"}).populate({
+            path: "user",
+            select: "name email"
+        }).sort({createdAt: -1})
 
-        res.render('adminInvestments', { investments });
+        res.render('adminInvestments', {investments});
     }
 
     async verifyUser(req, res) {
         try {
-            await User.findByIdAndUpdate(req.body.user, { isVerified: true })
+            await User.findByIdAndUpdate(req.body.user, {isVerified: true})
             req.flash('success', 'user verified successfully')
             res.redirect('/user/admin/user')
         } catch (error) {
-            req.flash('fail', 'failed to verify user')
+            req.flash('error', 'failed to verify user')
             res.redirect('/user/admin/user')
         }
 
@@ -221,11 +226,10 @@ class AdminController {
             req.flash('success', 'user deleted successfully')
             res.redirect('/user/admin/user')
         } catch (error) {
-            req.flash('fail', 'failed to delete user')
+            req.flash('error', 'failed to delete user')
             res.redirect('/user/admin/user')
         }
     }
-
 
 
 }
