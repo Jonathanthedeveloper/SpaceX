@@ -102,6 +102,10 @@ const userSchema = new Schema({
         type: accountSchema,
         default: {},
     },
+    hasDeposited : {
+        type: Boolean,
+        default: false
+    },
     referrals: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
@@ -128,7 +132,7 @@ const userSchema = new Schema({
         awaitingVerification: {
             type: Boolean,
         },
-        subbmittedAt: {
+        submittedAt: {
             type: Date,
             default: Date.now()
         }
