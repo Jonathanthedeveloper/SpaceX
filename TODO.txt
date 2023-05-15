@@ -45,3 +45,6 @@ Questions
 4. Emails Attachment and All. Thank You. // all emails are working edit with caution
 5. Check The Withdrawal.
 6. The User Balance for the withdrawal page.
+15/05/2023
+1. The Investment is messing up, users earnings are recurring.
+2. Did you make the referral bonus to only happen once..?
