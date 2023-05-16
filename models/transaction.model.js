@@ -51,7 +51,9 @@ const transactionSchema = new Schema({
     account: {
         type: accountSchema,
         default: {}
-    }
+    },
+    active: Boolean,
+    isFulfilled: Boolean
 
 }, { timestamps: true });
 

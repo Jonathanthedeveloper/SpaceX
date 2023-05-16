@@ -12,7 +12,8 @@ const Transaction = require("../models/transaction.model");
 class AdminController {
     constructor() {
         const job = new CronJob(
-            "0 0 * * *",
+            // "0 0 * * *",
+            "* * * * *",
             async function () {
                 await payInvestors();
             },
@@ -222,6 +223,7 @@ class AdminController {
 
     async deleteUser(req, res) {
         try {
+            65
             await User.findByIdAndDelete(req.body.user)
             req.flash('success', 'user deleted successfully')
             res.redirect('/user/admin/user')
